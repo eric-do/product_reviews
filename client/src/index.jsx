@@ -29,9 +29,17 @@ class Reviews extends React.Component {
           this.state.reviews.map(review => <Review review={review}/>)
         }
       </div>
+      // <AppWrapper>
+      //   TEST
+      // </AppWrapper>
     );
   }
 }
+
+const AppWrapper = styled.div`
+  text-align: center;
+  color: red;
+`;
 
 ReactDOM.render(<Reviews />, document.getElementById('reviews'));
 
