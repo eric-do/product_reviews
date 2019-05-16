@@ -1,6 +1,5 @@
 import React from 'react';
 import moment from 'moment';
-import styled from 'styled-components';
 
 const Review = (props) => (
   <div className="review-box">

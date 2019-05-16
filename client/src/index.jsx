@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import faker from 'faker';
 import Review from './Review.jsx';
 import $ from 'jquery';
+import styled from 'styled-components';
 
 class Reviews extends React.Component {
   constructor(props) {
