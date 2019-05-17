@@ -2,14 +2,25 @@ import React from 'react';
 import styled from 'styled-components';
 import RatingButtons from './RatingButtons.jsx';
 
-const ReviewRating = (props) => (
-  <Wrapper>
-    <Text>Was this review helpful?</Text>
+const ReviewRating = (props) => {
+  let reviewCounts;
+  if (props.mini) {
+    reviewCounts = <div></div>;
+  } else {
+    reviewCounts = 
+      <div>
+        <Feedback>{props.yes} found this review helpful</Feedback>
+        <Feedback>{props.funny} found this review funny</Feedback>
+      </div>;
+  }
+  
+  return (<Wrapper>
+    <Text>{props.mini ? 'Helpful?' : 'Was this review helpful?'}</Text>
     <RatingButtons />
-    <Feedback>{props.yes} found this review helpful</Feedback>
-    <Feedback>{props.funny} found this review funny</Feedback>
+    {reviewCounts}
   </Wrapper>
-);
+  );
+};
 
 const Wrapper = styled.div`
   

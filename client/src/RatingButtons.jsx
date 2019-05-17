@@ -1,6 +1,31 @@
 import React from 'react';
 import styled from 'styled-components';
 
+// class RatingButtons extends React.Component {
+//   constructor() {
+//     super(props);
+//     this.state = {
+//       yes: false,
+//       no: false,
+//       funny: false
+//     };
+//   }
+
+//   clickHandler(e, val) {
+//     e.preventDefault();
+//     this  
+//   }
+
+//   render() {
+//     return (
+//       <Wrapper>
+//         <Button onClick={(e) => this.clickHandler(e, 'yes')}>Yes</Button>
+//         <Button onClick={(e) => this.clickHandler(e, 'no')}>No</Button>
+//         <Button onClick={(e) => this.clickHandler(e, 'funny')}>Funny</Button>
+//       </Wrapper>
+//     );
+//   }
+// }
 const RatingButtons = (props) => (
   <Wrapper>
     <Button>Yes</Button>
@@ -14,6 +39,7 @@ const Wrapper = styled.div`
 `;
 
 const Button = styled.button`
+  border-radius: 2px;
   padding: 0 5px;
   font-size: 12px;
   line-height: 20px;

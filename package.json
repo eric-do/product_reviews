@@ -10,7 +10,8 @@
   "scripts": {
     "start": "nodemon server/index.js",
     "react-dev": "webpack -d --watch",
-    "seed": "node seed.js"
+    "seed": "node seed.js",
+    "test": "./node_modules/.bin/jest test"
   },
   "dependencies": {
     "body-parser": "^1.19.0",

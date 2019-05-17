@@ -5,10 +5,11 @@ import ReviewRating from './ReviewRating.jsx';
 
 
 const Review = (props) => (
-  <ReviewBox>
+  <ReviewBox className="review-box">
     <LeftColumn>
       <Avatar src={props.review.user_avatar} />
       <Username>
+        {/* <Popup /> */}
         <Link>{ props.review.username }</Link>
       </Username>
       <OwnedGames>
@@ -29,7 +30,7 @@ const Review = (props) => (
         </TextContainer>
       </VoteHeader>
       <PostDate>
-        { `Posted ${ moment(props.review.review_date).format('MMM Do')}`}
+        { `POSTED ${ moment(props.review.review_date).format('MMM Do').toUpperCase()}`}
       </PostDate>
       <Content>
         { `${(props.review.content)}`}
@@ -38,6 +39,14 @@ const Review = (props) => (
     </RightColumn>
   </ReviewBox>
 );
+
+const Popup = styled.div`
+  background: red;
+  width: 300px;
+  height: 200px;
+  position: absolute;
+  z-index: 100;
+`;
 
 const ReviewBox = styled.div`
   min-width: 522px;
@@ -48,6 +57,7 @@ const ReviewBox = styled.div`
   font-family: Arial, Helvetica, sans-serif;
   padding-bottom: 10px;
   margin-bottom: 20px;
+
 `;
 
 const Column = styled.div`
@@ -142,6 +152,7 @@ const Content = styled.div`
   color: #acb2b8;
   font-size: 13px;
   margin-bottom: 10px;
+  line-height: 17px;
 `;
 
 const PostDate = styled.div`
@@ -149,5 +160,6 @@ const PostDate = styled.div`
   font-size: 10px;
   margin-bottom: 15px;
 `;
+
 
 export default Review;
