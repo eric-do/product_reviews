@@ -18,7 +18,7 @@ const Review = (props) => (
     </LeftColumn>
     <RightColumn>
       <VoteHeader>
-        {  props.review.recommended ? <Thumb src="/images/thumbs-up.png" /> : <Thumb src="/images/thumbs-down.png" />  }
+        { props.review.recommended ? <Thumb src="/images/thumbs-up.png" /> : <Thumb src="/images/thumbs-down.png" /> }
         <TextContainer>
           <Title>
             { props.review.recommended ? 'Recommended' : 'Not recommended'}
@@ -29,7 +29,7 @@ const Review = (props) => (
         </TextContainer>
       </VoteHeader>
       <PostDate>
-        { `Posted ${ moment(props.review.review_date).format("MMM Do")}`}
+        { `Posted ${ moment(props.review.review_date).format('MMM Do')}`}
       </PostDate>
       <Content>
         { `${(props.review.content)}`}

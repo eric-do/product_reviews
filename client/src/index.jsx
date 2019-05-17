@@ -17,6 +17,7 @@ class Reviews extends React.Component {
       url: 'http://localhost:3005/reviews',
       method: 'GET',
       success: (reviews) => this.setState({ reviews }),
+      // eslint-disable-next-line quotes
       error: () => console.error(`Couldn't get reviews`)
     });
   }
