@@ -23,23 +23,31 @@ class Reviews extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1>Reviews</h1>
+      <ReviewsWrapper> 
+        <Title>MOST HELPFUL REVIEWS</Title>
+        <Subtitle>IN THE PAST 30 DAYS</Subtitle>
         {
           this.state.reviews.map(review => <Review review={review}/>)
         }
-      </div>
-      // <AppWrapper>
-      //   TEST
-      // </AppWrapper>
+      </ReviewsWrapper>
     );
   }
 }
 
-const AppWrapper = styled.div`
-  text-align: center;
-  color: red;
+const Title = styled.div`
+  font-size: 14px;
+  padding-right: 10px;
+  color: white;
+  display: inline;
 `;
 
+const Subtitle = styled(Title)`
+  color: #56707f;
+`;
+
+const ReviewsWrapper = styled.div`
+  background: #1a2738;
+  font-family: Arial, Helvetica, sans-serif;
+`;
 ReactDOM.render(<Reviews />, document.getElementById('reviews'));
 
