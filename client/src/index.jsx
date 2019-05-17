@@ -9,7 +9,7 @@ class Reviews extends React.Component {
     super(props);
     this.state = {
       reviews: []
-    }
+    };
   }
 
   componentDidMount() {
@@ -35,8 +35,10 @@ class Reviews extends React.Component {
 }
 
 const Title = styled.div`
+  padding-top: 20px;
+  padding-left: 5px;
   font-size: 14px;
-  padding-right: 10px;
+  padding-right: 5px;
   color: white;
   display: inline;
 `;

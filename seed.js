@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 const faker = require('faker');
 const db = require('./db');
 
@@ -7,7 +8,7 @@ for (let i = 0; i < 100; i++) {
     post_id: faker.random.number(),
     recommended: faker.random.boolean(),
     review_date: faker.date.past(),
-    hours_played:faker.random.number(10000),
+    hours_played: faker.random.number(10000),
     content: faker.lorem.paragraph(),
     language: faker.random.locale(),
     helpful_yes_count: faker.random.number(1000),
@@ -28,9 +29,9 @@ db.Review.sync({ force: true , logging: false }).then(() => {
 });
 
 db.Review.bulkCreate(reviews)
-.then(() => {
-  return db.Review.findAll();
-})
-.then(reviews => {
-  console.log(reviews);
-});
+  .then(() => {
+    return db.Review.findAll();
+  })
+  .then(reviews => {
+    console.log(reviews);
+  });

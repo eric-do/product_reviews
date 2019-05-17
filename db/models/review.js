@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 const Sequelize = require('sequelize');
 const db = require('../');
 
@@ -75,5 +76,5 @@ module.exports = function(sequelize, DataTypes) {
   });
 
   return Review;
-}
+};
 //module.exports = Review;

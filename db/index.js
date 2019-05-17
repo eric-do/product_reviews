@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 const Sequelize = require('sequelize');
 const sequelize = new Sequelize('steam', 'root', 'student', {
   host: 'localhost',
@@ -13,11 +14,7 @@ sequelize
     console.error('Unable to connect to the database:', err);
   });
 
-const getReviews = (callback) => {
-  Review.findAll()
-  .then(data => callback(null, data))
-  .catch(err => callback(err));
-}
+
 
 const Review = sequelize.define('review', {
   /* REVIEW FIELDS */
@@ -91,7 +88,13 @@ const Review = sequelize.define('review', {
   }
 });
 
-Review.sync({ force: false , logging: false }).then(() => {
+const getReviews = (callback) => {
+  Review.findAll()
+    .then(data => callback(null, data))
+    .catch(err => callback(err));
+};
+
+Review.sync({ force: false, logging: false }).then(() => {
   console.log('Review table synced');
 });
 

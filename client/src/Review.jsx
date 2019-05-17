@@ -3,6 +3,7 @@ import moment from 'moment';
 import styled from 'styled-components';
 import ReviewRating from './ReviewRating.jsx';
 
+
 const Review = (props) => (
   <ReviewBox>
     <LeftColumn>
@@ -13,37 +14,40 @@ const Review = (props) => (
       <OwnedGames>
         <SmallLink>{ `${props.review.product_count} products in account` }</SmallLink>
       </OwnedGames>
-        <ReviewCount>{ `${props.review.review_count} reviews`}</ReviewCount>
+      <ReviewCount>{ `${props.review.review_count} reviews`}</ReviewCount>
     </LeftColumn>
     <RightColumn>
-    <VoteHeader>
-      <div className="thumb">
-        {/* { props.review.recommended ? <img src={require("../images/thumbs-up.png")} /> : <img src={require("../images/thumbs-down.png")} /> } */}
-      </div>
-      <Title>
-        { props.review.recommended ? 'Recommended' : 'Not recommended'}
-      </Title>
-      <Hours>
-        { `${props.review.hours_played} hrs on record` }
-      </Hours>
-    </VoteHeader>
-    <PostDate>
+      <VoteHeader>
+        {  props.review.recommended ? <Thumb src="/images/thumbs-up.png" /> : <Thumb src="/images/thumbs-down.png" />  }
+        <TextContainer>
+          <Title>
+            { props.review.recommended ? 'Recommended' : 'Not recommended'}
+          </Title>
+          <Hours>
+            { `${props.review.hours_played} hrs on record` }
+          </Hours>
+        </TextContainer>
+      </VoteHeader>
+      <PostDate>
         { `Posted ${ moment(props.review.review_date).format("MMM Do")}`}
-    </PostDate>
-    <Content>
-      { `${(props.review.content)}`}
-    </Content>
-    <ReviewRating yes={props.review.helpful_yes_count} no={props.review.helpful_no_count} funny={props.review.helpful_funny_count}/>
+      </PostDate>
+      <Content>
+        { `${(props.review.content)}`}
+      </Content>
+      <ReviewRating yes={props.review.helpful_yes_count} no={props.review.helpful_no_count} funny={props.review.helpful_funny_count}/>
     </RightColumn>
   </ReviewBox>
 );
 
 const ReviewBox = styled.div`
   min-width: 522px;
+  max-width: 616px;
   margin: 5px 10px 10px 5px;
   background: #141e2c;  
   color: #c1dbf4;
   font-family: Arial, Helvetica, sans-serif;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
 `;
 
 const Column = styled.div`
@@ -101,6 +105,7 @@ const RightColumn = styled(Column)`
 `;
 
 const VoteHeader = styled.div`
+  vertical-align: top;
   background: #0e1622; 
   height: 40px;
   margin: 8px 0 10px 0;
@@ -109,17 +114,28 @@ const VoteHeader = styled.div`
   }
 `;
 
-const Hours = styled.div`
-  padding-left: 5px;
-  color: #8091a2;
-  font-size: 11px;
+const TextContainer = styled.div`
+  display: inline-block;
+  vertical-align: top;
+`;
+const Thumb = styled.img`
+  display: inline;
 `;
 
 const Title = styled.div`
+  vertical-align: top;
+  display: inline-block;
   padding-left: 5px;
   padding-top: 5px;
   font-size: 16px;
   color: #d6d7d8;
+`;
+
+const Hours = styled.div`
+  display: block;
+  padding-left: 5px;
+  color: #8091a2;
+  font-size: 11px;
 `;
 
 const Content = styled.div`
@@ -131,6 +147,7 @@ const Content = styled.div`
 const PostDate = styled.div`
   color: #8091a2;
   font-size: 10px;
+  margin-bottom: 15px;
 `;
 
 export default Review;
