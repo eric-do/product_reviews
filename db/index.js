@@ -4,6 +4,7 @@ const sequelize = new Sequelize('steam', 'root', 'student', {
   host: 'localhost',
   dialect: 'mysql'
 });
+const moment = require('moment');
 
 sequelize
   .authenticate()
@@ -94,9 +95,24 @@ const getReviews = (callback) => {
     .catch(err => callback(err));
 };
 
+const getRecent = (date, callback) => {
+  Review.findAll({
+    where: {
+      review_date: {
+        [Sequelize.Op.lte]: moment(date).format()
+      }
+    },
+    order: [['review_date', 'DESC']],
+    limit: 10
+  })
+    .then(data => callback(null, data))
+    .catch(err => callback(err));
+};
+
 Review.sync({ force: false, logging: false }).then(() => {
   console.log('Review table synced');
 });
 
 module.exports.getReviews = getReviews;
 module.exports.Review = Review;
+module.exports.getRecent = getRecent;

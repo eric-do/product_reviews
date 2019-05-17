@@ -14,8 +14,12 @@ class RecentlyPosted extends React.Component {
   }
 
   componentDidMount() {
+    this.getRecent();
+  }
+
+  getRecent(date) {
     $.ajax({
-      url: 'http://localhost:3005/reviews',
+      url: 'http://localhost:3005/recent',
       method: 'GET',
       success: (reviews) => this.setState({ reviews }),
       // eslint-disable-next-line quotes

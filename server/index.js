@@ -23,3 +23,12 @@ app.get('/reviews', (req, res) => {
     res.send(data);
   });
 });
+
+app.get('/recent', (req, res) => {
+  var date = req.body.date;
+  console.log('DATE: ' + date);
+  db.getRecent(date, (err, data) => {
+    if (err) { return console.error(err); }
+    res.send(data);
+  });
+});
