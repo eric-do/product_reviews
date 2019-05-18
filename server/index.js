@@ -25,7 +25,8 @@ app.get('/reviews', (req, res) => {
 });
 
 app.get('/recent', (req, res) => {
-  var date = req.body.date;
+  var date = req.query.date;
+  console.log(req.query);
   console.log('DATE: ' + date);
   db.getRecent(date, (err, data) => {
     if (err) { return console.error(err); }

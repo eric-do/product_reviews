@@ -4,12 +4,14 @@ import styled from 'styled-components';
 import ReviewRating from './ReviewRating.jsx';
 import $ from 'jquery';
 import MiniReview from './MiniReview.jsx';
+import axios from 'axios';
 
 class RecentlyPosted extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      reviews: []
+      reviews: [],
+      date: props.date || null
     };
   }
 
@@ -17,9 +19,10 @@ class RecentlyPosted extends React.Component {
     this.getRecent();
   }
 
-  getRecent(date) {
+  getRecent() {
     $.ajax({
       url: 'http://localhost:3005/recent',
+      data: {date: this.state.date},
       method: 'GET',
       success: (reviews) => this.setState({ reviews }),
       // eslint-disable-next-line quotes
