@@ -90,13 +90,13 @@ const Review = sequelize.define('review', {
 });
 
 const getReviews = (callback) => {
-  Review.findAll()
+  Review.findAndCountAll()
     .then(data => callback(null, data))
     .catch(err => callback(err));
 };
 
 const getRecent = (date, callback) => {
-  Review.findAll({
+  Review.findAndCountAll({
     where: {
       review_date: {
         [Sequelize.Op.lte]: moment(date).format()

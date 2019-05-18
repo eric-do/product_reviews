@@ -1,10 +1,8 @@
 import React from 'react';
 import moment from 'moment';
 import styled from 'styled-components';
-import ReviewRating from './ReviewRating.jsx';
 import $ from 'jquery';
 import MiniReview from './MiniReview.jsx';
-import axios from 'axios';
 
 class RecentlyPosted extends React.Component {
   constructor(props) {
@@ -24,7 +22,10 @@ class RecentlyPosted extends React.Component {
       url: 'http://localhost:3005/recent',
       data: {date: this.state.date},
       method: 'GET',
-      success: (reviews) => this.setState({ reviews }),
+      success: (result) => {
+        let reviews = result.rows;
+        this.setState({ reviews });
+      },
       // eslint-disable-next-line quotes
       error: () => console.error(`Couldn't get reviews`)
     });

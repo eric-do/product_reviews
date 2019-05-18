@@ -3,36 +3,16 @@ import Review from './Review.jsx';
 import $ from 'jquery';
 import styled from 'styled-components';
 
-class Reviews extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      reviews: []
-    };
-  }
+const Reviews = (props) => (
+  <ReviewsWrapper> 
+    <Title>MOST HELPFUL REVIEWS</Title>
+    <Subtitle>IN THE PAST 30 DAYS</Subtitle>
+    {
+      props.reviews.map(review => <Review review={review}/>)
+    }
+  </ReviewsWrapper>
+);
 
-  componentDidMount() {
-    $.ajax({
-      url: 'http://localhost:3005/reviews',
-      method: 'GET',
-      success: (reviews) => this.setState({ reviews }),
-      // eslint-disable-next-line quotes
-      error: () => console.error(`Couldn't get reviews`)
-    });
-  }
-
-  render() {
-    return (
-      <ReviewsWrapper> 
-        <Title>MOST HELPFUL REVIEWS</Title>
-        <Subtitle>IN THE PAST 30 DAYS</Subtitle>
-        {
-          this.state.reviews.map(review => <Review review={review}/>)
-        }
-      </ReviewsWrapper>
-    );
-  }
-}
 
 const Title = styled.div`
   padding-top: 20px;
