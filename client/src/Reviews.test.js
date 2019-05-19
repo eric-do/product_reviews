@@ -10,7 +10,7 @@ Enzyme.configure({ adapter: new Adapter() });
 beforeEach(() => jest.resetModules());
 
 describe('Reviews component', () => {
-  it('should render three <Review /> components', () => {
+  it('should render 100 <Review /> components', () => {
     const wrapper = shallow(<Reviews />);
     expect(wrapper.find(Review)).to.have.length(100);
   });
