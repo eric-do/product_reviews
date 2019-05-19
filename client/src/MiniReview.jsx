@@ -57,14 +57,6 @@ const Column = styled.div`
   display: inline-block;
 `;
 
-const SmallLink = styled.a`
-  font-size: 11px;
-  color: #c1dbf4;
-  &:hover {
-    color: #66C0F4;
-  }
-`;
-
 const Link = styled.a`
   color: #c1dbf4;
 `;
@@ -124,6 +116,5 @@ const PostDate = styled.div`
   margin-top: 10px;
   margin-bottom: 10px;
 `;
-
 
 export default MiniReview;

@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Review from './Review.jsx';
 import Reviews from './Reviews.jsx';
 import $ from 'jquery';
 import styled from 'styled-components';
@@ -11,6 +10,7 @@ class ReviewsModule extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      filters: [],
       count: 0,
       reviews: []
     };

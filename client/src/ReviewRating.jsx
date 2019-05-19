@@ -25,8 +25,6 @@ class ReviewRating extends React.Component {
     };
     helpfulness[val] = status;
 
-    console.log(this.props);
-
     $.ajax({
       url: 'http://localhost:3005/review/vote',
       method: 'POST',
@@ -35,11 +33,12 @@ class ReviewRating extends React.Component {
         post_id: this.props.post_id,
         helpfulness: helpfulness
       },
-      success: () => this.setState({ helpfulness }),
+      success: () => {
+        console.log('PostID ' + this.props.post_id + JSON.stringify(helpfulness));
+        this.setState({ helpfulness });
+      },
       error: () => console.error('Couldn\'t connect to network.')
     });
-
-    // this.setState({ helpfulness });
   }
 
   render() {

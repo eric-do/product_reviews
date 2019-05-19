@@ -1,18 +1,16 @@
 import React from 'react';
 import Review from './Review.jsx';
-import $ from 'jquery';
 import styled from 'styled-components';
 
-const Reviews = (props) => (
+const Reviews = ({reviews}) => (
   <ReviewsWrapper> 
     <Title>MOST HELPFUL REVIEWS</Title>
     <Subtitle>IN THE PAST 30 DAYS</Subtitle>
     {
-      props.reviews.map(review => <Review review={review}/>)
+      reviews.map(review => <Review review={review}/>)
     }
   </ReviewsWrapper>
 );
-
 
 const Title = styled.div`
   padding-top: 20px;
