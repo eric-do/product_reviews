@@ -24,7 +24,7 @@ for (let i = 0; i < 100; i++) {
   });
 }
 
-db.Review.sync({ force: true , logging: false }).then(() => {
+db.Review.sync({ force: true, logging: false }).then(() => {
   console.log('Review table dropped and synced');
 });
 

@@ -4,29 +4,29 @@ import styled from 'styled-components';
 import ReviewRating from './ReviewRating.jsx';
 
 
-const MiniReview = (props) => (
+const MiniReview = ({review}) => (
   <ReviewBox className="review-box">
     <RightColumn>
       <VoteHeader>
-        { props.review.recommended ? <Thumb src="/images/thumbs-up.png" /> : <Thumb src="/images/thumbs-down.png" /> }
+        { review.recommended ? <Thumb src="/images/thumbs-up.png" /> : <Thumb src="/images/thumbs-down.png" /> }
         <TextContainer>
           <Username>
             {/* <Popup /> */}
-            <Link>{ props.review.username }</Link>
+            <Link>{ review.username }</Link>
           </Username>
           <Hours>
-            { `${props.review.hours_played} hrs` }
+            { `${review.hours_played} hrs` }
           </Hours>
         </TextContainer>
       </VoteHeader>
       <CommentContainer>
         <PostDate>
-          { `POSTED ${ moment(props.review.review_date).format('MMM Do').toUpperCase()}`}
+          { `POSTED ${ moment(review.review_date).format('MMM Do').toUpperCase()}`}
         </PostDate>
         <Content>
-          { `${(props.review.content)}`}
+          { `${(review.content)}`}
         </Content>
-        <ReviewRating post_id={props.review.post_id} mini={true} yes={props.review.helpful_yes_count} no={props.review.helpful_no_count} funny={props.review.helpful_funny_count}/>
+        <ReviewRating post_id={review.post_id} mini={true} yes={review.helpful_yes_count} no={review.helpful_no_count} funny={review.helpful_funny_count}/>
       </CommentContainer>
     </RightColumn>
   </ReviewBox>
