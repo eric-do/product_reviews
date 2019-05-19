@@ -15,9 +15,9 @@ class ReviewsModule extends React.Component {
           id: 'type',
           displayName: 'Review Type', 
           options: [
-            'All',
-            'Positive',
-            'Negative'
+            ['all', 'All'],
+            ['positive', 'Positive'],
+            ['negative', 'Negative']
           ]
         },
         {
@@ -25,7 +25,7 @@ class ReviewsModule extends React.Component {
           id: 'language',
           displayName: 'Language', 
           options: [
-            'All languages'
+            ['all', 'All languages']
           ]
         },
         {
@@ -33,9 +33,9 @@ class ReviewsModule extends React.Component {
           id: 'date',
           displayName: 'Date Range', 
           options: [
-            'Lifetime',
-            'Before 2018',
-            'Before 2017'
+            ['lifetime', 'Lifetime'],
+            ['before2018', 'Before 2018'],
+            ['before2017', 'Before 2017']
           ]
         }
       ],

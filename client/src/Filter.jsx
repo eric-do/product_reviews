@@ -4,7 +4,6 @@ import styled from 'styled-components';
 class Filter extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props);
     this.state = {
       showMenu: false
     };
@@ -54,10 +53,13 @@ class Filter extends React.Component {
               <FilterMenu>
                 {
                   this.props.filter.options.map(option => {
+                    let optionId = option[0];
+                    let optionName = option[1];
+
                     return (
                       <FilterOption>
-                        <RadioButton name="Filter1" type="radio" id={this.props.filter.id}/>
-                        <RadioLabel htmlFor={this.props.filter.id}>{option}</RadioLabel>
+                        <RadioButton name={this.props.filter.id} type="radio" id={optionId}/>
+                        <RadioLabel htmlFor={optionId}>{optionName}</RadioLabel>
                       </FilterOption>
                     );
                   })
