@@ -9,7 +9,36 @@ class ReviewsModule extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      filters: [],
+      filters: [
+        {
+          active: false,
+          id: 'type',
+          displayName: 'Review Type', 
+          options: [
+            'All',
+            'Positive',
+            'Negative'
+          ]
+        },
+        {
+          active: true,
+          id: 'language',
+          displayName: 'Language', 
+          options: [
+            'All languages'
+          ]
+        },
+        {
+          active: false,
+          id: 'date',
+          displayName: 'Date Range', 
+          options: [
+            'Lifetime',
+            'Before 2018',
+            'Before 2017'
+          ]
+        }
+      ],
       count: 0,
       reviews: []
     };
@@ -37,7 +66,7 @@ class ReviewsModule extends React.Component {
   render() {
     return (
       <ModuleContainer>
-        <FilterComponent count={this.state.count}/>
+        <FilterComponent filters={this.state.filters} count={this.state.count}/>
         <Reviews reviews={this.state.reviews}/>
         <RecentlyPosted />
       </ModuleContainer>

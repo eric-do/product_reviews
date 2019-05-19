@@ -2,13 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import Filter from './Filter.jsx';
 
-const FilterComponent = ({count}) => (
+const FilterComponent = ({count, filters}) => (
   <FilterContainer>
     <FilterList>
-      <Filter />
-      <Filter />
-      <Filter />
-      <Filter />
+      {
+        filters.map(filter => (<Filter filter={filter} />))
+      }
     </FilterList>
     <FilterSummary>
       {'Showing '}

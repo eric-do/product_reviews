@@ -4,6 +4,7 @@ import styled from 'styled-components';
 class Filter extends React.Component {
   constructor(props) {
     super(props);
+    console.log(props);
     this.state = {
       showMenu: false
     };
@@ -46,14 +47,21 @@ class Filter extends React.Component {
 
     return (
       <FilterDropdown onMouseEnter={this.showMenu.bind(this)} onMouseLeave={this.hideMenu.bind(this)}>
-        <FilterButton style={this.state.showMenu ? onMouseEnter : onMouseLeave }>NAME</FilterButton>
+        <FilterButton style={this.state.showMenu ? onMouseEnter : onMouseLeave }>{this.props.filter.displayName.toUpperCase()}</FilterButton>
         {
           this.state.showMenu ? 
             (
               <FilterMenu>
-                <FilterOption>Option 1</FilterOption>
-                <FilterOption>Option 2</FilterOption>
-                <FilterOption>Option 3</FilterOption>
+                {
+                  this.props.filter.options.map(option => {
+                    return (
+                      <FilterOption>
+                        <RadioButton name="Filter1" type="radio" id={this.props.filter.id}/>
+                        <RadioLabel htmlFor={this.props.filter.id}>{option}</RadioLabel>
+                      </FilterOption>
+                    );
+                  })
+                }
               </FilterMenu>
             )
             : null
@@ -80,23 +88,28 @@ const FilterButton = styled.div`
 
 const FilterMenu = styled.ul`
   margin: 0;
-  padding: 0;
+  padding: 5px 0px;
   top: 30px;
   left: 0px;
   width: 200px;
-  background-color: white;
+  background: #c6d4df;
   position: absolute;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
 `;
 
 const FilterOption = styled.li`
-  padding: 8px 16px;
-  border-bottom: 1px solid #e5e5e5;
+  padding: 3px 5px;
   background: #c6d4df;
   color: #556772;
   font-size: 12px;
   font-weight: normal;
+`;
+
+const RadioButton = styled.input`
+`;
+
+const RadioLabel = styled.label`
 `;
 
 export default Filter;
