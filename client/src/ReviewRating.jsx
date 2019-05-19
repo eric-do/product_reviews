@@ -1,26 +1,67 @@
 import React from 'react';
 import styled from 'styled-components';
 import RatingButtons from './RatingButtons.jsx';
+import $ from 'jquery';
 
-const ReviewRating = (props) => {
-  let reviewCounts;
-  if (props.mini) {
-    reviewCounts = <div></div>;
-  } else {
-    reviewCounts = 
-      <div>
-        <Feedback>{props.yes} found this review helpful</Feedback>
-        <Feedback>{props.funny} found this review funny</Feedback>
-      </div>;
+class ReviewRating extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      helpfulness: {
+        yes: false,
+        no: false, 
+        funny: false
+      }
+    };
   }
-  
-  return (<Wrapper>
-    <Text>{props.mini ? 'Helpful?' : 'Was this review helpful?'}</Text>
-    <RatingButtons />
-    {reviewCounts}
-  </Wrapper>
-  );
-};
+
+  updateHelpfulness(e, val) {
+    e.preventDefault();
+    let status = !this.state.helpfulness[val];
+    let helpfulness = {
+      yes: false,
+      no: false, 
+      funny: false
+    };
+    helpfulness[val] = status;
+
+    console.log(this.props);
+
+    $.ajax({
+      url: 'http://localhost:3005/review/vote',
+      method: 'POST',
+      data: {
+        // eslint-disable-next-line camelcase
+        post_id: this.props.post_id,
+        helpfulness: helpfulness
+      },
+      success: () => this.setState({ helpfulness }),
+      error: () => console.error('Couldn\'t connect to network.')
+    });
+
+    // this.setState({ helpfulness });
+  }
+
+  render() {
+    let reviewCounts;
+    if (this.props.mini) {
+      reviewCounts = <div></div>;
+    } else {
+      reviewCounts = 
+        <div>
+          <Feedback>{this.props.yes} found this review helpful</Feedback>
+          <Feedback>{this.props.funny} found this review funny</Feedback>
+        </div>;
+    }
+
+    return (<Wrapper>
+      <Text>{this.props.mini ? 'Helpful?' : 'Was this review helpful?'}</Text>
+      <RatingButtons helpfulness={this.state.helpfulness} clickHandler={this.updateHelpfulness.bind(this)}/>
+      {reviewCounts}
+    </Wrapper>
+    );
+  }
+}
 
 const Wrapper = styled.div`
   

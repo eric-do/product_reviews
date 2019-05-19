@@ -4,38 +4,38 @@ import styled from 'styled-components';
 import ReviewRating from './ReviewRating.jsx';
 
 
-const Review = (props) => (
+const Review = ({review}) => (
   <ReviewBox className="review-box">
     <LeftColumn>
-      <Avatar src={props.review.user_avatar} />
+      <Avatar src={review.user_avatar} />
       <Username>
         {/* <Popup /> */}
-        <Link>{ props.review.username }</Link>
+        <Link>{review.username}</Link>
       </Username>
       <OwnedGames>
-        <SmallLink>{ `${props.review.product_count} products in account` }</SmallLink>
+        <SmallLink>{ `${review.product_count} products in account` }</SmallLink>
       </OwnedGames>
-      <ReviewCount>{ `${props.review.review_count} reviews`}</ReviewCount>
+      <ReviewCount>{ `${review.review_count} reviews`}</ReviewCount>
     </LeftColumn>
     <RightColumn>
       <VoteHeader>
-        { props.review.recommended ? <Thumb src="/images/thumbs-up.png" /> : <Thumb src="/images/thumbs-down.png" /> }
+        { review.recommended ? <Thumb src="/images/thumbs-up.png" /> : <Thumb src="/images/thumbs-down.png" /> }
         <TextContainer>
           <Title>
-            { props.review.recommended ? 'Recommended' : 'Not recommended'}
+            { review.recommended ? 'Recommended' : 'Not recommended'}
           </Title>
           <Hours>
-            { `${props.review.hours_played} hrs on record` }
+            { `${review.hours_played} hrs on record` }
           </Hours>
         </TextContainer>
       </VoteHeader>
       <PostDate>
-        { `POSTED ${ moment(props.review.review_date).format('MMM Do').toUpperCase()}`}
+        { `POSTED ${ moment(review.review_date).format('MMM Do').toUpperCase()}`}
       </PostDate>
       <Content>
-        { `${(props.review.content)}`}
+        { `${(review.content)}`}
       </Content>
-      <ReviewRating yes={props.review.helpful_yes_count} no={props.review.helpful_no_count} funny={props.review.helpful_funny_count}/>
+      <ReviewRating post_id={review.post_id} yes={review.helpful_yes_count} no={review.helpful_no_count} funny={review.helpful_funny_count}/>
     </RightColumn>
   </ReviewBox>
 );

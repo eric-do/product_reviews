@@ -33,3 +33,10 @@ app.get('/recent', (req, res) => {
     res.send(data);
   });
 });
+
+app.post('/review/vote', (req, res) => {
+  var postId = req.body.post_id;
+  var helpfulness = req.body.helpfulness;
+  console.log(postId, helpfulness);
+  res.send('success');
+});

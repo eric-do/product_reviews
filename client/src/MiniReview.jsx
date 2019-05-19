@@ -26,7 +26,7 @@ const MiniReview = (props) => (
         <Content>
           { `${(props.review.content)}`}
         </Content>
-        <ReviewRating mini={true} yes={props.review.helpful_yes_count} no={props.review.helpful_no_count} funny={props.review.helpful_funny_count}/>
+        <ReviewRating post_id={props.review.post_id} mini={true} yes={props.review.helpful_yes_count} no={props.review.helpful_no_count} funny={props.review.helpful_funny_count}/>
       </CommentContainer>
     </RightColumn>
   </ReviewBox>

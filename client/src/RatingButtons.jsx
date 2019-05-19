@@ -1,34 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
+import HelpfulButton from './HelpfulButton.jsx';
 
-const RatingButtons = (props) => (
-  <Wrapper>
-    <Button>Yes</Button>
-    <Button>No</Button>
-    <Button>Funny</Button>
-  </Wrapper>
-);
+const RatingButtons = ({helpfulness, clickHandler}) => {
+  return (
+    <Wrapper>
+      <HelpfulButton active={helpfulness.yes} clickHandler={clickHandler} string={'Yes'}/>
+      <HelpfulButton active={helpfulness.no} clickHandler={clickHandler} string={'No'}/>
+      <HelpfulButton active={helpfulness.funny} clickHandler={clickHandler} string={'Funny'}/>
+    </Wrapper>
+  );
+};
 
 const Wrapper = styled.div`
   display: inline
-`;
-
-const Button = styled.button`
-  border-radius: 2px;
-  padding: 0 5px;
-  font-size: 12px;
-  line-height: 20px;
-  cursor: pointer;
-  color: #66c0f4;
-  border-color: transparent;
-  display: inline;
-  background: #212c3d;
-  margin-left: 2px;
-  margin-right: 2px;
-  &:hover{
-    color: white;
-    background: #66c0f4
-  }
 `;
 
 export default RatingButtons;
