@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import Reviews from './Reviews.jsx';
+import Reviews from '../client/src/Reviews.jsx';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-15.4';
 import $ from 'jquery';
@@ -10,9 +10,11 @@ Enzyme.configure({ adapter: new Adapter() });
 beforeEach(() => jest.resetModules());
 
 describe('Reviews component', () => {
-  it('should render 100 <Review /> components', () => {
-    const wrapper = shallow(<Reviews />);
-    expect(wrapper.find(Review)).to.have.length(100);
+  it('should render elements', () => {
+    const wrapper = shallow(
+      <Reviews reviews={['test']}/>
+    );
+    expect(wrapper).toMatchSnapshot();
   });
 
 });

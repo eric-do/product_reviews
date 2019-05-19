@@ -5,6 +5,12 @@ import styled from 'styled-components';
 import RecentlyPosted from './RecentlyPosted.jsx';
 import FilterComponent from './FilterComponent.jsx';
 
+/* REVIEWS MODULE
+** Purpose: the ReviewsModule is the starting point for 3 separate components
+** 1. Filters: dynamically display available filters pulled from BE
+** 2. Reviews: reviews based on selected filter values
+** 3. Recent reviews: most recent 10 reviews based on selected date range
+*/
 class ReviewsModule extends React.Component {
   constructor(props) {
     super(props);
