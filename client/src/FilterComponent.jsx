@@ -6,7 +6,7 @@ const FilterComponent = ({count, filters}) => (
   <FilterContainer>
     <FilterList>
       {
-        filters.map(filter => (<Filter filter={filter} />))
+        filters.map(filter => (<Filter key={filter.id} filter={filter} />))
       }
     </FilterList>
     <FilterSummary>

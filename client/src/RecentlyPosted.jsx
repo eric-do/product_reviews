@@ -36,7 +36,7 @@ class RecentlyPosted extends React.Component {
       <ReviewsWrapper> 
         <Title>RECENTLY POSTED</Title>
         {
-          this.state.reviews.map(review => <MiniReview review={review}/>)
+          this.state.reviews.map(review => <MiniReview key={review.post_id} review={review}/>)
         }
       </ReviewsWrapper>
     );

@@ -7,7 +7,7 @@ const Reviews = ({reviews}) => (
     <Title>MOST HELPFUL REVIEWS</Title>
     <Subtitle>IN THE PAST 30 DAYS</Subtitle>
     {
-      reviews.map(review => <Review review={review}/>)
+      reviews.map(review => <Review key={review.post_id} review={review}/>)
     }
   </ReviewsWrapper>
 );
@@ -27,9 +27,13 @@ const Subtitle = styled(Title)`
 
 const ReviewsWrapper = styled.div`
   float: left;
-  width: 50%;
+  width: 100%;
   background: #1a2738;
   font-family: Arial, Helvetica, sans-serif;
+
+  @media only screen and (min-width: 1200px) {
+    width: 50%;
+  }
 `;
 
 export default Reviews;

@@ -58,7 +58,7 @@ class Filter extends React.Component {
                     let count = option.count;
 
                     return (
-                      <FilterOption>
+                      <FilterOption key={optionId}>
                         <RadioButton name={this.props.filter.id} type="radio" id={optionId}/>
                         <RadioLabel htmlFor={optionId}>{optionName}</RadioLabel>
                         <OptionCount>({count})</OptionCount>
