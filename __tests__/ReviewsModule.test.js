@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import ReviewsModule from './ReviewsModule.jsx';
+import ReviewsModule from '../client/src/ReviewsModule.jsx';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-15.4';
 import $ from 'jquery';
