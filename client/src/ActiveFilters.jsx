@@ -1,18 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const ActiveFilters = ({activeFilters}) => (
+const ActiveFilters = ({activeFilters, setFilters}) => (
   <FilterWrapper>
     {'Filters'}
     {
-      
       Object.keys(activeFilters).map(key => {
-        return (
-          <FilterButton>
-            <FilterName>{activeFilters[key].optionName}</FilterName>
-            {/* <DeleteButton src='./images/deleteSearchTerm.png'></DeleteButton> */}
-          </FilterButton>
-        );
+        console.log('TEST ' + JSON.stringify(activeFilters[key].optionId));
+        return (activeFilters[key].optionId ? 
+          (
+            <FilterButton onClick={(e) => setFilters(e, key, {optionId: {}, optionId: {}})}>
+              <FilterName >{activeFilters[key].optionName}</FilterName>
+            </FilterButton>
+          )
+          : null);
       })
     }
   </FilterWrapper>
@@ -41,9 +42,7 @@ const FilterButton = styled.div`
   background-image: url('/images/deleteSearchTerm.png');
   background-repeat: no-repeat;
   background-position: right 5px center;
-`;
-
-const DeleteButton = styled.img`
+  cursor: pointer;
 `;
 
 const FilterName = styled.div``;

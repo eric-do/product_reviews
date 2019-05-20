@@ -44,6 +44,7 @@ describe('ReviewsModule component', () => {
     expect($.ajax).toBeCalledWith({
       success: expect.any(Function),
       error: expect.any(Function),
+      data: expect.any(Object),
       method: 'GET',
       url: 'http://localhost:3005/reviews'
     });
