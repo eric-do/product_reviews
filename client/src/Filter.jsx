@@ -53,8 +53,8 @@ class Filter extends React.Component {
               <FilterMenu>
                 {
                   this.props.filter.options.map(option => {
-                    let optionId = option[0];
-                    let optionName = option[1];
+                    let optionId = option.id;
+                    let optionName = option.displayName;
 
                     return (
                       <FilterOption>

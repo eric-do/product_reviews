@@ -1,10 +1,10 @@
 /* eslint-disable camelcase */
 const Sequelize = require('sequelize');
-const db = require('../');
 
-module.exports = function(sequelize, DataTypes) {
-  const Review = sequelize.define('review', {
-    /* REVIEW FIELDS */
+module.exports = (sequelize) => {
+  
+  return sequelize.define('review', {
+  /* REVIEW FIELDS */
     post_id: {
       type: Sequelize.INTEGER,
       allowNull: false,
@@ -47,10 +47,10 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       primaryKey: true
     }, 
-    
+  
     /* USER FIELDS */
     username: {
-      type: Sequelize.BOOLEAN,
+      type: Sequelize.STRING,
       allowNull: false,
     },
     user_avatar: {
@@ -74,7 +74,4 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     }
   });
-
-  return Review;
 };
-//module.exports = Review;

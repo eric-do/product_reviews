@@ -3,6 +3,8 @@ const parser = require('body-parser');
 const db = require('../db');
 const app = express();
 const port = 3005;
+const moment = require('moment');
+const Sequelize = require('sequelize');
 
 app.use(parser.json());
 app.use(parser.urlencoded({extended: true}));
@@ -18,17 +20,30 @@ app.get('/test', (req, res) => {
 });
 
 app.get('/reviews', (req, res) => {
-  db.getReviews((err, data) => {
+  const options = {
+    order: [['helpful_yes_count', 'DESC']]
+  };
+
+  db.getReviews(options, (err, data) => {
     if (err) { return console.error(err); }
     res.send(data);
   });
 });
 
 app.get('/recent', (req, res) => {
-  var date = req.query.date;
-  console.log(req.query);
-  console.log('DATE: ' + date);
-  db.getRecent(date, (err, data) => {
+  const date = req.query.date || moment().startOf('day').format();
+  const options = {
+    where: {
+      // eslint-disable-next-line camelcase
+      review_date: {
+        [Sequelize.Op.lte]: moment(date).format()
+      }
+    },
+    order: [['review_date', 'DESC']],
+    limit: 10
+  }; 
+
+  db.getReviews(options, (err, data) => {
     if (err) { return console.error(err); }
     res.send(data);
   });
@@ -39,4 +54,12 @@ app.post('/review/vote', (req, res) => {
   var helpfulness = req.body.helpfulness;
   console.log(postId, helpfulness);
   res.send('success');
+});
+
+app.get('/reviews/filters/languages', (req, res) => {
+  console.log('Attempting to get languages');
+  db.getLanguageFilter((err, data) => {
+    if (err) { console.error(err); }
+    res.send(data);
+  });
 });

@@ -1,8 +1,47 @@
 /* eslint-disable camelcase */
 const faker = require('faker');
 const db = require('./db');
-
 const reviews = [];
+const languageArray = [
+  'Arabic',
+  'Bulgarian',
+  'Bosnian',
+  'Czech',
+  'German',
+  'Danish',
+  'Greek',
+  'English',
+  'Spanish',
+  'Estonian',
+  'Persian',
+  'Finnish',
+  'French',
+  'Hindi',
+  'Croatian',
+  'Hungarian',
+  'Armenian',
+  'Italian',
+  'Japanese',
+  'Georgian',
+  'Korean',
+  'Lithuanian',
+  'Latvian',
+  'Nepali',
+  'Dutch',
+  'Norwegian',
+  'Polish',
+  'Portuguese',
+  'Romanian',
+  'Russian',
+  'Slovene',
+  'Swedish',
+  'Turkish',
+  'Ukrainian',
+  'Chinese',
+];
+
+const getRandomInteger = (max) => Math.floor(Math.random() * Math.floor(max));
+
 for (let i = 0; i < 100; i++) {
   reviews.push({
     post_id: faker.random.number(),
@@ -10,7 +49,7 @@ for (let i = 0; i < 100; i++) {
     review_date: faker.date.past(),
     hours_played: faker.random.number(10000),
     content: faker.lorem.paragraph(),
-    language: faker.random.locale(),
+    language: languageArray[getRandomInteger(languageArray.length - 1)],
     helpful_yes_count: faker.random.number(1000),
     helpful_no_count: faker.random.number(1000),
     helpful_funny_count: faker.random.number(1000),
@@ -35,3 +74,5 @@ db.Review.bulkCreate(reviews)
   .then(reviews => {
     console.log(reviews);
   });
+
+

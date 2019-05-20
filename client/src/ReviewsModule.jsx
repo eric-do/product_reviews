@@ -4,6 +4,7 @@ import $ from 'jquery';
 import styled from 'styled-components';
 import RecentlyPosted from './RecentlyPosted.jsx';
 import FilterComponent from './FilterComponent.jsx';
+import { tsObjectKeyword } from '@babel/types';
 
 /* REVIEWS MODULE
 ** Purpose: the ReviewsModule is the starting point for 3 separate components
@@ -21,9 +22,21 @@ class ReviewsModule extends React.Component {
           id: 'type',
           displayName: 'Review Type', 
           options: [
-            ['all', 'All'],
-            ['positive', 'Positive'],
-            ['negative', 'Negative']
+            {
+              id: 'all',
+              displayName: 'All',
+              count: 0
+            },
+            {
+              id: 'positive',
+              displayName: 'Positive',
+              count: 0
+            },
+            {
+              id: 'negative',
+              displayName: 'Negative',
+              count: 0
+            }
           ]
         },
         {
@@ -31,7 +44,11 @@ class ReviewsModule extends React.Component {
           id: 'language',
           displayName: 'Language', 
           options: [
-            ['all', 'All languages']
+            {
+              id: 'all',
+              displayName: 'All languages',
+              count: 0
+            }
           ]
         },
         {
@@ -39,9 +56,21 @@ class ReviewsModule extends React.Component {
           id: 'date',
           displayName: 'Date Range', 
           options: [
-            ['lifetime', 'Lifetime'],
-            ['before2018', 'Before 2018'],
-            ['before2017', 'Before 2017']
+            {
+              id: 'lifetime',
+              displayName: 'Lifetime',
+              count: 0
+            },
+            {
+              id: 'before2018',
+              displayName: 'Before 2018',
+              count: 0
+            },
+            {
+              id: 'before2017',
+              displayName: 'Before 2017',
+              count: 0
+            }
           ]
         }
       ],
@@ -52,6 +81,7 @@ class ReviewsModule extends React.Component {
 
   componentDidMount() {
     this.getReviews(this.updateReviewState.bind(this));
+    this.getFilters();
   }
 
   updateReviewState(data) {
@@ -67,6 +97,33 @@ class ReviewsModule extends React.Component {
       success: result => callback(result),
       error: () => console.error('Couldn\'t get reviews')
     });
+  }
+
+  getFilters() {
+    let filterArray = [];
+    this.getLanguages((err, data) => {
+      if (err) { return console.error('Error getting language fiter'); }
+      filterArray.push(data);
+      console.log(filterArray);
+    });
+  }
+
+  getLanguages(callback) {
+    $.ajax({
+      url: 'http://localhost:3005/reviews/filters/languages',
+      method: 'GET',
+      success: (data) => {
+        let object = {
+          active: true,
+          id: 'language',
+          displayName: 'Language', 
+          options: data
+        };
+        callback(null, object);
+      }, 
+      error: (err) => console.error('Error getting language filter', err)
+    });
+    
   }
 
   render() {
