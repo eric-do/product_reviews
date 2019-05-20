@@ -13,14 +13,3 @@ workflows:
     # Run the welcome/run job in its own container
     jobs:
       - welcome/run
-  Test:
-    # Run tests separate from Welome
-    jobs:
-      steps:
-      - checkout
-      - run:
-          name: Install Dependencies
-          command: npm ci
-      - run:
-          name: Run Tests
-          command: npm test
