@@ -1,15 +1,55 @@
+/* eslint-disable camelcase */
 const faker = require('faker');
 const db = require('./db');
-
 const reviews = [];
+const languageArray = [
+  'Arabic',
+  'Bulgarian',
+  'Bosnian',
+  'Czech',
+  'German',
+  'Danish',
+  'Greek',
+  'English',
+  'Spanish',
+  'Estonian',
+  'Persian',
+  'Finnish',
+  'French',
+  'Hindi',
+  'Croatian',
+  'Hungarian',
+  'Armenian',
+  'Italian',
+  'Japanese',
+  'Georgian',
+  'Korean',
+  'Lithuanian',
+  'Latvian',
+  'Nepali',
+  'Dutch',
+  'Norwegian',
+  'Polish',
+  'Portuguese',
+  'Romanian',
+  'Russian',
+  'Slovene',
+  'Swedish',
+  'Turkish',
+  'Ukrainian',
+  'Chinese',
+];
+
+const getRandomInteger = (max) => Math.floor(Math.random() * Math.floor(max));
+
 for (let i = 0; i < 100; i++) {
   reviews.push({
     post_id: faker.random.number(),
     recommended: faker.random.boolean(),
     review_date: faker.date.past(),
-    hours_played:faker.random.number(10000),
+    hours_played: faker.random.number(10000),
     content: faker.lorem.paragraph(),
-    language: faker.random.locale(),
+    language: languageArray[getRandomInteger(languageArray.length - 1)],
     helpful_yes_count: faker.random.number(1000),
     helpful_no_count: faker.random.number(1000),
     helpful_funny_count: faker.random.number(1000),
@@ -23,14 +63,16 @@ for (let i = 0; i < 100; i++) {
   });
 }
 
-db.Review.sync({ force: true , logging: false }).then(() => {
+db.Review.sync({ force: true, logging: false }).then(() => {
   console.log('Review table dropped and synced');
 });
 
 db.Review.bulkCreate(reviews)
-.then(() => {
-  return db.Review.findAll();
-})
-.then(reviews => {
-  console.log(reviews);
-});
+  .then(() => {
+    return db.Review.findAll();
+  })
+  .then(reviews => {
+    console.log(reviews);
+  });
+
+

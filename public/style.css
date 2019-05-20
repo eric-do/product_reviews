@@ -47,80 +47,80 @@ table {
 	border-spacing: 0;
 }
 
-body {
+/* body {
   background: #141e2c;
   color: #c1dbf4;
   font-family: Arial, Helvetica, sans-serif;
-}
-div {
+} */
+/* div {
   display: block;
-}
+} */
 
-.review-box {
+/* .review-box {
   margin: 10px 10px 10px 10px;
-}
-.review-box .player-avatar {
+} */
+/* .review-box .player-avatar {
   display: inline-block;
-}
+} */
 
-.review-box .num-owned-games {
+/* .review-box .num-owned-games {
   display: block;
-}
+} */
 
-.review-box .username a, 
+/* .review-box .username a, 
 .review-box .num-owned-games a,
 .review-box .num-reviews a  {
   color: #c1dbf4;
-}
+} */
 
-.review-box .username {
+/* .review-box .username {
   display: inline-block;
   font-size: 13px;
   font-weight: bold;
-}
+} */
 
-.review-box .num-owned-games a,
+/* .review-box .num-owned-games a,
 .review-box .num-reviews a  {
   font-size: 11px;
-}
+} */
 
 
-.review-box .player-avatar img {
+/* .review-box .player-avatar img {
   height: 32px;
   width: 32px;
-}
+} */
 
-.vote-header {
+/* .vote-header {
   background: #0e1622; 
-}
+} */
 
-.review-box .vote-header .title {
+/* .review-box .vote-header .title {
   font-size: 16px;
   color: #d6d7d8;
-}
+} */
 
-.review-box .vote-header .hours {
+/* .review-box .vote-header .hours {
   color: #8091a2;
   font-size: 11px;
-}
+} */
 
-.review-box .right-col .content {
+/* .review-box .right-col .content {
   color: #acb2b8;
   font-size: 13px;
-}
+} */
 
-.review-box .right-col .posted-date {
+/* .review-box .right-col .posted-date {
   color: #8091a2;
   font-size: 10px;
-}
+} */
 
-.left-col {
+/* .left-col {
   width: 30%;
-}
+} */
 
-.right-col {
+/* .right-col {
   width: 70%;
-}
+} */
 
 .left-col,
 .right-col {
