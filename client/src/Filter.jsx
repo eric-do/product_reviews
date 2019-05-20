@@ -55,11 +55,13 @@ class Filter extends React.Component {
                   this.props.filter.options.map(option => {
                     let optionId = option.id;
                     let optionName = option.displayName;
+                    let count = option.count;
 
                     return (
                       <FilterOption>
                         <RadioButton name={this.props.filter.id} type="radio" id={optionId}/>
                         <RadioLabel htmlFor={optionId}>{optionName}</RadioLabel>
+                        <OptionCount>({count})</OptionCount>
                       </FilterOption>
                     );
                   })
@@ -112,6 +114,12 @@ const RadioButton = styled.input`
 `;
 
 const RadioLabel = styled.label`
+`;
+
+const OptionCount = styled.div`
+  display: inline;
+  color: #7193a6;
+  padding-left: 3px;
 `;
 
 export default Filter;

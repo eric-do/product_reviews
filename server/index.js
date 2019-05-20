@@ -63,3 +63,229 @@ app.get('/reviews/filters/languages', (req, res) => {
     res.send(data);
   });
 });
+
+app.get('/reviews/filters', (req, res) => {
+  res.send([
+    {
+      active: false,
+      id: 'type',
+      displayName: 'Review Type', 
+      options: [
+        {
+          id: 'all',
+          displayName: 'All',
+          count: 100
+        },
+        {
+          id: 'positive',
+          displayName: 'Positive',
+          count: 48
+        },
+        {
+          id: 'negative',
+          displayName: 'Negative',
+          count: 52
+        }
+      ]
+    },
+    {
+      active: true,
+      id: 'language',
+      displayName: 'Language', 
+      options: [
+        {
+          id: 'all',
+          displayName: 'All languages',
+          count: 100
+        },
+        {
+          'id': 'arabic',
+          'displayName': 'Arabic',
+          'count': 4
+        },
+        {
+          'id': 'armenian',
+          'displayName': 'Armenian',
+          'count': 1
+        },
+        {
+          'id': 'bosnian',
+          'displayName': 'Bosnian',
+          'count': 2
+        },
+        {
+          'id': 'bulgarian',
+          'displayName': 'Bulgarian',
+          'count': 4
+        },
+        {
+          'id': 'croatian',
+          'displayName': 'Croatian',
+          'count': 5
+        },
+        {
+          'id': 'czech',
+          'displayName': 'Czech',
+          'count': 3
+        },
+        {
+          'id': 'danish',
+          'displayName': 'Danish',
+          'count': 2
+        },
+        {
+          'id': 'dutch',
+          'displayName': 'Dutch',
+          'count': 3
+        },
+        {
+          'id': 'english',
+          'displayName': 'English',
+          'count': 2
+        },
+        {
+          'id': 'finnish',
+          'displayName': 'Finnish',
+          'count': 3
+        },
+        {
+          'id': 'french',
+          'displayName': 'French',
+          'count': 5
+        },
+        {
+          'id': 'georgian',
+          'displayName': 'Georgian',
+          'count': 1
+        },
+        {
+          'id': 'german',
+          'displayName': 'German',
+          'count': 3
+        },
+        {
+          'id': 'greek',
+          'displayName': 'Greek',
+          'count': 2
+        },
+        {
+          'id': 'hindi',
+          'displayName': 'Hindi',
+          'count': 4
+        },
+        {
+          'id': 'hungarian',
+          'displayName': 'Hungarian',
+          'count': 2
+        },
+        {
+          'id': 'italian',
+          'displayName': 'Italian',
+          'count': 2
+        },
+        {
+          'id': 'japanese',
+          'displayName': 'Japanese',
+          'count': 4
+        },
+        {
+          'id': 'korean',
+          'displayName': 'Korean',
+          'count': 3
+        },
+        {
+          'id': 'latvian',
+          'displayName': 'Latvian',
+          'count': 4
+        },
+        {
+          'id': 'lithuanian',
+          'displayName': 'Lithuanian',
+          'count': 5
+        },
+        {
+          'id': 'nepali',
+          'displayName': 'Nepali',
+          'count': 1
+        },
+        {
+          'id': 'norwegian',
+          'displayName': 'Norwegian',
+          'count': 5
+        },
+        {
+          'id': 'persian',
+          'displayName': 'Persian',
+          'count': 2
+        },
+        {
+          'id': 'polish',
+          'displayName': 'Polish',
+          'count': 3
+        },
+        {
+          'id': 'portuguese',
+          'displayName': 'Portuguese',
+          'count': 4
+        },
+        {
+          'id': 'romanian',
+          'displayName': 'Romanian',
+          'count': 3
+        },
+        {
+          'id': 'russian',
+          'displayName': 'Russian',
+          'count': 4
+        },
+        {
+          'id': 'slovene',
+          'displayName': 'Slovene',
+          'count': 3
+        },
+        {
+          'id': 'spanish',
+          'displayName': 'Spanish',
+          'count': 3
+        },
+        {
+          'id': 'swedish',
+          'displayName': 'Swedish',
+          'count': 2
+        },
+        {
+          'id': 'turkish',
+          'displayName': 'Turkish',
+          'count': 4
+        },
+        {
+          'id': 'ukrainian',
+          'displayName': 'Ukrainian',
+          'count': 2
+        }
+      ]
+    },
+    {
+      active: false,
+      id: 'date',
+      displayName: 'Date Range', 
+      options: [
+        {
+          id: 'lifetime',
+          displayName: 'Lifetime',
+          count: 100
+        },
+        {
+          id: 'before2018',
+          displayName: 'Before 2018',
+          count: 55
+        },
+        {
+          id: 'before2017',
+          displayName: 'Before 2017',
+          count: 45
+        }
+      ]
+    }
+  ]);
+});

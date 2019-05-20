@@ -81,7 +81,12 @@ class ReviewsModule extends React.Component {
 
   componentDidMount() {
     this.getReviews(this.updateReviewState.bind(this));
-    this.getFilters();
+    this.getFilters((err, data) => {
+      if (err) { return console.error('Error getting filters'); }
+      this.setState({
+        filters: data
+      });
+    });
   }
 
   updateReviewState(data) {
@@ -99,12 +104,12 @@ class ReviewsModule extends React.Component {
     });
   }
 
-  getFilters() {
-    let filterArray = [];
-    this.getLanguages((err, data) => {
-      if (err) { return console.error('Error getting language fiter'); }
-      filterArray.push(data);
-      console.log(filterArray);
+  getFilters(callback) {
+    $.ajax({
+      url: 'http://localhost:3005/reviews/filters',
+      method: 'GET',
+      success: (data) => callback(null, data), 
+      error: (err) => console.error('Error getting language filter', err)
     });
   }
 
@@ -123,7 +128,6 @@ class ReviewsModule extends React.Component {
       }, 
       error: (err) => console.error('Error getting language filter', err)
     });
-    
   }
 
   render() {
