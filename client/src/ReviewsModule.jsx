@@ -17,6 +17,7 @@ class ReviewsModule extends React.Component {
     this.state = {
       filters: [],
       activeFilters: {},
+      filterSearch: {},
       count: 0,
       reviews: []
     };
@@ -62,15 +63,19 @@ class ReviewsModule extends React.Component {
   setFilters(e, filter, option) {
     e.preventDefault();
     let activeFilters = Object.assign(this.state.activeFilters);
+    let filterSearch = Object.assign(this.state.filterSearch);
     activeFilters[filter] = option;
-    this.setState({activeFilters});
-    this.getReviews(activeFilters, this.updateReviewState);
+    filterSearch[filter] = option.optionId;
+    console.log(filterSearch);
+    this.setState({activeFilters, filterSearch});
+    this.getReviews(filterSearch, this.updateReviewState);
   }
 
   render() {
     return (
       <ModuleContainer>
-        <FilterComponent setFilters={this.setFilters.bind(this)} filters={this.state.filters} count={this.state.count}/>
+        <FilterComponent setFilters={this.setFilters.bind(this)} activeFilters={this.state.activeFilters} 
+          filters={this.state.filters} count={this.state.count}/>
         <Reviews reviews={this.state.reviews}/>
         <RecentlyPosted />
       </ModuleContainer>

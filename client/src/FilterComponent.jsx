@@ -1,14 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 import Filter from './Filter.jsx';
+import ActiveFilters from './ActiveFilters.jsx';
 
-const FilterComponent = ({setFilters, count, filters}) => (
+const FilterComponent = ({setFilters, count, filters, activeFilters}) => (
   <FilterContainer>
     <FilterList>
       {
         filters.map(filter => (<Filter setFilters={setFilters} key={filter.id} filter={filter} />))
       }
     </FilterList>
+    <ActiveFilters activeFilters={activeFilters} />
     <FilterSummary>
       {'Showing '}
       <FilterCount>{count}</FilterCount> 

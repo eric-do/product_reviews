@@ -54,8 +54,8 @@ class Filter extends React.Component {
             (
               <FilterMenu>
                 <FilterOption>
-                  <RadioButton onClick={(e) => setFilters(e, this.props.filter.id, {})} name={this.props.filter.id} type="radio" id='all'/>
-                  <RadioLabel onClick={(e) => setFilters(e, this.props.filter.id, {})} htmlFor='all'>All</RadioLabel>
+                  <RadioButton onClick={(e) => setFilters(e, this.props.filter.id, {optionId: {}})} name={this.props.filter.id} type="radio" id='all'/>
+                  <RadioLabel onClick={(e) => setFilters(e, this.props.filter.id, {optionId: {}})} htmlFor='all'>All</RadioLabel>
                   <OptionCount>({this.props.filter.options.reduce((total, current) => (total + current.count), 0)})</OptionCount>
                 </FilterOption>
                 {
@@ -66,8 +66,8 @@ class Filter extends React.Component {
 
                     return (
                       <FilterOption key={optionId}>
-                        <RadioButton onClick={(e) => setFilters(e, this.props.filter.id, optionId)} name={this.props.filter.id} type="radio" id={optionId}/>
-                        <RadioLabel onClick={(e) => setFilters(e, this.props.filter.id, optionId)} htmlFor={optionId}>{optionName}</RadioLabel>
+                        <RadioButton onClick={(e) => setFilters(e, this.props.filter.id, { optionId, optionName})} name={this.props.filter.id} type="radio" id={optionId}/>
+                        <RadioLabel onClick={(e) => setFilters(e, this.props.filter.id, { optionId, optionName})} htmlFor={optionId}>{optionName}</RadioLabel>
                         <OptionCount>({count})</OptionCount>
                       </FilterOption>
                     );
