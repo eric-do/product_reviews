@@ -8,8 +8,17 @@ orbs:
 
 # Orchestrate or schedule a set of jobs, see https://circleci.com/docs/2.0/workflows/
 workflows:
-  # Name the workflow "Welcome"
-  Welcome:
-    # Run the welcome/run job in its own container
+  # Name the workflow "Test"
+  Test:
+    # Sequence of jobs
     jobs:
-      - welcome/run
+      # Checkout code
+      - checkout
+      # Install depependencies
+      - run:
+        name: Install Dependencies
+        command: npm ci
+      # Run test script
+      - run:
+        name: Run Tests
+        command: npm test
