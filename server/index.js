@@ -20,7 +20,9 @@ app.get('/test', (req, res) => {
 });
 
 app.get('/reviews', (req, res) => {
+  const where = req.query.where;
   const options = {
+    where: where,
     order: [['helpful_yes_count', 'DESC']]
   };
 
@@ -68,21 +70,16 @@ app.get('/reviews/filters', (req, res) => {
   res.send([
     {
       active: false,
-      id: 'type',
+      id: 'recommended',
       displayName: 'Review Type', 
       options: [
         {
-          id: 'all',
-          displayName: 'All',
-          count: 100
-        },
-        {
-          id: 'positive',
+          id: '1',
           displayName: 'Positive',
           count: 48
         },
         {
-          id: 'negative',
+          id: '0',
           displayName: 'Negative',
           count: 52
         }
@@ -93,11 +90,6 @@ app.get('/reviews/filters', (req, res) => {
       id: 'language',
       displayName: 'Language', 
       options: [
-        {
-          id: 'all',
-          displayName: 'All languages',
-          count: 100
-        },
         {
           'id': 'arabic',
           'displayName': 'Arabic',
@@ -270,11 +262,6 @@ app.get('/reviews/filters', (req, res) => {
       id: 'date',
       displayName: 'Date Range', 
       options: [
-        {
-          id: 'lifetime',
-          displayName: 'Lifetime',
-          count: 100
-        },
         {
           id: 'before2018',
           displayName: 'Before 2018',

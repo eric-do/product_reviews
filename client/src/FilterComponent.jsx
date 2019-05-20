@@ -2,11 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import Filter from './Filter.jsx';
 
-const FilterComponent = ({count, filters}) => (
+const FilterComponent = ({setFilters, count, filters}) => (
   <FilterContainer>
     <FilterList>
       {
-        filters.map(filter => (<Filter key={filter.id} filter={filter} />))
+        filters.map(filter => (<Filter setFilters={setFilters} key={filter.id} filter={filter} />))
       }
     </FilterList>
     <FilterSummary>

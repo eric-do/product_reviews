@@ -44,6 +44,8 @@ class Filter extends React.Component {
       fontSize: '10px'
     };
 
+    const setFilters = this.props.setFilters;
+
     return (
       <FilterDropdown onMouseEnter={this.showMenu.bind(this)} onMouseLeave={this.hideMenu.bind(this)}>
         <FilterButton style={this.state.showMenu ? onMouseEnter : onMouseLeave }>{this.props.filter.displayName.toUpperCase()}</FilterButton>
@@ -51,6 +53,11 @@ class Filter extends React.Component {
           this.state.showMenu ? 
             (
               <FilterMenu>
+                <FilterOption>
+                  <RadioButton onClick={(e) => setFilters(e, this.props.filter.id, {})} name={this.props.filter.id} type="radio" id='all'/>
+                  <RadioLabel onClick={(e) => setFilters(e, this.props.filter.id, {})} htmlFor='all'>All</RadioLabel>
+                  <OptionCount>({this.props.filter.options.reduce((total, current) => (total + current.count), 0)})</OptionCount>
+                </FilterOption>
                 {
                   this.props.filter.options.map(option => {
                     let optionId = option.id;
@@ -59,8 +66,8 @@ class Filter extends React.Component {
 
                     return (
                       <FilterOption key={optionId}>
-                        <RadioButton name={this.props.filter.id} type="radio" id={optionId}/>
-                        <RadioLabel htmlFor={optionId}>{optionName}</RadioLabel>
+                        <RadioButton onClick={(e) => setFilters(e, this.props.filter.id, optionId)} name={this.props.filter.id} type="radio" id={optionId}/>
+                        <RadioLabel onClick={(e) => setFilters(e, this.props.filter.id, optionId)} htmlFor={optionId}>{optionName}</RadioLabel>
                         <OptionCount>({count})</OptionCount>
                       </FilterOption>
                     );
@@ -81,13 +88,7 @@ const FilterDropdown = styled.div`
 `;
 
 const FilterButton = styled.div`
-  // border-radius: 0px;
-  // display: inline-block;
-  // color: #4582a5;
-  // padding: 10px;
-  // padding-right: 10px;
-  // background: #1f2e42;
-  // font-size: 10px;
+
 `;
 
 const FilterMenu = styled.ul`
