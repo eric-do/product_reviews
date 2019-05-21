@@ -14,13 +14,16 @@ class RecentlyPosted extends React.Component {
   }
 
   componentDidMount() {
-    this.getRecent();
+    //this.getRecent();
   }
 
   getRecent() {
     $.ajax({
       url: 'http://localhost:3005/recent',
-      data: {date: this.state.date},
+      data: {
+        date: this.state.date, 
+        where: this.state.filters
+      },
       method: 'GET',
       success: (result) => {
         let reviews = result.rows;
@@ -36,7 +39,7 @@ class RecentlyPosted extends React.Component {
       <ReviewsWrapper> 
         <Title>RECENTLY POSTED</Title>
         {
-          this.state.reviews.map(review => <MiniReview key={review.post_id} review={review}/>)
+          this.props.reviews.map(review => <MiniReview key={review.post_id} review={review}/>)
         }
       </ReviewsWrapper>
     );

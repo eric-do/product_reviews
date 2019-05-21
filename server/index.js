@@ -34,13 +34,15 @@ app.get('/reviews', (req, res) => {
 
 app.get('/recent', (req, res) => {
   const date = req.query.date || moment().startOf('day').format();
+  const where = req.query.where || {};
+  console.log('QUERY: ' + JSON.stringify(req.query));
+  // eslint-disable-next-line camelcase
+  where['review_date'] = {
+    [Sequelize.Op.lte]: moment(date).format()
+  };
+
   const options = {
-    where: {
-      // eslint-disable-next-line camelcase
-      review_date: {
-        [Sequelize.Op.lte]: moment(date).format()
-      }
-    },
+    where: where,
     order: [['review_date', 'DESC']],
     limit: 10
   }; 

@@ -15,11 +15,12 @@ class ReviewsModule extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      filters: [],
-      activeFilters: {},
-      filterSearch: {},
-      count: 0,
-      reviews: []
+      filters: [],          // List of all available filters
+      activeFilters: {},    // Active filters and their selected options
+      filterSearch: {},     // Filter object to send to the BE for query
+      count: 0,             // Number of results matching filter
+      reviews: [],          // Array of review objects given filter
+      recentReviews: []     // Array of most recent reviews given filter
     };
     this.updateReviewState = this.updateReviewState.bind(this);
   }
@@ -35,10 +36,18 @@ class ReviewsModule extends React.Component {
   }
 
   updateReviewState(data) {
-    console.log(data);
+    // Callback function to be invoked on received data (array of review objects)
+    // Update count 
+    // Update filtered reviews 
+    // Update most recent reviews 
+    // Update state for all the above
+
     let reviews = data.rows;
     let count = data.count;
-    this.setState({ reviews, count });
+    let recentReviews = reviews.slice().sort((a, b) => {
+      return new Date(b.review_date) - new Date(a.review_date);
+    }).slice(0, 10);
+    this.setState({ reviews, recentReviews, count });
   }
 
   getReviews(options, callback) {
@@ -91,7 +100,7 @@ class ReviewsModule extends React.Component {
         <FilterComponent setFilters={this.setFilters.bind(this)} activeFilters={this.state.activeFilters} 
           filters={this.state.filters} count={this.state.count}/>
         <Reviews reviews={this.state.reviews}/>
-        <RecentlyPosted />
+        <RecentlyPosted reviews={this.state.recentReviews}/>
       </ModuleContainer>
     );
   }
