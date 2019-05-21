@@ -61,26 +61,27 @@ class ReviewsModule extends React.Component {
   }
 
   /* Set filters takes an event, a filter (e.g. language), and an option object with { optionId, optionName }
-  ** optionId and optionName are strings if valid and empty objects if not due ORM/Sequelize recognizing empty objects as null
+  ** optionId and optionName values are strings i they are valid, and empty objects if not, due to ORM/Sequelize recognizing empty objects as null
   ** If the updated filter has no restriction, e.g. it's an empty object, we delete the filter
-  ** Else we update the filter with the new option
+  ** Else we update the filter with the new option.
+  **
+  ** Note, as have an activeFilters object and a filterSearch object
+  ** activeFilters: filters (e.g. 'language') are keys, but values are objects with option ID and option display
+  **  This is because filter 'Recommended' has values true/false, but display as 'Recommended' and 'Not recommended.
+  ** filterSearch: this is the actual option object that is sent to an API. It contains the values to narrow the query by.
   */
   setFilters(e, filter, option) {
     e.preventDefault();
     let activeFilters = Object.assign(this.state.activeFilters);
     let filterSearch = Object.assign(this.state.filterSearch);
+
     if (typeof option.optionId === 'object' && Object.keys(option.optionId).length === 0) {
-      console.log('Deleting ' + filter);
-      console.log(activeFilters);
       delete activeFilters[filter];
       delete filterSearch[filter];
-      console.log('Deleted ' + filter);
-      console.log(activeFilters);
     } else {
       activeFilters[filter] = option;
       filterSearch[filter] = option.optionId;
     }
-    console.log(filterSearch);
     this.setState({activeFilters, filterSearch});
     this.getReviews(filterSearch, this.updateReviewState);
   }

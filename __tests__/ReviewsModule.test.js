@@ -37,27 +37,18 @@ describe('ReviewsModule component', () => {
   it('calls into $.ajax with the correct params', () => {
     const wrapper = new ReviewsModule();
     const getReviews = wrapper.getReviews;
-    const dummyCallback = () => {};
+    const callback = (data) => {
+      expect($.ajax).toBeCalledWith({
+        success: expect.any(Function),
+        error: expect.any(Function),
+        data: expect.any(Object),
+        method: 'GET',
+        url: 'http://localhost:3005/reviews'
+      });
+      expect(typeof data).toBe('object');
+      done();
+    };
 
-    getReviews(dummyCallback);
-
-    expect($.ajax).toBeCalledWith({
-      success: expect.any(Function),
-      error: expect.any(Function),
-      data: expect.any(Object),
-      method: 'GET',
-      url: 'http://localhost:3005/reviews'
-    });
+    getReviews(callback);
   });
-
-  // it('calls the callback when $.ajax requests are finished', () => {
-  //   const app = mount(<ReviewsModule />);
-  //   app
-  //     .componentDidMount()
-  //     .then(() => {
-  //       expect(jquery.ajax).toHaveBeenCalled();
-  //       expect(app.state()).toHaveProperty('count', 0);
-  //       done();
-  //     });
-  // });
 });

@@ -13,7 +13,6 @@ const FilterComponent = ({setFilters, count, filters, activeFilters}) => (
     {
       Object.keys(activeFilters).length > 0 ? <ActiveFilters setFilters={setFilters} activeFilters={activeFilters} /> : null
     }
-    {/* <ActiveFilters setFilters={setFilters} activeFilters={activeFilters} /> */}
     <FilterSummary>
       {'Showing '}
       <FilterCount>{count}</FilterCount> 
