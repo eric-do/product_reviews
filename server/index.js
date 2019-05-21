@@ -261,7 +261,7 @@ app.get('/reviews/filters', (req, res) => {
     },
     {
       active: false,
-      id: 'date',
+      id: 'review_date',
       displayName: 'Date Range', 
       options: [
         {

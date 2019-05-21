@@ -24,6 +24,10 @@ class Filter extends React.Component {
   }
 
   render() {
+    // Display each filter and its respective options
+    // When the filter is hovered over (state.showMenu: true), we should display the options
+    // When a user clicks on a filter option, that option becomes set in the main component as an active filter
+
     const setFilters = this.props.setFilters;
     return (
       <FilterDropdown onMouseEnter={this.showMenu.bind(this)} onMouseLeave={this.hideMenu.bind(this)}>
@@ -77,6 +81,7 @@ const FilterButton = styled.div`
   background-image: ${props => props.hover ? 'url("/images/btn_arrow_down_padded_black.png")' : 'url("/images/btn_arrow_down_padded.png")'};
   background-repeat: no-repeat;
   background-position: right 5px center;
+  border-left: 1px solid #2a475e;
 `;
 
 const FilterMenu = styled.ul`

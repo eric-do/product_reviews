@@ -1,3 +1,4 @@
+/* eslint-disable no-multi-spaces */
 import React from 'react';
 import Reviews from './Reviews.jsx';
 import $ from 'jquery';
@@ -20,7 +21,8 @@ class ReviewsModule extends React.Component {
       filterSearch: {},     // Filter object to send to the BE for query
       count: 0,             // Number of results matching filter
       reviews: [],          // Array of review objects given filter
-      recentReviews: []     // Array of most recent reviews given filter
+      recentReviews: [],    // Array of most recent reviews given filter
+      sort: 'helpful'       // The sort of the reviews - helpful, recent, funny
     };
     this.updateReviewState = this.updateReviewState.bind(this);
   }
