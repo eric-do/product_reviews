@@ -41,15 +41,17 @@ const Popup = styled.div`
 `;
 
 const ReviewBox = styled.div`
-  width: 308px;
   margin: 5px 10px 10px 5px;
-  
+  max-width: 616px;
+    width: 100%;
   background-image: linear-gradient(to right, #213143 , transparent);
   color: #c1dbf4;
   font-family: Arial, Helvetica, sans-serif;
   padding-bottom: 10px;
   margin-bottom: 20px;
-
+  @media only screen and (min-width: 1200px) {
+    width: 308px;
+  }
 `;
 
 const Column = styled.div`

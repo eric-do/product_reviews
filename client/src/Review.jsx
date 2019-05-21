@@ -112,6 +112,9 @@ const Link = styled.a`
 
 const RightColumn = styled(Column)`
   width: 70%;
+  @media only screen and (max-width: 400px) {
+    display: block;
+  }
 `;
 
 const VoteHeader = styled.div`
