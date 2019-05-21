@@ -5,23 +5,22 @@ const ActiveFilters = ({activeFilters, setFilters}) => (
   <FilterWrapper>
     {'Filters'}
     {
-      Object.keys(activeFilters).map(key => {
-        console.log('TEST ' + JSON.stringify(activeFilters[key].optionId));
-        return (typeof activeFilters[key].optionId !== 'object' ? 
+      Object.keys(activeFilters).map(key => (
+        activeFilters[key] ? 
           (
             <FilterButton onClick={(e) => setFilters(e, key, {optionId: {}, optionId: {}})}>
               <FilterName >{activeFilters[key].optionName}</FilterName>
             </FilterButton>
           )
-          : null);
-      })
+          : null
+      ))
     }
   </FilterWrapper>
 );
 
 const FilterWrapper = styled.div`
   padding-top: 10px;
-  padding-bottom: 10px;
+  padding-bottom: 0px;
   color: #c6d4df;
   font-size: 15px;
   display: inline-block;

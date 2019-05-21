@@ -56,16 +56,30 @@ class ReviewsModule extends React.Component {
       url: 'http://localhost:3005/reviews/filters',
       method: 'GET',
       success: (data) => callback(null, data), 
-      error: (err) => console.error('Error getting language filter', err)
+      error: (err) => console.error('Error getting filter', err)
     });
   }
 
+  /* Set filters takes an event, a filter (e.g. language), and an option object with { optionId, optionName }
+  ** optionId and optionName are strings if valid and empty objects if not due ORM/Sequelize recognizing empty objects as null
+  ** If the updated filter has no restriction, e.g. it's an empty object, we delete the filter
+  ** Else we update the filter with the new option
+  */
   setFilters(e, filter, option) {
     e.preventDefault();
     let activeFilters = Object.assign(this.state.activeFilters);
     let filterSearch = Object.assign(this.state.filterSearch);
-    activeFilters[filter] = option;
-    filterSearch[filter] = option.optionId;
+    if (typeof option.optionId === 'object' && Object.keys(option.optionId).length === 0) {
+      console.log('Deleting ' + filter);
+      console.log(activeFilters);
+      delete activeFilters[filter];
+      delete filterSearch[filter];
+      console.log('Deleted ' + filter);
+      console.log(activeFilters);
+    } else {
+      activeFilters[filter] = option;
+      filterSearch[filter] = option.optionId;
+    }
     console.log(filterSearch);
     this.setState({activeFilters, filterSearch});
     this.getReviews(filterSearch, this.updateReviewState);

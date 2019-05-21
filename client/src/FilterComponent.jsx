@@ -10,7 +10,10 @@ const FilterComponent = ({setFilters, count, filters, activeFilters}) => (
         filters.map(filter => (<Filter setFilters={setFilters} key={filter.id} filter={filter} />))
       }
     </FilterList>
-    <ActiveFilters setFilters={setFilters} activeFilters={activeFilters} />
+    {
+      Object.keys(activeFilters).length > 0 ? <ActiveFilters setFilters={setFilters} activeFilters={activeFilters} /> : null
+    }
+    {/* <ActiveFilters setFilters={setFilters} activeFilters={activeFilters} /> */}
     <FilterSummary>
       {'Showing '}
       <FilterCount>{count}</FilterCount> 
