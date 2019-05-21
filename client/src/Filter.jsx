@@ -24,31 +24,10 @@ class Filter extends React.Component {
   }
 
   render() {
-    const onMouseLeave = {
-      borderRadius: '0px',
-      display: 'inline-block',
-      color: '#4582a5',
-      padding: '10px',
-      paddingRight: '10px',
-      background: '#1f2e42',
-      fontSize: '10px'
-    };
-
-    const onMouseEnter = {
-      borderRadius: '0px',
-      display: 'inline-block',
-      color: '#4582a5',
-      padding: '10px',
-      paddingRight: '10px',
-      background: '#c6d4df',
-      fontSize: '10px'
-    };
-
     const setFilters = this.props.setFilters;
-
     return (
       <FilterDropdown onMouseEnter={this.showMenu.bind(this)} onMouseLeave={this.hideMenu.bind(this)}>
-        <FilterButton style={this.state.showMenu ? onMouseEnter : onMouseLeave }>{this.props.filter.displayName.toUpperCase()}</FilterButton>
+        <FilterButton hover={this.state.showMenu} >{this.props.filter.displayName.toUpperCase()}</FilterButton>
         {
           this.state.showMenu ? 
             (
@@ -88,7 +67,16 @@ const FilterDropdown = styled.div`
 `;
 
 const FilterButton = styled.div`
-
+  border-radius: 0px;
+  display: inline-block;
+  color: #4582a5;
+  padding: 10px;
+  padding-right: 25px;
+  background: ${props => props.hover ? '#c6d4df' : '#1f2e42' };
+  font-size: 10px;
+  background-image: ${props => props.hover ? 'url("/images/btn_arrow_down_padded_black.png")' : 'url("/images/btn_arrow_down_padded.png")'};
+  background-repeat: no-repeat;
+  background-position: right 5px center;
 `;
 
 const FilterMenu = styled.ul`

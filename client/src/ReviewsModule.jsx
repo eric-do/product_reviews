@@ -71,7 +71,6 @@ class ReviewsModule extends React.Component {
   ** filterSearch: this is the actual option object that is sent to an API. It contains the values to narrow the query by.
   */
   setFilters(e, filter, option) {
-    e.preventDefault();
     let activeFilters = Object.assign(this.state.activeFilters);
     let filterSearch = Object.assign(this.state.filterSearch);
 
@@ -101,6 +100,7 @@ class ReviewsModule extends React.Component {
 const ModuleContainer = styled.div`
   background: #1a2738;
   font-family: Arial, Helvetica, sans-serif;
+  max-width: 1300px;
 `;
 
 export default ReviewsModule;
