@@ -86,6 +86,8 @@ const Avatar = styled.img`
   display: inline-block;
   height: 32px;
   width: 32px;
+  background: linear-gradient( to bottom, #515151 5%, #474747 95%);
+  padding: 1px;
 `;
 
 const Username = styled.div`

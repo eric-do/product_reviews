@@ -14,7 +14,11 @@ const createProps = (mockCallback) => ({
   setFilters: mockCallback,
   filter: {
     id: 'test_id',
-    displayName: 'display_name'
+    displayName: 'display_name',
+    options: {
+      optionId: 'test',
+      optionName: 'Test Name'
+    }
   }
 });
 
@@ -29,4 +33,21 @@ describe('<Filter /> rendering', () => {
   it('should render elements', () => {
     expect(wrapper).toMatchSnapshot();
   });
+
+  it('should start with the hover state to be false', () => {
+    expect(wrapper.state('showMenu')).toBe(false);
+  });
 });
+
+// describe('Selecting filter options', () => {
+//   it('should change state on hover', () => {
+    
+//   });
+
+//   it('should invoke the callback on click', () => {
+//     expect(wrapper.find('RadioLabel').exists).toBeTruthy();
+//     expect(wrapper.find('FilterDropdown')).to.have.lengthOf(1);
+//     wrapper.find('RadioLabel').simulate('click');
+//     expect(mockCallback).toHaveBeenCalled();
+//   });
+// });
