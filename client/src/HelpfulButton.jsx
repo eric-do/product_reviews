@@ -2,11 +2,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const HelpfulButton = (props) => {
-  return (
-      <Button active={props.active} onClick={(e) => props.clickHandler(e, props.string.toLowerCase())}>{props.string}</Button>
-    );
-  };
+// On HelpfulButton click, we call the updateHelpfulness function
+// This updateHelpfulness function originates from ReviewRating component
+const HelpfulButton = (props) => (
+      <Button active={props.active} onClick={(e) => props.updateHelpfulness(e, props.string.toLowerCase())}>{props.string}</Button>
+ );
 
 const Button = styled.span`
   border-radius: 2px;

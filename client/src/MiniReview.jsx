@@ -17,6 +17,7 @@ const MiniReview = ({review}) => (
           <Hours>
             { `${review.hours_played} hrs` }
           </Hours>
+          {/* <SteamKey src='/images/icon_review_key.png'/> */}
         </TextContainer>
       </VoteHeader>
       <CommentContainer>
@@ -68,9 +69,11 @@ const RightColumn = styled(Column)`
 
 const VoteHeader = styled.div`
   vertical-align: top;
-  background: #0e1622; 
+  background: #0e1622;
   height: 24px;
   width: 100%;
+  display: flex;
+  justify-content: left;
   &:hover {
     background-color: rgba(255, 255, 255, 0.05);
   }
@@ -82,21 +85,26 @@ const Thumb = styled.img`
 `;
 
 const TextContainer = styled.div`
-  display: inline-block;
-  vertical-align: top;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  line-height: 24px;
+  padding-right: 5px;
+  padding-left: 5px;
 `;
 
 const Username = styled.div`
-  margin-left: 10px;
-  display: inline-block;
   font-size: 12px;
 `;
 
 const Hours = styled.div`
-  display: inline-block;
-  padding-left: 50px;
   color: #8091a2;
   font-size: 11px;
+`;
+
+const SteamKey = styled.img`
+  height: inherit;
+  height: 16px;
 `;
 
 const Content = styled.div`

@@ -55,7 +55,7 @@ class ReviewRating extends React.Component {
 
     return (<Wrapper>
       <Text>{this.props.mini ? 'Helpful?' : 'Was this review helpful?'}</Text>
-      <RatingButtons helpfulness={this.state.helpfulness} clickHandler={this.updateHelpfulness.bind(this)}/>
+      <RatingButtons helpfulness={this.state.helpfulness} updateHelpfulness={this.updateHelpfulness.bind(this)}/>
       {reviewCounts}
     </Wrapper>
     );
