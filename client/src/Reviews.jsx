@@ -2,9 +2,9 @@ import React from 'react';
 import Review from './Review.jsx';
 import styled from 'styled-components';
 
-const Reviews = ({reviews}) => (
+const Reviews = ({reviews, sort}) => (
   <ReviewsWrapper> 
-    <Title>MOST HELPFUL REVIEWS</Title>
+    <Title>MOST {sort.toUpperCase()} REVIEWS</Title>
     <Subtitle>IN THE PAST 30 DAYS</Subtitle>
     {
       reviews.map(review => <Review key={review.post_id} review={review}/>)

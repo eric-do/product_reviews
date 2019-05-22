@@ -12,7 +12,7 @@ beforeEach(() => jest.resetModules());
 describe('Reviews component', () => {
   it('should render elements', () => {
     const wrapper = shallow(
-      <Reviews reviews={['test']}/>
+      <Reviews reviews={['test']} sort={'helpful'}/>
     );
     expect(wrapper).toMatchSnapshot();
   });

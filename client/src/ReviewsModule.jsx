@@ -22,13 +22,13 @@ class ReviewsModule extends React.Component {
       count: 0,             // Number of results matching filter
       reviews: [],          // Array of review objects given filter
       recentReviews: [],    // Array of most recent reviews given filter
-      sort: 'helpful'       // The sort of the reviews - helpful, recent, funny
+      order: 'helpful'       // The order of the reviews - helpful, recent, funny
     };
     this.updateReviewState = this.updateReviewState.bind(this);
   }
 
   componentDidMount() {
-    this.getReviews(this.state.activeFilters, this.updateReviewState);
+    this.getReviews(this.updateReviewState);
     this.getFilters((err, data) => {
       if (err) { return console.error('Error getting filters'); }
       this.setState({
@@ -43,7 +43,6 @@ class ReviewsModule extends React.Component {
     // Update filtered reviews 
     // Update most recent reviews 
     // Update state for all the above
-
     let reviews = data.rows;
     let count = data.count;
     let recentReviews = reviews.slice().sort((a, b) => {
@@ -52,17 +51,23 @@ class ReviewsModule extends React.Component {
     this.setState({ reviews, recentReviews, count });
   }
 
-  getReviews(options, callback) {
+  getReviews(callback) {
+    const filters = this.state.filterSearch;
+    const order = this.state.order;
+
     $.ajax({
       url: 'http://localhost:3005/reviews',
       method: 'GET',
-      data: {where: options},
+      data: {where: filters, order: order},
       success: result => callback(result),
       error: () => console.error('Couldn\'t get reviews')
     });
   }
 
   getFilters(callback) {
+    // Call API to get available filters
+    // API responds with what filters are available (e.g. language)
+    // and respective options (e.g. Arabic, French, etc)
     $.ajax({
       url: 'http://localhost:3005/reviews/filters',
       method: 'GET',
@@ -93,15 +98,22 @@ class ReviewsModule extends React.Component {
       filterSearch[filter] = option.optionId;
     }
     this.setState({activeFilters, filterSearch});
-    this.getReviews(filterSearch, this.updateReviewState);
+    this.getReviews(this.updateReviewState);
+  }
+
+  setSort(e) {
+    const order = e.target.value;
+    this.setState({order}, () => {
+      this.getReviews(this.updateReviewState);
+    });
   }
 
   render() {
     return (
       <ModuleContainer>
-        <FilterComponent setFilters={this.setFilters.bind(this)} activeFilters={this.state.activeFilters} 
+        <FilterComponent sort={this.setSort.bind(this)} setFilters={this.setFilters.bind(this)} activeFilters={this.state.activeFilters} 
           filters={this.state.filters} count={this.state.count}/>
-        <Reviews reviews={this.state.reviews}/>
+        <Reviews sort={this.state.order} reviews={this.state.reviews}/>
         <RecentlyPosted reviews={this.state.recentReviews}/>
       </ModuleContainer>
     );

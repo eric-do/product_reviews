@@ -8,7 +8,7 @@ const ActiveFilters = ({activeFilters, setFilters}) => (
       Object.keys(activeFilters).map(key => (
         activeFilters[key] ? 
           (
-            <FilterButton onClick={(e) => setFilters(e, key, {optionId: {}, optionId: {}})}>
+            <FilterButton key={key} onClick={(e) => setFilters(e, key, {optionId: {}, optionId: {}})}>
               <FilterName >{activeFilters[key].optionName}</FilterName>
             </FilterButton>
           )
