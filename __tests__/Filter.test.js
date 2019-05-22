@@ -40,11 +40,11 @@ describe('<Filter /> rendering', () => {
   });
 });
 
-describe('Selecting filter options', () => {
+// describe('Selecting filter options', () => {
 
-  it('should have filter buttons that respond to hover', () => {
-    expect(wrapper.find('FilterDropdown')).toHaveLength(1);
-    wrapper.find('FilterButton').simulate('hover');
-    //expect(wrapper.state('showMenu')).toBe(true);
-  });
-});
+//   it('should have filter buttons', () => {
+//     expect(wrapper.find('FilterDropdown')).toHaveLength(1);
+//     wrapper.find('FilterButton').simulate('hover');
+//     //expect(wrapper.state('showMenu')).toBe(true);
+//   });
+// });
