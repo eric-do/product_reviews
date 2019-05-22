@@ -7,8 +7,6 @@ import $ from 'jquery';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-//jest.mock('jquery');
-
 jest.mock('jquery', () => {
   const example = [
     { count: 0, reviews: ['test'] }

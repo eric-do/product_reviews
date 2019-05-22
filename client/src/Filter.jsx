@@ -88,7 +88,7 @@ const FilterMenu = styled.ul`
   margin: 0;
   padding: 5px 0px;
   top: 30px;
-  left: 0px;
+  left: 1px;
   width: 200px;
   background: #c6d4df;
   position: absolute;

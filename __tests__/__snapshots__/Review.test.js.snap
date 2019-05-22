@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Review /> rendering should render elements 1`] = `
+<styled.div
+  className="review-box"
+>
+  <Styled(styled.div)>
+    <styled.img
+      src="https://s3.amazonaws.com/uifaces/faces/twitter/blakesimkins/128.jpg"
+    />
+    <styled.div>
+      <styled.a>
+        Salvador.OKon17
+      </styled.a>
+    </styled.div>
+    <styled.div>
+      <styled.a>
+        77 products in account
+      </styled.a>
+    </styled.div>
+    <Styled(styled.a)>
+      33 reviews
+    </Styled(styled.a)>
+  </Styled(styled.div)>
+  <Styled(styled.div)>
+    <styled.div>
+      <styled.img
+        src="/images/thumbs-down.png"
+      />
+      <styled.div>
+        <styled.div>
+          Not recommended
+        </styled.div>
+        <styled.div>
+          2919 hrs on record
+        </styled.div>
+      </styled.div>
+    </styled.div>
+    <styled.div>
+      POSTED JAN 20TH
+    </styled.div>
+    <styled.div>
+      Voluptatem voluptatem officia et.
+    </styled.div>
+    <ReviewRating
+      funny={309}
+      no={503}
+      post_id={89613}
+      yes={993}
+    />
+  </Styled(styled.div)>
+</styled.div>
+`;

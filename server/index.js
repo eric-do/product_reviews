@@ -71,7 +71,6 @@ app.get('/reviews/filters/languages', (req, res) => {
 app.get('/reviews/filters', (req, res) => {
   res.send([
     {
-      active: false,
       id: 'recommended',
       displayName: 'Review Type', 
       options: [
@@ -88,7 +87,6 @@ app.get('/reviews/filters', (req, res) => {
       ]
     },
     {
-      active: true,
       id: 'language',
       displayName: 'Language', 
       options: [
@@ -260,7 +258,6 @@ app.get('/reviews/filters', (req, res) => {
       ]
     },
     {
-      active: false,
       id: 'review_date',
       displayName: 'Date Range', 
       options: [
