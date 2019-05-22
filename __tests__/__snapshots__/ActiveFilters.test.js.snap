@@ -4,6 +4,7 @@ exports[`<ActiveFilters /> rendering should render elements 1`] = `
 <styled.div>
   Filters
   <styled.div
+    key="language"
     onClick={[Function]}
   >
     <styled.div>

@@ -2,9 +2,9 @@ import React from 'react';
 import Review from './Review.jsx';
 import styled from 'styled-components';
 
-const Reviews = ({reviews}) => (
+const Reviews = ({reviews, sort}) => (
   <ReviewsWrapper> 
-    <Title>MOST HELPFUL REVIEWS</Title>
+    <Title>MOST {sort.toUpperCase()} REVIEWS</Title>
     <Subtitle>IN THE PAST 30 DAYS</Subtitle>
     {
       reviews.map(review => <Review key={review.post_id} review={review}/>)
@@ -29,7 +29,7 @@ const ReviewsWrapper = styled.div`
   float: left;
   width: 100%;
   background: #1a2738;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Motiva Sans", Arial, Helvetica, sans-serif;
 
   @media only screen and (min-width: 1070px) {
     width: 50%;

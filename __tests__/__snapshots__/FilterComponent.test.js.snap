@@ -49,18 +49,14 @@ exports[`<FilterComponent /> rendering should render elements 1`] = `
     />
     <styled.div>
       DISPLAY AS:
-      <styled.select>
+      <styled.select
+        onChange={[Function]}
+      >
         <styled.option
           default={true}
-          value="summary"
+          value="helpful"
         >
-          Summary
-        </styled.option>
-        <styled.option
-          default={true}
-          value="all"
-        >
-          All
+          Most Helpful
         </styled.option>
         <styled.option
           default={true}

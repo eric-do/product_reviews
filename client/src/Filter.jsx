@@ -116,4 +116,12 @@ const OptionCount = styled.div`
   padding-left: 3px;
 `;
 
+FilterDropdown.displayName = 'FilterDropdown';
+FilterButton.displayName = 'FilterButton';
+FilterMenu.displayName = 'FilterMenu';
+RadioButton.displayName = 'RadioButton';
+RadioLabel.displayName = 'RadioLabel';
+FilterOption.displayName = 'FilterOption';
+OptionCount.displayName = 'OptionCount';
+
 export default Filter;

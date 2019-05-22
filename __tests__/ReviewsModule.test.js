@@ -34,7 +34,7 @@ describe('ReviewsModule component', () => {
 
   it('calls into $.ajax with the correct params', () => {
     const wrapper = new ReviewsModule();
-    const getReviews = wrapper.getReviews;
+    const getReviews = wrapper.getReviews.bind(wrapper);
     const callback = (data) => {
       expect($.ajax).toBeCalledWith({
         success: expect.any(Function),

@@ -1,14 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Filter /> rendering should render elements 1`] = `
-<styled.div
+<FilterDropdown
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
 >
-  <styled.div
+  <FilterButton
     hover={false}
   >
     DISPLAY_NAME
-  </styled.div>
-</styled.div>
+  </FilterButton>
+</FilterDropdown>
 `;

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Filter from './Filter.jsx';
 import ActiveFilters from './ActiveFilters.jsx';
 
-const FilterComponent = ({setFilters, count, filters, activeFilters}) => (
+const FilterComponent = ({setFilters, count, filters, activeFilters, sort}) => (
   <FilterContainer>
     <FilterList>
       {
@@ -11,9 +11,8 @@ const FilterComponent = ({setFilters, count, filters, activeFilters}) => (
       }
       <SummaryType>
         {'DISPLAY AS:'}
-        <SummaryList>
-          <SummaryOption value="summary" default>Summary</SummaryOption>
-          <SummaryOption value="all" default>All</SummaryOption>
+        <SummaryList onChange={(e) => sort(e)}>
+          <SummaryOption value="helpful" default>Most Helpful</SummaryOption>
           <SummaryOption value="recent" default>Recent</SummaryOption>
           <SummaryOption value="funny" default>Funny</SummaryOption>
         </SummaryList>

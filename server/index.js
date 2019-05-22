@@ -20,10 +20,17 @@ app.get('/test', (req, res) => {
 });
 
 app.get('/reviews', (req, res) => {
+  const orderMap = {
+    helpful: 'helpful_yes_count',
+    funny: 'helpful_funny_count', 
+    recent: 'review_date'
+  };
   const where = req.query.where;
+  const order = req.query.order;
+  console.log(order);
   const options = {
     where: where,
-    order: [['helpful_yes_count', 'DESC']]
+    order: [[orderMap[order], 'DESC']]
   };
 
   db.getReviews(options, (err, data) => {

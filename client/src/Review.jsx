@@ -55,7 +55,7 @@ const ReviewBox = styled.div`
   margin: 5px 10px 10px 5px;
   background: #141e2c;  
   color: #c1dbf4;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Motiva Sans", Arial, Helvetica, sans-serif;
   padding-bottom: 10px;
   margin-bottom: 20px;
   
@@ -86,6 +86,8 @@ const Avatar = styled.img`
   display: inline-block;
   height: 32px;
   width: 32px;
+  background: linear-gradient( to bottom, #515151 5%, #474747 95%);
+  padding: 1px;
 `;
 
 const Username = styled.div`
@@ -170,5 +172,21 @@ const PostDate = styled.div`
   margin-bottom: 15px;
 `;
 
+ReviewBox.displayName = 'ReviewBox';
+LeftColumn.displayName = 'LeftColumn';
+Avatar.displayName = 'Avatar';
+Username.displayName = 'Username';
+OwnedGames.displayName = 'OwnedGames';
+SmallLink.displayName = 'SmallLink';
+ReviewCount.displayName = 'ReviewCount';
+Link.displayName = 'Link';
+RightColumn.displayName = 'RightColumn';
+VoteHeader.displayName = 'VoteHeader';
+TextContainer.displayName = 'TextContainer';
+Thumb.displayName = 'Thumb';
+Title.displayName = 'Title';
+Hours.displayName = 'Hours';
+Content.displayName = 'Content';
+PostDate.displayName = 'PostDate';
 
 export default Review;
