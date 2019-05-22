@@ -1,24 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<HelpfulButton /> rendering should render elements 1`] = `
-<styled.button
+<styled.span
+  active={false}
   onClick={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  style={
-    Object {
-      "background": "#212c3d",
-      "borderColor": "transparent",
-      "borderRadius": "2px",
-      "color": "#66c0f4",
-      "cursor": "pointer",
-      "display": "inline",
-      "fontSize": "12px",
-      "lineHeight": "20px",
-      "marginLeft": "2px",
-      "marginRight": "2px",
-      "padding": "0 5px",
-    }
-  }
 />
 `;
