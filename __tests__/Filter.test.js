@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import Filter from '../client/src/Filter.jsx';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-15.4';
@@ -30,6 +30,7 @@ beforeEach(() => {
 });
 
 describe('<Filter /> rendering', () => {
+
   it('should render elements', () => {
     expect(wrapper).toMatchSnapshot();
   });
@@ -39,15 +40,11 @@ describe('<Filter /> rendering', () => {
   });
 });
 
-// describe('Selecting filter options', () => {
-//   it('should change state on hover', () => {
-    
-//   });
+describe('Selecting filter options', () => {
 
-//   it('should invoke the callback on click', () => {
-//     expect(wrapper.find('RadioLabel').exists).toBeTruthy();
-//     expect(wrapper.find('FilterDropdown')).to.have.lengthOf(1);
-//     wrapper.find('RadioLabel').simulate('click');
-//     expect(mockCallback).toHaveBeenCalled();
-//   });
-// });
+  it('should have filter buttons that respond to hover', () => {
+    expect(wrapper.find('FilterDropdown')).toHaveLength(1);
+    wrapper.find('FilterButton').simulate('hover');
+    //expect(wrapper.state('showMenu')).toBe(true);
+  });
+});

@@ -172,5 +172,21 @@ const PostDate = styled.div`
   margin-bottom: 15px;
 `;
 
+ReviewBox.displayName = 'ReviewBox';
+LeftColumn.displayName = 'LeftColumn';
+Avatar.displayName = 'Avatar';
+Username.displayName = 'Username';
+OwnedGames.displayName = 'OwnedGames';
+SmallLink.displayName = 'SmallLink';
+ReviewCount.displayName = 'ReviewCount';
+Link.displayName = 'Link';
+RightColumn.displayName = 'RightColumn';
+VoteHeader.displayName = 'VoteHeader';
+TextContainer.displayName = 'TextContainer';
+Thumb.displayName = 'Thumb';
+Title.displayName = 'Title';
+Hours.displayName = 'Hours';
+Content.displayName = 'Content';
+PostDate.displayName = 'PostDate';
 
 export default Review;
