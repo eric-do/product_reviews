@@ -49,14 +49,20 @@ const Popup = styled.div`
 `;
 
 const ReviewBox = styled.div`
+  width: 100%;
   min-width: 522px;
-  max-width: 616px;
+  max-width: 100%
   margin: 5px 10px 10px 5px;
   background: #141e2c;  
   color: #c1dbf4;
   font-family: Arial, Helvetica, sans-serif;
   padding-bottom: 10px;
   margin-bottom: 20px;
+  
+  @media only screen and (min-width: 1070px) {
+    width: auto;
+    max-width: 616px;
+  }
 
 `;
 
@@ -112,6 +118,9 @@ const Link = styled.a`
 
 const RightColumn = styled(Column)`
   width: 70%;
+  @media only screen and (max-width: 400px) {
+    display: block;
+  }
 `;
 
 const VoteHeader = styled.div`

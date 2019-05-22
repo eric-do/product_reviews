@@ -31,7 +31,7 @@ const ReviewsWrapper = styled.div`
   background: #1a2738;
   font-family: Arial, Helvetica, sans-serif;
 
-  @media only screen and (min-width: 1200px) {
+  @media only screen and (min-width: 1070px) {
     width: 50%;
   }
 `;

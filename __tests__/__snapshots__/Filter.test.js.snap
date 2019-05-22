@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Filter /> rendering should render elements 1`] = `
+<styled.div
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+>
+  <styled.div
+    hover={false}
+  >
+    DISPLAY_NAME
+  </styled.div>
+</styled.div>
+`;

@@ -1,3 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Reviews component should render elements 1`] = `ShallowWrapper {}`;
+exports[`Reviews component should render elements 1`] = `
+<styled.div>
+  <styled.div>
+    MOST HELPFUL REVIEWS
+  </styled.div>
+  <Styled(styled.div)>
+    IN THE PAST 30 DAYS
+  </Styled(styled.div)>
+  <Review
+    review="test"
+  />
+</styled.div>
+`;

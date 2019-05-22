@@ -1,14 +1,27 @@
 import React from 'react';
 import styled from 'styled-components';
 import Filter from './Filter.jsx';
+import ActiveFilters from './ActiveFilters.jsx';
 
-const FilterComponent = ({count, filters}) => (
+const FilterComponent = ({setFilters, count, filters, activeFilters}) => (
   <FilterContainer>
     <FilterList>
       {
-        filters.map(filter => (<Filter key={filter.id} filter={filter} />))
+        filters.map(filter => (<Filter setFilters={setFilters} key={filter.id} filter={filter} />))
       }
+      <SummaryType>
+        {'DISPLAY AS:'}
+        <SummaryList>
+          <SummaryOption value="summary" default>Summary</SummaryOption>
+          <SummaryOption value="all" default>All</SummaryOption>
+          <SummaryOption value="recent" default>Recent</SummaryOption>
+          <SummaryOption value="funny" default>Funny</SummaryOption>
+        </SummaryList>
+      </SummaryType>
     </FilterList>
+    {
+      Object.keys(activeFilters).length > 0 ? <ActiveFilters setFilters={setFilters} activeFilters={activeFilters} /> : null
+    }
     <FilterSummary>
       {'Showing '}
       <FilterCount>{count}</FilterCount> 
@@ -36,4 +49,27 @@ const FilterCount = styled(FilterSummary)`
   display: inline-block;
 `;
 
+const SummaryType = styled.div`
+  display: inline-block;
+  position: relative;
+  border-radius: 0px;
+  display: inline-block;
+  color: #4582a5;
+  padding: 3px 25px 7px 10px
+  background: #1f2e42;
+  font-size: 10px;
+  border-left: 1px solid #2a475e
+`;
+
+const SummaryList = styled.select`
+  width: 100px;
+  background: #4582a5;
+  font-size: 12px;
+  border: none;
+  border-radius: 2px;
+  margin-left: 5px;
+  margin-top: 2px;
+`;
+
+const SummaryOption = styled.option``;
 export default FilterComponent;

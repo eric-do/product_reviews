@@ -24,33 +24,23 @@ class Filter extends React.Component {
   }
 
   render() {
-    const onMouseLeave = {
-      borderRadius: '0px',
-      display: 'inline-block',
-      color: '#4582a5',
-      padding: '10px',
-      paddingRight: '10px',
-      background: '#1f2e42',
-      fontSize: '10px'
-    };
+    // Display each filter and its respective options
+    // When the filter is hovered over (state.showMenu: true), we should display the options
+    // When a user clicks on a filter option, that option becomes set in the main component as an active filter
 
-    const onMouseEnter = {
-      borderRadius: '0px',
-      display: 'inline-block',
-      color: '#4582a5',
-      padding: '10px',
-      paddingRight: '10px',
-      background: '#c6d4df',
-      fontSize: '10px'
-    };
-
+    const setFilters = this.props.setFilters;
     return (
       <FilterDropdown onMouseEnter={this.showMenu.bind(this)} onMouseLeave={this.hideMenu.bind(this)}>
-        <FilterButton style={this.state.showMenu ? onMouseEnter : onMouseLeave }>{this.props.filter.displayName.toUpperCase()}</FilterButton>
+        <FilterButton hover={this.state.showMenu} >{this.props.filter.displayName.toUpperCase()}</FilterButton>
         {
           this.state.showMenu ? 
             (
               <FilterMenu>
+                <FilterOption>
+                  <RadioButton onClick={(e) => setFilters(e, this.props.filter.id, {optionId: {}})} name={this.props.filter.id} type="radio" id='all'/>
+                  <RadioLabel onClick={(e) => setFilters(e, this.props.filter.id, {optionId: {}})} htmlFor='all'>All</RadioLabel>
+                  <OptionCount>({this.props.filter.options.reduce((total, current) => (total + current.count), 0)})</OptionCount>
+                </FilterOption>
                 {
                   this.props.filter.options.map(option => {
                     let optionId = option.id;
@@ -59,8 +49,8 @@ class Filter extends React.Component {
 
                     return (
                       <FilterOption key={optionId}>
-                        <RadioButton name={this.props.filter.id} type="radio" id={optionId}/>
-                        <RadioLabel htmlFor={optionId}>{optionName}</RadioLabel>
+                        <RadioButton onClick={(e) => setFilters(e, this.props.filter.id, { optionId, optionName})} name={this.props.filter.id} type="radio" id={optionId}/>
+                        <RadioLabel onClick={(e) => setFilters(e, this.props.filter.id, { optionId, optionName})} htmlFor={optionId}>{optionName}</RadioLabel>
                         <OptionCount>({count})</OptionCount>
                       </FilterOption>
                     );
@@ -81,20 +71,24 @@ const FilterDropdown = styled.div`
 `;
 
 const FilterButton = styled.div`
-  // border-radius: 0px;
-  // display: inline-block;
-  // color: #4582a5;
-  // padding: 10px;
-  // padding-right: 10px;
-  // background: #1f2e42;
-  // font-size: 10px;
+  border-radius: 0px;
+  display: inline-block;
+  color: #4582a5;
+  padding: 10px;
+  padding-right: 25px;
+  background: ${props => props.hover ? '#c6d4df' : '#1f2e42' };
+  font-size: 10px;
+  background-image: ${props => props.hover ? 'url("/images/btn_arrow_down_padded_black.png")' : 'url("/images/btn_arrow_down_padded.png")'};
+  background-repeat: no-repeat;
+  background-position: right 5px center;
+  border-left: 1px solid #2a475e;
 `;
 
 const FilterMenu = styled.ul`
   margin: 0;
   padding: 5px 0px;
   top: 30px;
-  left: 0px;
+  left: 1px;
   width: 200px;
   background: #c6d4df;
   position: absolute;

@@ -1,10 +1,10 @@
+/* eslint-disable no-multi-spaces */
 import React from 'react';
 import Reviews from './Reviews.jsx';
 import $ from 'jquery';
 import styled from 'styled-components';
 import RecentlyPosted from './RecentlyPosted.jsx';
 import FilterComponent from './FilterComponent.jsx';
-import { tsObjectKeyword } from '@babel/types';
 
 /* REVIEWS MODULE
 ** Purpose: the ReviewsModule is the starting point for 3 separate components
@@ -16,71 +16,19 @@ class ReviewsModule extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      filters: [
-        {
-          active: false,
-          id: 'type',
-          displayName: 'Review Type', 
-          options: [
-            {
-              id: 'all',
-              displayName: 'All',
-              count: 0
-            },
-            {
-              id: 'positive',
-              displayName: 'Positive',
-              count: 0
-            },
-            {
-              id: 'negative',
-              displayName: 'Negative',
-              count: 0
-            }
-          ]
-        },
-        {
-          active: true,
-          id: 'language',
-          displayName: 'Language', 
-          options: [
-            {
-              id: 'all',
-              displayName: 'All languages',
-              count: 0
-            }
-          ]
-        },
-        {
-          active: false,
-          id: 'date',
-          displayName: 'Date Range', 
-          options: [
-            {
-              id: 'lifetime',
-              displayName: 'Lifetime',
-              count: 0
-            },
-            {
-              id: 'before2018',
-              displayName: 'Before 2018',
-              count: 0
-            },
-            {
-              id: 'before2017',
-              displayName: 'Before 2017',
-              count: 0
-            }
-          ]
-        }
-      ],
-      count: 0,
-      reviews: []
+      filters: [],          // List of all available filters
+      activeFilters: {},    // Active filters and their selected options
+      filterSearch: {},     // Filter object to send to the BE for query
+      count: 0,             // Number of results matching filter
+      reviews: [],          // Array of review objects given filter
+      recentReviews: [],    // Array of most recent reviews given filter
+      sort: 'helpful'       // The sort of the reviews - helpful, recent, funny
     };
+    this.updateReviewState = this.updateReviewState.bind(this);
   }
 
   componentDidMount() {
-    this.getReviews(this.updateReviewState.bind(this));
+    this.getReviews(this.state.activeFilters, this.updateReviewState);
     this.getFilters((err, data) => {
       if (err) { return console.error('Error getting filters'); }
       this.setState({
@@ -90,15 +38,25 @@ class ReviewsModule extends React.Component {
   }
 
   updateReviewState(data) {
+    // Callback function to be invoked on received data (array of review objects)
+    // Update count 
+    // Update filtered reviews 
+    // Update most recent reviews 
+    // Update state for all the above
+
     let reviews = data.rows;
     let count = data.count;
-    this.setState({ reviews, count });
+    let recentReviews = reviews.slice().sort((a, b) => {
+      return new Date(b.review_date) - new Date(a.review_date);
+    }).slice(0, 10);
+    this.setState({ reviews, recentReviews, count });
   }
 
-  getReviews(callback) {
+  getReviews(options, callback) {
     $.ajax({
       url: 'http://localhost:3005/reviews',
       method: 'GET',
+      data: {where: options},
       success: result => callback(result),
       error: () => console.error('Couldn\'t get reviews')
     });
@@ -109,33 +67,42 @@ class ReviewsModule extends React.Component {
       url: 'http://localhost:3005/reviews/filters',
       method: 'GET',
       success: (data) => callback(null, data), 
-      error: (err) => console.error('Error getting language filter', err)
+      error: (err) => console.error('Error getting filter', err)
     });
   }
 
-  getLanguages(callback) {
-    $.ajax({
-      url: 'http://localhost:3005/reviews/filters/languages',
-      method: 'GET',
-      success: (data) => {
-        let object = {
-          active: true,
-          id: 'language',
-          displayName: 'Language', 
-          options: data
-        };
-        callback(null, object);
-      }, 
-      error: (err) => console.error('Error getting language filter', err)
-    });
+  /* Set filters takes an event, a filter (e.g. language), and an option object with { optionId, optionName }
+  ** optionId and optionName values are strings i they are valid, and empty objects if not, due to ORM/Sequelize recognizing empty objects as null
+  ** If the updated filter has no restriction, e.g. it's an empty object, we delete the filter
+  ** Else we update the filter with the new option.
+  **
+  ** Note, as have an activeFilters object and a filterSearch object
+  ** activeFilters: filters (e.g. 'language') are keys, but values are objects with option ID and option display
+  **  This is because filter 'Recommended' has values true/false, but display as 'Recommended' and 'Not recommended.
+  ** filterSearch: this is the actual option object that is sent to an API. It contains the values to narrow the query by.
+  */
+  setFilters(e, filter, option) {
+    let activeFilters = Object.assign(this.state.activeFilters);
+    let filterSearch = Object.assign(this.state.filterSearch);
+
+    if (typeof option.optionId === 'object' && Object.keys(option.optionId).length === 0) {
+      delete activeFilters[filter];
+      delete filterSearch[filter];
+    } else {
+      activeFilters[filter] = option;
+      filterSearch[filter] = option.optionId;
+    }
+    this.setState({activeFilters, filterSearch});
+    this.getReviews(filterSearch, this.updateReviewState);
   }
 
   render() {
     return (
       <ModuleContainer>
-        <FilterComponent filters={this.state.filters} count={this.state.count}/>
+        <FilterComponent setFilters={this.setFilters.bind(this)} activeFilters={this.state.activeFilters} 
+          filters={this.state.filters} count={this.state.count}/>
         <Reviews reviews={this.state.reviews}/>
-        <RecentlyPosted />
+        <RecentlyPosted reviews={this.state.recentReviews}/>
       </ModuleContainer>
     );
   }
@@ -144,6 +111,7 @@ class ReviewsModule extends React.Component {
 const ModuleContainer = styled.div`
   background: #1a2738;
   font-family: Arial, Helvetica, sans-serif;
+  max-width: 1300px;
 `;
 
 export default ReviewsModule;

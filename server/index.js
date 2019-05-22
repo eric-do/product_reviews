@@ -20,7 +20,9 @@ app.get('/test', (req, res) => {
 });
 
 app.get('/reviews', (req, res) => {
+  const where = req.query.where;
   const options = {
+    where: where,
     order: [['helpful_yes_count', 'DESC']]
   };
 
@@ -32,13 +34,15 @@ app.get('/reviews', (req, res) => {
 
 app.get('/recent', (req, res) => {
   const date = req.query.date || moment().startOf('day').format();
+  const where = req.query.where || {};
+  console.log('QUERY: ' + JSON.stringify(req.query));
+  // eslint-disable-next-line camelcase
+  where['review_date'] = {
+    [Sequelize.Op.lte]: moment(date).format()
+  };
+
   const options = {
-    where: {
-      // eslint-disable-next-line camelcase
-      review_date: {
-        [Sequelize.Op.lte]: moment(date).format()
-      }
-    },
+    where: where,
     order: [['review_date', 'DESC']],
     limit: 10
   }; 
@@ -67,37 +71,25 @@ app.get('/reviews/filters/languages', (req, res) => {
 app.get('/reviews/filters', (req, res) => {
   res.send([
     {
-      active: false,
-      id: 'type',
+      id: 'recommended',
       displayName: 'Review Type', 
       options: [
         {
-          id: 'all',
-          displayName: 'All',
-          count: 100
-        },
-        {
-          id: 'positive',
+          id: '1',
           displayName: 'Positive',
           count: 48
         },
         {
-          id: 'negative',
+          id: '0',
           displayName: 'Negative',
           count: 52
         }
       ]
     },
     {
-      active: true,
       id: 'language',
       displayName: 'Language', 
       options: [
-        {
-          id: 'all',
-          displayName: 'All languages',
-          count: 100
-        },
         {
           'id': 'arabic',
           'displayName': 'Arabic',
@@ -266,15 +258,9 @@ app.get('/reviews/filters', (req, res) => {
       ]
     },
     {
-      active: false,
-      id: 'date',
+      id: 'review_date',
       displayName: 'Date Range', 
       options: [
-        {
-          id: 'lifetime',
-          displayName: 'Lifetime',
-          count: 100
-        },
         {
           id: 'before2018',
           displayName: 'Before 2018',
