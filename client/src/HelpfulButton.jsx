@@ -2,75 +2,29 @@
 import React from 'react';
 import styled from 'styled-components';
 
-class HelpfulButton extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      hover: false
-    };
-  }
-
-  toggleHover(e) {
-    let hover = !this.state.hover;
-    this.setState({ hover });
-  }
-
-  render() {
-    let defaultStyle = {
-      borderRadius: '2px',
-      padding: '0 5px',
-      fontSize: '12px',
-      lineHeight: '20px',
-      cursor: 'pointer',
-      color: '#66c0f4',
-      borderColor: 'transparent',
-      display: 'inline',
-      background: '#212c3d',
-      marginLeft: '2px',
-      marginRight: '2px'
-    };
-
-    let hoveredStyle = {
-      borderRadius: '2px',
-      padding: '0 5px',
-      fontSize: '12px',
-      lineHeight: '20px',
-      cursor: 'pointer',
-      color: 'white',
-      borderColor: 'transparent',
-      display: 'inline',
-      background: '#66c0f4',
-      marginLeft: '2px',
-      marginRight: '2px',
-      color: 'white'
-    };
-
-    let activeStyle = {
-      borderRadius: '2px',
-      padding: '0 5px',
-      fontSize: '12px',
-      lineHeight: '20px',
-      cursor: 'pointer',
-      color: 'white',
-      borderColor: 'transparent',
-      display: 'inline',
-      background: '#36617c',
-      marginLeft: '2px',
-      marginRight: '2px',
-      color: 'white'
-    };
-
-    return (
-      <Button onMouseEnter={(e) => this.toggleHover(e)} 
-              onMouseLeave={(e) => this.toggleHover(e)} 
-              onClick={(e) => this.props.clickHandler(e, this.props.string.toLowerCase())}
-              style={this.props.active ? activeStyle 
-              : this.state.hover ? hoveredStyle 
-              : defaultStyle}>{this.props.string}</Button>
+const HelpfulButton = (props) => {
+  return (
+      <Button active={props.active} onClick={(e) => props.clickHandler(e, props.string.toLowerCase())}>{props.string}</Button>
     );
-  }
-}
+  };
 
-const Button = styled.button``;
+const Button = styled.span`
+  border-radius: 2px;
+  padding: 4px 6px 4px 6px;
+  font-size: 12px;
+  line-height: 20px;
+  cursor: pointer;
+  color: ${props => props.active ? 'white' : '#66c0f4' };
+  border-color: transparent;
+  display: inline;
+  background: ${props => props.active ? '#36617c' : '#212c3d' };
+  margin-left: 2px;
+  margin-right: 2px;
+
+  &:hover {
+    background: #66c0f4
+    color: white;
+  }
+`;
 
 export default HelpfulButton;
