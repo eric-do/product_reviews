@@ -4,18 +4,18 @@ exports[`<RatingButtons /> rendering should render elements 1`] = `
 <styled.div>
   <HelpfulButton
     active={false}
-    clickHandler={[MockFunction]}
     string="Yes"
+    updateHelpfulness={[MockFunction]}
   />
   <HelpfulButton
     active={false}
-    clickHandler={[MockFunction]}
     string="No"
+    updateHelpfulness={[MockFunction]}
   />
   <HelpfulButton
     active={false}
-    clickHandler={[MockFunction]}
     string="Funny"
+    updateHelpfulness={[MockFunction]}
   />
 </styled.div>
 `;

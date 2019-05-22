@@ -11,7 +11,7 @@ let props;
 let mockCallback;
 
 const createProps = (mockCallback) => ({
-  clickHandler: mockCallback,
+  updateHelpfulness: mockCallback,
   active: false
 });
 
