@@ -23,7 +23,7 @@ const Title = styled.div`
 
 const ReviewsWrapper = styled.div`
   background: #1a2738;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Motiva Sans", Arial, Helvetica, sans-serif;
   float: left;
   width: 100%;
 

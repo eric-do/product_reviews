@@ -55,7 +55,7 @@ const ReviewBox = styled.div`
   margin: 5px 10px 10px 5px;
   background: #141e2c;  
   color: #c1dbf4;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Motiva Sans", Arial, Helvetica, sans-serif;
   padding-bottom: 10px;
   margin-bottom: 20px;
   

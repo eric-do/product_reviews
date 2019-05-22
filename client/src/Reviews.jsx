@@ -29,7 +29,7 @@ const ReviewsWrapper = styled.div`
   float: left;
   width: 100%;
   background: #1a2738;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Motiva Sans", Arial, Helvetica, sans-serif;
 
   @media only screen and (min-width: 1070px) {
     width: 50%;
