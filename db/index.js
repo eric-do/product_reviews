@@ -5,6 +5,8 @@ const sequelize = new Sequelize('steam', 'root', 'student', {
   dialect: 'mysql'
 });
 const Review = require('./models/review.js')(sequelize);
+const Comment = require('./models/comment.js')(sequelize);
+
 const moment = require('moment');
 
 sequelize
@@ -40,11 +42,21 @@ const getLanguageFilter = (callback) => {
     .catch(err => callback(err));
 };
 
-Review.sync({ force: false, logging: false }).then(() => {
-  console.log('Review table synced');
-});
+Review.sync({ force: false, logging: true })
+  .then(() => {
+    console.log('Review table synced');
+  }).
+  then(() => {
+    return Comment.sync({ force: false, logging: true });
+  })
+  .then(() => {
+    //Comment.hasOne(Review);
+    console.log('Comment table synced');
+  })
+  .catch(e => console.error(e));
 
 module.exports.getReviews = getReviews;
 module.exports.getLanguageFilter = getLanguageFilter;
 module.exports.Review = Review;
+module.exports.Comment = Comment;
 

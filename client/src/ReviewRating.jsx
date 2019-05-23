@@ -107,6 +107,7 @@ const Text = styled.div`
   padding-top: 5px;
   padding-bottom: 5px;
   padding-right: 10px;
+  opacity: 0.6;
 `;
 
 const Feedback = styled.div`

@@ -160,6 +160,8 @@ const Hours = styled.div`
   padding-left: 5px;
   color: #8091a2;
   font-size: 11px;
+  opacity: 0.6;
+  margin-top: 2px;
 `;
 
 const Content = styled.div`

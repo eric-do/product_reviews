@@ -68,16 +68,60 @@ for (let i = 0; i < 100; i++) {
   });
 }
 
-db.Review.sync({ force: true, logging: false }).then(() => {
-  console.log('Review table dropped and synced');
-});
+const comments = [];
+for (let i = 0; i < 100; i++) {
+  comments.push({
+    /* COMMENT FIELDS */
+    post_id: faker.random.number(),
+    comment_id: faker.random.number(), 
+    comment_date: faker.date.past(),
+    comment_content: faker.lorem.sentence(),
 
-db.Review.bulkCreate(reviews)
-  .then(() => {
-    return db.Review.findAll();
-  })
-  .then(reviews => {
-    console.log(reviews);
+    /* USER FIELDS */
+    user_id: faker.random.number(), 
+    username: faker.internet.email().split('@')[0],
+    user_avatar: faker.image.avatar(),
+
+    /* STEAM INFO */
+    steam_level: faker.random.number(500),
+    acheivement_text: faker.lorem.words(),
+    experience_points: faker.random.number(500)
   });
+}
 
+db.Review.sync({ force: true, logging: false })
+  .then(() => {
+    console.log('Review table dropped and synced');
+    return;
+  }) 
+  .then(() => {
+    return db.Review.bulkCreate(reviews);
+  })
+  .then(() => {
+    console.log('Reviews have been inserted');
+  })
+  .then(() => {
+    return db.Comment.sync({ force: true, logging: false });
+  })
+  .then(() => {
+    console.log('Comment table dropped and synced');
+    return db.Comment.bulkCreate(comments);
+  })
+  .then(() => {
+    console.log('Comments have been inserted');
+  })
+  .catch(e => console.error(e));
 
+// db.Comment.sync({ force: true, logging: false }).then(() => {
+//   console.log('Comment table dropped and synced');
+//   db.Comment.bulkCreate(comments)
+//     .then(() => {
+//       console.log('Comments have been inserted');
+//       return db.Comment.findAll();
+//     })
+//     .then(comments => {
+//       console.log(comments);
+//     });
+// });
+
+  
