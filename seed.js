@@ -69,10 +69,10 @@ for (let i = 0; i < 100; i++) {
 }
 
 const comments = [];
-for (let i = 0; i < 100; i++) {
+reviews.forEach(review => {
   comments.push({
     /* COMMENT FIELDS */
-    post_id: faker.random.number(),
+    post_id: review.post_id,
     comment_id: faker.random.number(), 
     comment_date: faker.date.past(),
     comment_content: faker.lorem.sentence(),
@@ -87,7 +87,7 @@ for (let i = 0; i < 100; i++) {
     acheivement_text: faker.lorem.words(),
     experience_points: faker.random.number(500)
   });
-}
+});
 
 db.Review.sync({ force: true, logging: false })
   .then(() => {
