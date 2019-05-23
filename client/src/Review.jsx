@@ -60,8 +60,14 @@ const ReviewBox = styled.div`
   font-family: "Motiva Sans", Arial, Helvetica, sans-serif;
   padding-bottom: 10px;
   margin-bottom: 20px;
-  border-top: 1px solid linear-gradient(to right, #396d89 , transparent);
-  
+
+  border-style: solid;
+  border-width: 1px 0px 0px 0px;
+  -moz-border-image: url('/images/maincol_gradient_rule.png') 1 0 0 0 repeat repeat;
+  -webkit-border-image: url('/images/maincol_gradient_rule.png') 1 0 0 0 repeat repeat;
+  -o-border-image: url('/images/maincol_gradient_rule.png') 1 0 0 0 repeat repeat;
+  border-image: url('/images/maincol_gradient_rule.png') 1 0 0 0 repeat repeat;
+
   @media only screen and (min-width: 768px) {
     width: auto;
     max-width: 616px;
