@@ -4,7 +4,9 @@ exports[`<FilterComponent /> rendering should render elements 1`] = `
 <styled.div
   className="FilterContainer"
 >
-  <styled.div>
+  <styled.div
+    className="FilterList"
+  >
     <Filter
       filter={
         Object {
