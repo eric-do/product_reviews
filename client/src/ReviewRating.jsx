@@ -1,7 +1,9 @@
+/* eslint-disable camelcase */
 import React from 'react';
 import styled from 'styled-components';
 import RatingButtons from './RatingButtons.jsx';
 import $ from 'jquery';
+import CommentModal from './CommentModal.jsx';
 
 class ReviewRating extends React.Component {
   constructor(props) {
@@ -11,8 +13,10 @@ class ReviewRating extends React.Component {
         yes: false,
         no: false, 
         funny: false
-      }
+      },
+      displayModal: false
     };
+    this.toggleModal = this.toggleModal.bind(this);
   }
 
   updateHelpfulness(e, val) {
@@ -41,29 +45,58 @@ class ReviewRating extends React.Component {
     });
   }
 
+  toggleModal(e) {
+    e.preventDefault;
+    const displayModal = !this.state.displayModal;
+    this.setState({ displayModal });
+  }
+
+  getReview() {
+    $.ajax({
+      url: 'http://localhost:3005/reviews',
+      method: 'GET',
+      data: {
+        where: {
+          post_id: this.props.post_id
+        }
+      },
+      success: () => {
+        console.log('PostID ' + this.props.post_id + JSON.stringify(helpfulness));
+        this.setState({ helpfulness });
+      },
+      error: () => console.error('Couldn\'t connect to network.')
+    });
+  }
+
   render() {
     let reviewCounts;
     if (this.props.mini) {
       reviewCounts = <div></div>;
     } else {
       reviewCounts = 
-        <div>
-          <Feedback>{this.props.yes} found this review helpful</Feedback>
-          <Feedback>{this.props.funny} found this review funny</Feedback>
-        </div>;
+        <FeedbackWrapper>
+          <div>
+            <Feedback>{this.props.yes} found this review helpful</Feedback>
+            <Feedback>{this.props.funny} found this review funny</Feedback>
+          </div>
+          <CommentButton onClick={this.toggleModal} src='/images/comment_quoteicon_blue.png' />
+        </FeedbackWrapper>;
     }
 
-    return (<Wrapper>
-      <Text>{this.props.mini ? 'Helpful?' : 'Was this review helpful?'}</Text>
-      <RatingButtons helpfulness={this.state.helpfulness} updateHelpfulness={this.updateHelpfulness.bind(this)}/>
-      {reviewCounts}
-    </Wrapper>
+    return (
+      <Wrapper>
+        {
+          this.state.displayModal ? <CommentModal hideModal={this.toggleModal} review={this.props.review} /> : null
+        }
+        <Text>{this.props.mini ? 'Helpful?' : 'Was this review helpful?'}</Text>
+        <RatingButtons helpfulness={this.state.helpfulness} updateHelpfulness={this.updateHelpfulness.bind(this)}/>
+        {reviewCounts}
+      </Wrapper>
     );
   }
 }
 
 const Wrapper = styled.div`
-  
 `;
 
 const Text = styled.div`
@@ -82,6 +115,17 @@ const Feedback = styled.div`
   display: block;
   padding-top: 0px;
   padding-bottom: 0px;
+`;
+
+const FeedbackWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+const CommentButton = styled.img`
+  height: 16px;
+  margin-right: 10px;
+  cursor: pointer;
 `;
 
 export default ReviewRating;

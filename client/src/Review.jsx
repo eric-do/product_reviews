@@ -3,7 +3,6 @@ import moment from 'moment';
 import styled from 'styled-components';
 import ReviewRating from './ReviewRating.jsx';
 
-
 const Review = ({review}) => (
   <ReviewBox className="review-box">
     <LeftColumn>
@@ -36,7 +35,7 @@ const Review = ({review}) => (
         { `${(review.content)}`}
       </Content>
       <Divider/>
-      <ReviewRating post_id={review.post_id} yes={review.helpful_yes_count} no={review.helpful_no_count} funny={review.helpful_funny_count}/>
+      <ReviewRating review={review} post_id={review.post_id} yes={review.helpful_yes_count} no={review.helpful_no_count} funny={review.helpful_funny_count}/>
     </RightColumn>
   </ReviewBox>
 );
@@ -65,6 +64,7 @@ const ReviewBox = styled.div`
   @media only screen and (min-width: 768px) {
     width: auto;
     max-width: 616px;
+    text-align: left;
   }
 
 `;

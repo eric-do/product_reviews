@@ -14,7 +14,6 @@ const Reviews = ({reviews, sort}) => (
 
 const Title = styled.div`
   padding-top: 20px;
-
   font-size: 14px;
   padding-right: 5px;
   color: white;

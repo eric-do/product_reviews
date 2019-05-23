@@ -5,6 +5,7 @@ import $ from 'jquery';
 import styled from 'styled-components';
 import RecentlyPosted from './RecentlyPosted.jsx';
 import FilterComponent from './FilterComponent.jsx';
+import ModalRoot from './ModalRoot.jsx';
 
 /* REVIEWS MODULE
 ** Purpose: the ReviewsModule is the starting point for 3 separate components
@@ -22,7 +23,7 @@ class ReviewsModule extends React.Component {
       count: 0,             // Number of results matching filter
       reviews: [],          // Array of review objects given filter
       recentReviews: [],    // Array of most recent reviews given filter
-      order: 'helpful'       // The order of the reviews - helpful, recent, funny
+      order: 'helpful',       // The order of the reviews - helpful, recent, funny
     };
     this.updateReviewState = this.updateReviewState.bind(this);
   }
@@ -37,6 +38,7 @@ class ReviewsModule extends React.Component {
     });
   }
 
+  /* MODELS */
   updateReviewState(data) {
     // Callback function to be invoked on received data (array of review objects)
     // Update count 
@@ -49,31 +51,6 @@ class ReviewsModule extends React.Component {
       return new Date(b.review_date) - new Date(a.review_date);
     }).slice(0, 10);
     this.setState({ reviews, recentReviews, count });
-  }
-
-  getReviews(callback) {
-    const filters = this.state.filterSearch;
-    const order = this.state.order;
-
-    $.ajax({
-      url: 'http://localhost:3005/reviews',
-      method: 'GET',
-      data: {where: filters, order: order},
-      success: result => callback(result),
-      error: () => console.error('Couldn\'t get reviews')
-    });
-  }
-
-  getFilters(callback) {
-    // Call API to get available filters
-    // API responds with what filters are available (e.g. language)
-    // and respective options (e.g. Arabic, French, etc)
-    $.ajax({
-      url: 'http://localhost:3005/reviews/filters',
-      method: 'GET',
-      success: (data) => callback(null, data), 
-      error: (err) => console.error('Error getting filter', err)
-    });
   }
 
   /* Set filters takes an event, a filter (e.g. language), and an option object with { optionId, optionName }
@@ -107,6 +84,34 @@ class ReviewsModule extends React.Component {
       this.getReviews(this.updateReviewState);
     });
   }
+
+  /* CONTROLLERS */
+  getReviews(callback) {
+    const filters = this.state.filterSearch;
+    const order = this.state.order;
+
+    $.ajax({
+      url: 'http://localhost:3005/reviews',
+      method: 'GET',
+      data: {where: filters, order: order},
+      success: result => callback(result),
+      error: () => console.error('Couldn\'t get reviews')
+    });
+  }
+
+  getFilters(callback) {
+    // Call API to get available filters
+    // API responds with what filters are available (e.g. language)
+    // and respective options (e.g. Arabic, French, etc)
+    $.ajax({
+      url: 'http://localhost:3005/reviews/filters',
+      method: 'GET',
+      success: (data) => callback(null, data), 
+      error: (err) => console.error('Error getting filter', err)
+    });
+  }
+
+  /* VIEWS */
 
   render() {
     return (
