@@ -22,7 +22,7 @@ const Button = styled.span`
   margin-right: 2px;
 
   &:hover {
-    background: #66c0f4
+    background: #66c0f4;
     color: white;
   }
 `;

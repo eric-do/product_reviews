@@ -28,11 +28,10 @@ const Subtitle = styled(Title)`
 const ReviewsWrapper = styled.div`
   float: left;
   width: 100%;
-  background: #1a2738;
   font-family: "Motiva Sans", Arial, Helvetica, sans-serif;
-
-  @media only screen and (min-width: 1070px) {
-    width: 50%;
+  background: inherit;
+  @media only screen and (min-width: 768px) {
+    width: auto;
   }
 `;
 

@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<FilterComponent /> rendering should render elements 1`] = `
-<styled.div>
+<styled.div
+  className="FilterContainer"
+>
   <styled.div>
     <Filter
       filter={

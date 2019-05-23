@@ -50,8 +50,9 @@ const Popup = styled.div`
 
 const ReviewBox = styled.div`
   width: 100%;
+  height: auto;
   min-width: 522px;
-  max-width: 100%
+  max-width: 100%;
   margin: 5px 10px 10px 5px;
   background: #141e2c;  
   color: #c1dbf4;
@@ -59,7 +60,7 @@ const ReviewBox = styled.div`
   padding-bottom: 10px;
   margin-bottom: 20px;
   
-  @media only screen and (min-width: 1070px) {
+  @media only screen and (min-width: 768px) {
     width: auto;
     max-width: 616px;
   }
