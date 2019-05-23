@@ -35,6 +35,7 @@ const Review = ({review}) => (
       <Content>
         { `${(review.content)}`}
       </Content>
+      <Divider/>
       <ReviewRating post_id={review.post_id} yes={review.helpful_yes_count} no={review.helpful_no_count} funny={review.helpful_funny_count}/>
     </RightColumn>
   </ReviewBox>
@@ -59,6 +60,7 @@ const ReviewBox = styled.div`
   font-family: "Motiva Sans", Arial, Helvetica, sans-serif;
   padding-bottom: 10px;
   margin-bottom: 20px;
+  border-top: 1px solid linear-gradient(to right, #396d89 , transparent);
   
   @media only screen and (min-width: 768px) {
     width: auto;
@@ -171,6 +173,12 @@ const PostDate = styled.div`
   color: #8091a2;
   font-size: 10px;
   margin-bottom: 15px;
+`;
+
+const Divider = styled.div`
+  height: 1px;
+  background: #363f4c;
+  margin-bottom: 5px;
 `;
 
 ReviewBox.displayName = 'ReviewBox';

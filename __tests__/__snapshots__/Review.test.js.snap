@@ -42,6 +42,7 @@ exports[`<Review /> rendering should render elements 1`] = `
     <Content>
       Voluptatem voluptatem officia et.
     </Content>
+    <styled.div />
     <ReviewRating
       funny={309}
       no={503}

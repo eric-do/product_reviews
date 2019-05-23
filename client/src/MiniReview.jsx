@@ -27,6 +27,7 @@ const MiniReview = ({review}) => (
         <Content>
           { `${(review.content)}`}
         </Content>
+        <Divider />
         <ReviewRating post_id={review.post_id} mini={true} yes={review.helpful_yes_count} no={review.helpful_no_count} funny={review.helpful_funny_count}/>
       </CommentContainer>
     </RightColumn>
@@ -116,6 +117,12 @@ const Content = styled.div`
 const CommentContainer = styled.div`
   padding-left: 10px;
   padding-right: 10px;
+`;
+
+const Divider = styled.div`
+  height: 1px;
+  background: rgba( 0, 0, 0, 0.5 );
+  margin-bottom: 5px;
 `;
 
 const PostDate = styled.div`
