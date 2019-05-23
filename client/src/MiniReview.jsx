@@ -42,7 +42,7 @@ const Popup = styled.div`
 `;
 
 const ReviewBox = styled.div`
-  margin: 5px 10px 20px 5px;
+  margin: 5px 0px 20px 5px;
   width: 100%;
   background-image: linear-gradient(to right, #213143 , transparent);
   color: #c1dbf4;

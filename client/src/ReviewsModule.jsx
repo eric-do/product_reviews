@@ -126,7 +126,7 @@ class ReviewsModule extends React.Component {
 const ModuleContainer = styled.div`
   background: #1a2738;
   font-family: "Motiva Sans", Arial, Helvetica, sans-serif;
-  max-width: 1000px;
+  max-width: 940px;
   width: auto;
   height: auto;
 `;

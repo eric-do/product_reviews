@@ -34,7 +34,6 @@ const FilterList = styled.div`
 `;
 
 const FilterContainer = styled.div`
-  padding-left: 5px;
 `;
 
 const FilterSummary = styled.div`
