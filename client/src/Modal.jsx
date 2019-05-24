@@ -10,6 +10,8 @@ class Modal extends React.Component {
   }
 
   onDialogClick(e) {
+    // The overlay closes on click, but we need to make sure
+    // if the click happens on the dialog, nothing happens
     e.stopPropagation();
   }
 

@@ -3,7 +3,12 @@ import moment from 'moment';
 import styled from 'styled-components';
 import ReviewRating from './ReviewRating.jsx';
 
-const Review = ({review}) => (
+/* The Review component takes in 2 props: a review object, and a source string
+** The review object contains information for the review - content, post_id, etc
+** The source string determines whether some elements may need to be hidden, e.g.
+** if the source is a comment modal, we hide the comment button.
+*/
+const Review = ({review, source}) => (
   <ReviewBox className="review-box">
     <LeftColumn>
       <Avatar src={review.user_avatar} />
@@ -35,7 +40,7 @@ const Review = ({review}) => (
         { `${(review.content)}`}
       </Content>
       <Divider/>
-      <ReviewRating review={review} post_id={review.post_id} yes={review.helpful_yes_count} no={review.helpful_no_count} funny={review.helpful_funny_count}/>
+      <ReviewRating source={source} review={review} post_id={review.post_id} yes={review.helpful_yes_count} no={review.helpful_no_count} funny={review.helpful_funny_count}/>
     </RightColumn>
   </ReviewBox>
 );

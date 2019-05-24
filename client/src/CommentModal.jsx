@@ -21,6 +21,15 @@ class CommentModal extends React.Component {
 
   componentDidMount() {
     this.getComments();
+    // if (this.props.hideModal) {
+    //   window.addEventListener('keydown', this.listenKeyboard.bind(this), true);
+    // }
+  }
+
+  componentWillUnmount() {
+    // if (this.props.hideModal) {
+    //   window.removeEventListener('keydown', this.listenKeyboard.bind(this), true);
+    // }
   }
 
   /* MODEL */
@@ -34,7 +43,7 @@ class CommentModal extends React.Component {
         }
       },
       success: data => this.setComments(data),
-      error: err => console.error('Couldn\'t retrieve comments')
+      error: err => console.error('Couldn\'t retrieve comments', err)
     });
   }
 
@@ -45,6 +54,12 @@ class CommentModal extends React.Component {
   /* VIEW */
   onClose(e) {
     this.props.hideModal(e);
+  }
+
+  listenKeyboard(e) {
+    if (e.key === 'Escape' || e.code === 27) {
+      this.props.hideModal(e);
+    }
   }
 
   /* CONTROLLER */
@@ -93,7 +108,7 @@ class CommentModal extends React.Component {
   render() {
     return (
       <Modal onClose={this.onClose}>
-        <Review className='ReviewModal' review={this.props.review} />
+        <Review className='ReviewModal' source={'modal'} review={this.props.review} />
         <CommentInput value={this.state.commentText} onChange={this.handleChange}/>
         <SubmitButton onClick={this.handleSubmit}>Post Comment</SubmitButton>
         <CommentContainer>

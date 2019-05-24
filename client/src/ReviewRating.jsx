@@ -79,7 +79,10 @@ class ReviewRating extends React.Component {
             <Feedback>{this.props.yes} found this review helpful</Feedback>
             <Feedback>{this.props.funny} found this review funny</Feedback>
           </div>
-          <CommentButton onClick={this.toggleModal} src='/images/comment_quoteicon_blue.png' />
+          {
+            this.props.source === 'standard' ? <CommentButton onClick={this.toggleModal} src='/images/comment_quoteicon_blue.png' /> :
+              this.props.source === 'modal' ? null : null
+          }
         </FeedbackWrapper>;
     }
 
