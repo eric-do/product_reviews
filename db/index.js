@@ -42,6 +42,12 @@ const getLanguageFilter = (callback) => {
     .catch(err => callback(err));
 };
 
+const getComments = (options, callback) => {
+  Comment.findAll(options)
+    .then(data => callback(null, data))
+    .catch(err => callback(err));
+};
+
 Review.sync({ force: false, logging: true })
   .then(() => {
     console.log('Review table synced');
@@ -59,4 +65,5 @@ module.exports.getReviews = getReviews;
 module.exports.getLanguageFilter = getLanguageFilter;
 module.exports.Review = Review;
 module.exports.Comment = Comment;
+module.exports.getComments = getComments;
 

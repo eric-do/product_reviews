@@ -53,7 +53,7 @@ const ReviewBox = styled.div`
   height: auto;
   min-width: 522px;
   max-width: 100%;
-  margin: 5px 10px 10px 0px;
+  margin: 5px 0px 10px 0px;
   background: #141e2c;  
   color: #c1dbf4;
   font-family: "Motiva Sans", Arial, Helvetica, sans-serif;
@@ -67,7 +67,7 @@ const ReviewBox = styled.div`
   -o-border-image: url('/images/maincol_gradient_rule.png') 1 0 0 0;
   border-image: url('/images/maincol_gradient_rule.png') 1 0 0 0;
   border-image-repeat: none;
-  
+
   @media only screen and (min-width: 768px) {
     width: auto;
     max-width: 616px;

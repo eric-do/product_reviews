@@ -282,3 +282,11 @@ app.get('/reviews/filters', (req, res) => {
     }
   ]);
 });
+
+app.get('/reviews/comments', (req, res) => {
+  const options = req.query.where || {limit: 10};
+  db.getComments(options, (err, data) => {
+    if (err) { return console.error(err); }
+    res.send(data);
+  });
+});
