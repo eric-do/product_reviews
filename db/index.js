@@ -49,9 +49,11 @@ const getComments = (options, callback) => {
 };
 
 const createComment = (options, callback) => {
+
+  console.log(options);
   Comment.create(options)
-    .then(callback)
-    .catch(e => console.error(e));
+    .then(data => callback(null, data))
+    .catch(e => callback(e));
 };
 
 Review.sync({ force: false, logging: true })
@@ -65,7 +67,7 @@ Review.sync({ force: false, logging: true })
     //Comment.hasOne(Review);
     console.log('Comment table synced');
   })
-  .catch(e => console.error(e));
+  .catch(e => callback(e));
 
 module.exports.getReviews = getReviews;
 module.exports.getLanguageFilter = getLanguageFilter;

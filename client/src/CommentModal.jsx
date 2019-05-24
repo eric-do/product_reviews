@@ -34,7 +34,6 @@ class CommentModal extends React.Component {
   }
 
   setComments(comments) {
-    console.log(comments);
     this.setState({ comments });
   }
 
@@ -84,8 +83,6 @@ class CommentModal extends React.Component {
         error: (err) => console.error(err)
       });
     });
-
-    
   }
 
   render() {
