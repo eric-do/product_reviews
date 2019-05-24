@@ -28,6 +28,11 @@ class CommentModal extends React.Component {
     $.ajax({
       url: 'http://localhost:3005/reviews/comments',
       method: 'GET',
+      data: {
+        where: {
+          post_id: this.props.review.post_id
+        }
+      },
       success: data => this.setComments(data),
       error: err => console.error('Couldn\'t retrieve comments')
     });
@@ -54,7 +59,7 @@ class CommentModal extends React.Component {
     const text = this.state.commentText;
     const fakeData = {
       /* COMMENT FIELDS */
-      post_id: faker.random.number(),
+      post_id: this.props.review.post_id,
       comment_id: faker.random.number(), 
       comment_date: faker.date.past(),
       comment_content: this.state.commentText,
