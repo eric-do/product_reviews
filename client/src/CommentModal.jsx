@@ -1,8 +1,10 @@
+/* eslint-disable camelcase */
 import React from 'react';
 import Modal from './Modal.jsx';
 import styled from 'styled-components';
 import Review from './Review.jsx';
 import Comment from './Comment.jsx';
+import faker from 'faker';
 import $ from 'jquery';
 
 class CommentModal extends React.Component {
@@ -48,8 +50,42 @@ class CommentModal extends React.Component {
     this.setState({ commentText });
   }
 
-  handleSubmit() {
+  handleSubmit(e) {
+    e.preventDefault();
+    const text = this.state.commentText;
+    const fakeData = {
+      /* COMMENT FIELDS */
+      post_id: faker.random.number(),
+      comment_id: faker.random.number(), 
+      comment_date: faker.date.past(),
+      comment_content: this.state.commentText,
+  
+      /* USER FIELDS */
+      user_id: faker.random.number(), 
+      username: faker.internet.email().split('@')[0],
+      user_avatar: faker.image.avatar(),
+  
+      /* STEAM INFO */
+      steam_level: faker.random.number(500),
+      acheivement_text: faker.lorem.words(),
+      experience_points: faker.random.number(500)
+    };
 
+    this.setState({commentText: ''}, () => {
+      $.ajax({
+        url: 'http://localhost:3005/reviews/comment',
+        method: 'POST',
+        data: { data: fakeData },
+        success: () => {
+          this.setState({ commentText: '' }, () => {
+            this.getComments();
+          });
+        },
+        error: (err) => console.error(err)
+      });
+    });
+
+    
   }
 
   render() {
@@ -57,7 +93,7 @@ class CommentModal extends React.Component {
       <Modal onClose={this.onClose}>
         <Review className='ReviewModal' review={this.props.review} />
         <CommentInput value={this.state.commentText} onChange={this.handleChange}/>
-        <SubmitButton>Post Comment</SubmitButton>
+        <SubmitButton onClick={this.handleSubmit}>Post Comment</SubmitButton>
         <CommentContainer>
           {
             this.state.comments.map(comment => (<Comment comment={comment} />))

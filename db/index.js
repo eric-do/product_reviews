@@ -48,6 +48,12 @@ const getComments = (options, callback) => {
     .catch(err => callback(err));
 };
 
+const createComment = (options, callback) => {
+  Comment.create(options)
+    .then(callback)
+    .catch(e => console.error(e));
+};
+
 Review.sync({ force: false, logging: true })
   .then(() => {
     console.log('Review table synced');
@@ -66,4 +72,5 @@ module.exports.getLanguageFilter = getLanguageFilter;
 module.exports.Review = Review;
 module.exports.Comment = Comment;
 module.exports.getComments = getComments;
+module.exports.createComment = createComment;
 
