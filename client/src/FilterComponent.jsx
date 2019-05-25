@@ -3,6 +3,13 @@ import styled from 'styled-components';
 import Filter from './Filter.jsx';
 import ActiveFilters from './ActiveFilters.jsx';
 
+/**
+ * This component renders available and active filters.
+ * @param {Function} setFilters - function to update state with the selected filters
+ * @param {Integer} count - the review count given the selected filters
+ * @param {Array} filters - an array of filter objects {id, displayName}
+ * @param {Object} activeFilters - an object of active filters { id, options: {optionId, optionName}}
+ */
 const FilterComponent = ({setFilters, count, filters, activeFilters, sort}) => (
   <FilterContainer className='FilterContainer'>
     <FilterList className='FilterList'>
