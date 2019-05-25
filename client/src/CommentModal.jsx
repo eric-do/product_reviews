@@ -7,6 +7,9 @@ import Comment from './Comment.jsx';
 import faker from 'faker';
 import $ from 'jquery';
 
+/**
+ * This component uses Modal.jsx to render a specific modal.
+ */
 class CommentModal extends React.Component {
   constructor(props) {
     super(props);
@@ -33,6 +36,10 @@ class CommentModal extends React.Component {
   }
 
   /* MODEL */
+  /**
+   * Call an API to get all comments for the specific review
+   * @return {Array} data - API returns an array of comment objects
+   */
   getComments() {
     $.ajax({
       url: 'http://localhost:3005/reviews/comments',
@@ -47,15 +54,27 @@ class CommentModal extends React.Component {
     });
   }
 
+  /**
+   * Update the component's comments state
+   * @param {Array} comments - an array of comment objects
+   */
   setComments(comments) {
     this.setState({ comments });
   }
 
   /* VIEW */
+  /**
+   * Close the modal
+   * @param {Object} e - an event object
+   */
   onClose(e) {
     this.props.hideModal(e);
   }
 
+  /**
+   * Listen for the ESC keystroke then close the modal
+   * @param {Object} e - an event object
+   */
   listenKeyboard(e) {
     if (e.key === 'Escape' || e.code === 27) {
       this.props.hideModal(e);
@@ -63,12 +82,21 @@ class CommentModal extends React.Component {
   }
 
   /* CONTROLLER */
+  /**
+   * Update state with user's current input
+   * @param {Object} e - an event object
+   */
   handleChange(e) {
     e.preventDefault();
     const commentText = e.target.value;
     this.setState({ commentText });
   }
 
+  /**
+   * Call a API to send user's input to server, 
+   * then update the comments (which should include user's comment)
+   * @param {Object} e - an event object
+   */
   handleSubmit(e) {
     e.preventDefault();
     const text = this.state.commentText;

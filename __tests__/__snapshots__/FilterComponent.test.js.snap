@@ -84,5 +84,6 @@ exports[`<FilterComponent /> rendering should render elements 1`] = `
     </Styled(styled.div)>
      reviews that match the filters above
   </styled.div>
+  <styled.div />
 </styled.div>
 `;

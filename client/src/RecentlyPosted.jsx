@@ -2,6 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import MiniReview from './MiniReview.jsx';
 
+/**
+ * Display recently posted reviews
+ * @param {Array} reviews - an array of Review objects
+ */
 const RecentlyPosted = ({reviews}) => ((
   <ReviewsWrapper> 
     <Title>RECENTLY POSTED</Title>

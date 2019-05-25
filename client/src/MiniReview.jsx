@@ -3,7 +3,11 @@ import moment from 'moment';
 import styled from 'styled-components';
 import ReviewRating from './ReviewRating.jsx';
 
-
+/**
+ * Display a review in a mini version of the Review component. This is used
+ * in Recently Posted.
+ * @param {Object} review - a Review object containing properties of the review
+ */
 const MiniReview = ({review}) => (
   <ReviewBox className="review-box">
     <RightColumn>
