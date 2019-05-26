@@ -3,8 +3,12 @@ import moment from 'moment';
 import styled from 'styled-components';
 import ReviewRating from './ReviewRating.jsx';
 
-
-const Review = ({review}) => (
+/* The Review component takes in 2 props: a review object, and a source string
+** The review object contains information for the review - content, post_id, etc
+** The source string determines whether some elements may need to be hidden, e.g.
+** if the source is a comment modal, we hide the comment button.
+*/
+const Review = ({review, source}) => (
   <ReviewBox className="review-box">
     <LeftColumn>
       <Avatar src={review.user_avatar} />
@@ -36,7 +40,7 @@ const Review = ({review}) => (
         { `${(review.content)}`}
       </Content>
       <Divider/>
-      <ReviewRating post_id={review.post_id} yes={review.helpful_yes_count} no={review.helpful_no_count} funny={review.helpful_funny_count}/>
+      <ReviewRating source={source} review={review} post_id={review.post_id} yes={review.helpful_yes_count} no={review.helpful_no_count} funny={review.helpful_funny_count}/>
     </RightColumn>
   </ReviewBox>
 );
@@ -54,7 +58,7 @@ const ReviewBox = styled.div`
   height: auto;
   min-width: 522px;
   max-width: 100%;
-  margin: 5px 10px 10px 0px;
+  margin: 5px 0px 10px 0px;
   background: #141e2c;  
   color: #c1dbf4;
   font-family: "Motiva Sans", Arial, Helvetica, sans-serif;
@@ -63,14 +67,16 @@ const ReviewBox = styled.div`
 
   border-style: solid;
   border-width: 1px 0px 0px 0px;
-  -moz-border-image: url('/images/maincol_gradient_rule.png') 1 0 0 0 repeat repeat;
-  -webkit-border-image: url('/images/maincol_gradient_rule.png') 1 0 0 0 repeat repeat;
-  -o-border-image: url('/images/maincol_gradient_rule.png') 1 0 0 0 repeat repeat;
-  border-image: url('/images/maincol_gradient_rule.png') 1 0 0 0 repeat repeat;
+  -moz-border-image: url('/images/maincol_gradient_rule.png') 1 0 0 0;
+  -webkit-border-image: url('/images/maincol_gradient_rule.png') 1 0 0 0;
+  -o-border-image: url('/images/maincol_gradient_rule.png') 1 0 0 0;
+  border-image: url('/images/maincol_gradient_rule.png') 1 0 0 0;
+  border-image-repeat: none;
 
   @media only screen and (min-width: 768px) {
     width: auto;
     max-width: 616px;
+    text-align: left;
   }
 
 `;
@@ -166,6 +172,8 @@ const Hours = styled.div`
   padding-left: 5px;
   color: #8091a2;
   font-size: 11px;
+  opacity: 0.6;
+  margin-top: 2px;
 `;
 
 const Content = styled.div`

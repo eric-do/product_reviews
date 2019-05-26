@@ -34,6 +34,7 @@ exports[`Reviews component should render elements 1`] = `
         "username": "Salvador.OKon17",
       }
     }
+    source="standard"
   />
   <Review
     key="8913"
@@ -59,6 +60,7 @@ exports[`Reviews component should render elements 1`] = `
         "username": "Salvador",
       }
     }
+    source="standard"
   />
 </styled.div>
 `;

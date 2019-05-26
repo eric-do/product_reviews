@@ -7,14 +7,13 @@ const Reviews = ({reviews, sort}) => (
     <Title>MOST {sort.toUpperCase()} REVIEWS</Title>
     <Subtitle>IN THE PAST 30 DAYS</Subtitle>
     {
-      reviews.map(review => <Review key={review.post_id} review={review}/>)
+      reviews.map(review => <Review key={review.post_id} review={review} source={'standard'}/>)
     }
   </ReviewsWrapper>
 );
 
 const Title = styled.div`
   padding-top: 20px;
-
   font-size: 14px;
   padding-right: 5px;
   color: white;

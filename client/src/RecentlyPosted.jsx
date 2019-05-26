@@ -29,6 +29,7 @@ const ReviewsWrapper = styled.div`
   background: inherit;
   @media only screen and (min-width: 768px) {
     width: 308px;
+    margin-left: 10px;
   }
 `;
 

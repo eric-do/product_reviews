@@ -26,6 +26,7 @@ const FilterComponent = ({setFilters, count, filters, activeFilters, sort}) => (
       <FilterCount>{count}</FilterCount> 
       {' reviews that match the filters above'} 
     </FilterSummary>
+    <Divider />
   </FilterContainer>
 );
 const FilterList = styled.div`
@@ -69,6 +70,16 @@ const SummaryList = styled.select`
   border-radius: 2px;
   margin-left: 5px;
   margin-top: 2px;
+`;
+
+const Divider = styled.div`
+  margin-bottom: 0px;
+
+  @media only screen and (min-width: 768px) {
+    height: 1px;
+    background: rgba( 0, 0, 0, 0.5 );
+    margin-bottom: 20px;
+  }
 `;
 
 const SummaryOption = styled.option``;
