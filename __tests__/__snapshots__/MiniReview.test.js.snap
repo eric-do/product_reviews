@@ -27,6 +27,7 @@ exports[`<MiniReview /> rendering should render elements 1`] = `
       <styled.div>
         Voluptatem voluptatem officia et.
       </styled.div>
+      <styled.div />
       <ReviewRating
         funny={309}
         mini={true}

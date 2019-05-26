@@ -27,6 +27,7 @@ const MiniReview = ({review}) => (
         <Content>
           { `${(review.content)}`}
         </Content>
+        <Divider />
         <ReviewRating post_id={review.post_id} mini={true} yes={review.helpful_yes_count} no={review.helpful_no_count} funny={review.helpful_funny_count}/>
       </CommentContainer>
     </RightColumn>
@@ -42,15 +43,15 @@ const Popup = styled.div`
 `;
 
 const ReviewBox = styled.div`
-  margin: 5px 10px 10px 5px;
+  margin: 5px 0px 20px 5px;
   width: 100%;
   background-image: linear-gradient(to right, #213143 , transparent);
   color: #c1dbf4;
   font-family: "Motiva Sans", Arial, Helvetica, sans-serif;
   padding-bottom: 10px;
   margin-bottom: 20px;
-  @media only screen and (min-width: 1000px) {
-    width: 308px;
+  @media only screen and (min-width: 768px) {
+    width: auto;
   }
 `;
 
@@ -80,7 +81,6 @@ const VoteHeader = styled.div`
 `;
 
 const Thumb = styled.img`
-  display: inline;
   height: inherit;
 `;
 
@@ -117,6 +117,12 @@ const Content = styled.div`
 const CommentContainer = styled.div`
   padding-left: 10px;
   padding-right: 10px;
+`;
+
+const Divider = styled.div`
+  height: 1px;
+  background: rgba( 0, 0, 0, 0.5 );
+  margin-bottom: 5px;
 `;
 
 const PostDate = styled.div`

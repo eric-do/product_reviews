@@ -41,6 +41,11 @@ const languageArray = [
 ];
 
 const getRandomInteger = (max) => Math.floor(Math.random() * Math.floor(max));
+const getRandomParagraph = () => {
+  const random = getRandomInteger(1);
+  const paragraph = [faker.lorem.paragraph, faker.lorem.paragraphs];
+  return paragraph[random]();
+};
 
 for (let i = 0; i < 100; i++) {
   reviews.push({

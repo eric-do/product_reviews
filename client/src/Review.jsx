@@ -35,6 +35,7 @@ const Review = ({review}) => (
       <Content>
         { `${(review.content)}`}
       </Content>
+      <Divider/>
       <ReviewRating post_id={review.post_id} yes={review.helpful_yes_count} no={review.helpful_no_count} funny={review.helpful_funny_count}/>
     </RightColumn>
   </ReviewBox>
@@ -50,16 +51,24 @@ const Popup = styled.div`
 
 const ReviewBox = styled.div`
   width: 100%;
+  height: auto;
   min-width: 522px;
-  max-width: 100%
-  margin: 5px 10px 10px 5px;
+  max-width: 100%;
+  margin: 5px 10px 10px 0px;
   background: #141e2c;  
   color: #c1dbf4;
   font-family: "Motiva Sans", Arial, Helvetica, sans-serif;
   padding-bottom: 10px;
   margin-bottom: 20px;
-  
-  @media only screen and (min-width: 1070px) {
+
+  border-style: solid;
+  border-width: 1px 0px 0px 0px;
+  -moz-border-image: url('/images/maincol_gradient_rule.png') 1 0 0 0 repeat repeat;
+  -webkit-border-image: url('/images/maincol_gradient_rule.png') 1 0 0 0 repeat repeat;
+  -o-border-image: url('/images/maincol_gradient_rule.png') 1 0 0 0 repeat repeat;
+  border-image: url('/images/maincol_gradient_rule.png') 1 0 0 0 repeat repeat;
+
+  @media only screen and (min-width: 768px) {
     width: auto;
     max-width: 616px;
   }
@@ -170,6 +179,12 @@ const PostDate = styled.div`
   color: #8091a2;
   font-size: 10px;
   margin-bottom: 15px;
+`;
+
+const Divider = styled.div`
+  height: 1px;
+  background: #363f4c;
+  margin-bottom: 5px;
 `;
 
 ReviewBox.displayName = 'ReviewBox';

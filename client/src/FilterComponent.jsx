@@ -4,8 +4,8 @@ import Filter from './Filter.jsx';
 import ActiveFilters from './ActiveFilters.jsx';
 
 const FilterComponent = ({setFilters, count, filters, activeFilters, sort}) => (
-  <FilterContainer>
-    <FilterList>
+  <FilterContainer className='FilterContainer'>
+    <FilterList className='FilterList'>
       {
         filters.map(filter => (<Filter setFilters={setFilters} key={filter.id} filter={filter} />))
       }
@@ -29,10 +29,11 @@ const FilterComponent = ({setFilters, count, filters, activeFilters, sort}) => (
   </FilterContainer>
 );
 const FilterList = styled.div`
+  background: #1f2e42;
+  min-width: 526px;
 `;
 
 const FilterContainer = styled.div`
-  padding-left: 5px;
 `;
 
 const FilterSummary = styled.div`
@@ -54,8 +55,8 @@ const SummaryType = styled.div`
   border-radius: 0px;
   display: inline-block;
   color: #4582a5;
-  padding: 3px 25px 7px 10px
-  background: #1f2e42;
+  padding: 3px 25px 7px 10px;
+  background: inherit;
   font-size: 10px;
   border-left: 1px solid #2a475e
 `;

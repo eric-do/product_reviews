@@ -22,13 +22,13 @@ const Title = styled.div`
 `;
 
 const ReviewsWrapper = styled.div`
-  background: #1a2738;
+  
   font-family: "Motiva Sans", Arial, Helvetica, sans-serif;
   float: left;
-  width: 100%;
-
-  @media only screen and (min-width: 1000px) {
-    width: 50%;
+  width: auto;
+  background: inherit;
+  @media only screen and (min-width: 768px) {
+    width: 308px;
   }
 `;
 

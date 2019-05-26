@@ -110,20 +110,38 @@ class ReviewsModule extends React.Component {
 
   render() {
     return (
-      <ModuleContainer>
+      <ModuleContainer className='ModuleContainer'>
         <FilterComponent sort={this.setSort.bind(this)} setFilters={this.setFilters.bind(this)} activeFilters={this.state.activeFilters} 
           filters={this.state.filters} count={this.state.count}/>
-        <Reviews sort={this.state.order} reviews={this.state.reviews}/>
-        <RecentlyPosted reviews={this.state.recentReviews}/>
+        <ReviewsContainer className='ReviewsContainer'>
+          <Reviews sort={this.state.order} reviews={this.state.reviews}/>
+          <RecentlyPosted reviews={this.state.recentReviews}/>
+        </ReviewsContainer>
       </ModuleContainer>
     );
   }
 }
 
+/*background: #1a2738;*/
 const ModuleContainer = styled.div`
   background: #1a2738;
   font-family: "Motiva Sans", Arial, Helvetica, sans-serif;
-  max-width: 1300px;
+  max-width: 940px;
+  width: auto;
+  height: auto;
 `;
+
+const ReviewsContainer = styled.div`
+  width: inherit;
+  background: red;
+  display: block;
+  background: inherit;
+  @media only screen and (min-width: 768px) {
+    width: auto;
+    display: flex;
+  }
+`;
+
+ModuleContainer.displayName = 'ModuleContainer';
 
 export default ReviewsModule;
