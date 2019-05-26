@@ -5,13 +5,14 @@ import $ from 'jquery';
 import styled from 'styled-components';
 import RecentlyPosted from './RecentlyPosted.jsx';
 import FilterComponent from './FilterComponent.jsx';
+import ModalRoot from './ModalRoot.jsx';
 
-/* REVIEWS MODULE
-** Purpose: the ReviewsModule is the starting point for 3 separate components
-** 1. Filters: dynamically display available filters pulled from BE
-** 2. Reviews: reviews based on selected filter values
-** 3. Recent reviews: most recent 10 reviews based on selected date range
-*/
+/**
+ * The ReviewsModule is the starting point for 3 separate components
+ * 1. Filters: dynamically display available filters pulled from BE
+ * 2. Reviews: reviews based on selected filter values
+ * 3. Recent reviews: most recent 10 reviews based on selected date range
+ */
 class ReviewsModule extends React.Component {
   constructor(props) {
     super(props);
@@ -22,13 +23,13 @@ class ReviewsModule extends React.Component {
       count: 0,             // Number of results matching filter
       reviews: [],          // Array of review objects given filter
       recentReviews: [],    // Array of most recent reviews given filter
-      sort: 'helpful'       // The sort of the reviews - helpful, recent, funny
+      order: 'helpful',     // The order of the reviews - helpful, recent, funny
     };
     this.updateReviewState = this.updateReviewState.bind(this);
   }
 
   componentDidMount() {
-    this.getReviews(this.state.activeFilters, this.updateReviewState);
+    this.getReviews(this.updateReviewState);
     this.getFilters((err, data) => {
       if (err) { return console.error('Error getting filters'); }
       this.setState({
@@ -37,13 +38,14 @@ class ReviewsModule extends React.Component {
     });
   }
 
+  /* MODELS */
+  /**
+   * Callback function to be invoked on received data.
+   * We call a backend function to provide count and array separate from each other
+   * since it's likely there will be pagination with large amounts of data.
+   * @param {Array} data - an array of Review objects
+   */
   updateReviewState(data) {
-    // Callback function to be invoked on received data (array of review objects)
-    // Update count 
-    // Update filtered reviews 
-    // Update most recent reviews 
-    // Update state for all the above
-
     let reviews = data.rows;
     let count = data.count;
     let recentReviews = reviews.slice().sort((a, b) => {
@@ -52,35 +54,13 @@ class ReviewsModule extends React.Component {
     this.setState({ reviews, recentReviews, count });
   }
 
-  getReviews(options, callback) {
-    $.ajax({
-      url: 'http://localhost:3005/reviews',
-      method: 'GET',
-      data: {where: options},
-      success: result => callback(result),
-      error: () => console.error('Couldn\'t get reviews')
-    });
-  }
-
-  getFilters(callback) {
-    $.ajax({
-      url: 'http://localhost:3005/reviews/filters',
-      method: 'GET',
-      success: (data) => callback(null, data), 
-      error: (err) => console.error('Error getting filter', err)
-    });
-  }
-
-  /* Set filters takes an event, a filter (e.g. language), and an option object with { optionId, optionName }
-  ** optionId and optionName values are strings i they are valid, and empty objects if not, due to ORM/Sequelize recognizing empty objects as null
-  ** If the updated filter has no restriction, e.g. it's an empty object, we delete the filter
-  ** Else we update the filter with the new option.
-  **
-  ** Note, as have an activeFilters object and a filterSearch object
-  ** activeFilters: filters (e.g. 'language') are keys, but values are objects with option ID and option display
-  **  This is because filter 'Recommended' has values true/false, but display as 'Recommended' and 'Not recommended.
-  ** filterSearch: this is the actual option object that is sent to an API. It contains the values to narrow the query by.
-  */
+  /**
+   * Set the review filters based on user input, then call an API to retrieve reviews with given filters.
+   * An empty object means no filters selected. 
+   * @param {Object} e 
+   * @param {String} filter - e.g. "Recommended"
+   * @param {Object} option - e.g. "{optionId: true, optionName: 'Recommended'}"
+   */
   setFilters(e, filter, option) {
     let activeFilters = Object.assign(this.state.activeFilters);
     let filterSearch = Object.assign(this.state.filterSearch);
@@ -93,25 +73,91 @@ class ReviewsModule extends React.Component {
       filterSearch[filter] = option.optionId;
     }
     this.setState({activeFilters, filterSearch});
-    this.getReviews(filterSearch, this.updateReviewState);
+    this.getReviews(this.updateReviewState);
   }
 
+  /**
+   * Update sort order in the component state, then call an API to retrieve reviews with given order.
+   * @param {Object} e - an event object
+   */
+  setSort(e) {
+    const order = e.target.value;
+    this.setState({order}, () => {
+      this.getReviews(this.updateReviewState);
+    });
+  }
+
+  /* CONTROLLERS */
+  /**
+   * Get reviews using an API, passing the component's current filter and order states
+   * Execute callback on received data (array)
+   * @param {Function} callback 
+   * @return {Array}
+   */
+  getReviews(callback) {
+    const filters = this.state.filterSearch;
+    const order = this.state.order;
+
+    $.ajax({
+      url: 'http://localhost:3005/reviews',
+      method: 'GET',
+      data: {where: filters, order: order},
+      success: result => callback(result),
+      error: () => console.error('Couldn\'t get reviews')
+    });
+  }
+
+  /**
+   * Call an API to retrieve the list of available filters and respective options
+   * e.g. Filter: language, options: Arabic, French, etc
+   * Invoke callback on filter object
+   * @param {Function} callback 
+   * @return {Object}
+   */
+  getFilters(callback) {
+    $.ajax({
+      url: 'http://localhost:3005/reviews/filters',
+      method: 'GET',
+      success: (data) => callback(null, data), 
+      error: (err) => console.error('Error getting filter', err)
+    });
+  }
+
+  /* VIEWS */
   render() {
     return (
-      <ModuleContainer>
-        <FilterComponent setFilters={this.setFilters.bind(this)} activeFilters={this.state.activeFilters} 
+      <ModuleContainer className='ModuleContainer'>
+        <FilterComponent sort={this.setSort.bind(this)} setFilters={this.setFilters.bind(this)} activeFilters={this.state.activeFilters} 
           filters={this.state.filters} count={this.state.count}/>
-        <Reviews reviews={this.state.reviews}/>
-        <RecentlyPosted reviews={this.state.recentReviews}/>
+        <ReviewsContainer className='ReviewsContainer'>
+          <Reviews sort={this.state.order} reviews={this.state.reviews}/>
+          <RecentlyPosted reviews={this.state.recentReviews}/>
+        </ReviewsContainer>
       </ModuleContainer>
     );
   }
 }
 
+/*background: #1a2738;*/
 const ModuleContainer = styled.div`
   background: #1a2738;
-  font-family: Arial, Helvetica, sans-serif;
-  max-width: 1300px;
+  font-family: "Motiva Sans", Arial, Helvetica, sans-serif;
+  max-width: 940px;
+  width: auto;
+  height: auto;
 `;
+
+const ReviewsContainer = styled.div`
+  width: inherit;
+  background: red;
+  display: block;
+  background: inherit;
+  @media only screen and (min-width: 768px) {
+    width: auto;
+    display: flex;
+  }
+`;
+
+ModuleContainer.displayName = 'ModuleContainer';
 
 export default ReviewsModule;

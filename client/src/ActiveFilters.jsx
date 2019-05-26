@@ -1,6 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
+/**
+ * This component renders the active filters
+ * @param {Object} activeFilters - a filter object with active filters { id, options: {optionId, optionName}}
+ * @param {Function} setFilters - a function to update the selected filters
+ */
 const ActiveFilters = ({activeFilters, setFilters}) => (
   <FilterWrapper>
     {'Filters'}
@@ -8,7 +13,7 @@ const ActiveFilters = ({activeFilters, setFilters}) => (
       Object.keys(activeFilters).map(key => (
         activeFilters[key] ? 
           (
-            <FilterButton onClick={(e) => setFilters(e, key, {optionId: {}, optionId: {}})}>
+            <FilterButton key={key} onClick={(e) => setFilters(e, key, {optionId: {}, optionId: {}})}>
               <FilterName >{activeFilters[key].optionName}</FilterName>
             </FilterButton>
           )

@@ -2,11 +2,14 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const HelpfulButton = (props) => {
-  return (
-      <Button active={props.active} onClick={(e) => props.clickHandler(e, props.string.toLowerCase())}>{props.string}</Button>
-    );
-  };
+/**
+ * Component for display of individual rating buttons
+ * @param {Boolean} active - active state of the button
+ * @param {Function} updateHelpfulness - function to update the state on click
+ */
+const HelpfulButton = (props) => (
+      <Button active={props.active} onClick={(e) => props.updateHelpfulness(e, props.string.toLowerCase())}>{props.string}</Button>
+ );
 
 const Button = styled.span`
   border-radius: 2px;
@@ -22,7 +25,7 @@ const Button = styled.span`
   margin-right: 2px;
 
   &:hover {
-    background: #66c0f4
+    background: #66c0f4;
     color: white;
   }
 `;

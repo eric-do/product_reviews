@@ -2,6 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import MiniReview from './MiniReview.jsx';
 
+/**
+ * Display recently posted reviews
+ * @param {Array} reviews - an array of Review objects
+ */
 const RecentlyPosted = ({reviews}) => ((
   <ReviewsWrapper> 
     <Title>RECENTLY POSTED</Title>
@@ -22,13 +26,14 @@ const Title = styled.div`
 `;
 
 const ReviewsWrapper = styled.div`
-  background: #1a2738;
-  font-family: Arial, Helvetica, sans-serif;
+  
+  font-family: "Motiva Sans", Arial, Helvetica, sans-serif;
   float: left;
-  width: 100%;
-
-  @media only screen and (min-width: 1000px) {
-    width: 50%;
+  width: auto;
+  background: inherit;
+  @media only screen and (min-width: 768px) {
+    width: 308px;
+    margin-left: 10px;
   }
 `;
 

@@ -1,9 +1,22 @@
+/* eslint-disable camelcase */
 import React from 'react';
 import styled from 'styled-components';
 import RatingButtons from './RatingButtons.jsx';
 import $ from 'jquery';
+import CommentModal from './CommentModal.jsx';
 
+/**
+ * Class representing a review rating
+ * @extends React.Component
+ */
 class ReviewRating extends React.Component {
+  /**
+   * Initialize all review rating values (yes/no/funny) to false.
+   * These values will be updated via user interaction.
+   * Initialize modal display to false. The modal is displayed when
+   * user clicks to view comments.
+   * @param {*} props 
+   */
   constructor(props) {
     super(props);
     this.state = {
@@ -11,10 +24,18 @@ class ReviewRating extends React.Component {
         yes: false,
         no: false, 
         funny: false
-      }
+      },
+      displayModal: false
     };
+    this.toggleModal = this.toggleModal.bind(this);
   }
 
+  /**
+   * This function toggles the respective review rating to true, and others to false.
+   * It then makes an API call to update the values in the backend.
+   * @param {*} e - an event object
+   * @param {*} val - the selected review rating - yes/no/funny
+   */
   updateHelpfulness(e, val) {
     e.preventDefault();
     let status = !this.state.helpfulness[val];
@@ -41,29 +62,74 @@ class ReviewRating extends React.Component {
     });
   }
 
+  /**
+   * This function toggles the display of the comment modal
+   * @param {*} e - an event object
+   */
+  toggleModal(e) {
+    e.preventDefault;
+    const displayModal = !this.state.displayModal;
+    this.setState({ displayModal });
+  }
+
+  /**
+   * Make an API request to the server for helpfulness rating counts of the current
+   * review. Eg Yes: X, No: Y, Funny: Z
+   */
+  getReview() {
+    $.ajax({
+      url: 'http://localhost:3005/reviews',
+      method: 'GET',
+      data: {
+        where: {
+          post_id: this.props.post_id
+        }
+      },
+      success: (helpfulness) => {
+        console.log('PostID ' + this.props.post_id + JSON.stringify(helpfulness));
+        this.setState({ helpfulness });
+      },
+      error: () => console.error('Couldn\'t connect to network.')
+    });
+  }
+
+  /**
+   * Render the component with a couple conditions
+   * Modal: if the source is a modal we hide the comment button
+   * Mini: if the source is the MiniReview component, we shorten some text
+   */
   render() {
     let reviewCounts;
     if (this.props.mini) {
       reviewCounts = <div></div>;
     } else {
       reviewCounts = 
-        <div>
-          <Feedback>{this.props.yes} found this review helpful</Feedback>
-          <Feedback>{this.props.funny} found this review funny</Feedback>
-        </div>;
+        <FeedbackWrapper>
+          <div>
+            <Feedback>{this.props.yes} found this review helpful</Feedback>
+            <Feedback>{this.props.funny} found this review funny</Feedback>
+          </div>
+          {
+            this.props.source === 'standard' ? <CommentButton onClick={this.toggleModal} src='/images/comment_quoteicon_blue.png' /> :
+              this.props.source === 'modal' ? null : null
+          }
+        </FeedbackWrapper>;
     }
 
-    return (<Wrapper>
-      <Text>{this.props.mini ? 'Helpful?' : 'Was this review helpful?'}</Text>
-      <RatingButtons helpfulness={this.state.helpfulness} clickHandler={this.updateHelpfulness.bind(this)}/>
-      {reviewCounts}
-    </Wrapper>
+    return (
+      <Wrapper>
+        {
+          this.state.displayModal ? <CommentModal hideModal={this.toggleModal} review={this.props.review} /> : null
+        }
+        <Text>{this.props.mini ? 'Helpful?' : 'Was this review helpful?'}</Text>
+        <RatingButtons helpfulness={this.state.helpfulness} updateHelpfulness={this.updateHelpfulness.bind(this)}/>
+        {reviewCounts}
+      </Wrapper>
     );
   }
 }
 
 const Wrapper = styled.div`
-  
 `;
 
 const Text = styled.div`
@@ -74,6 +140,7 @@ const Text = styled.div`
   padding-top: 5px;
   padding-bottom: 5px;
   padding-right: 10px;
+  opacity: 0.6;
 `;
 
 const Feedback = styled.div`
@@ -82,6 +149,17 @@ const Feedback = styled.div`
   display: block;
   padding-top: 0px;
   padding-bottom: 0px;
+`;
+
+const FeedbackWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+const CommentButton = styled.img`
+  height: 16px;
+  margin-right: 10px;
+  cursor: pointer;
 `;
 
 export default ReviewRating;

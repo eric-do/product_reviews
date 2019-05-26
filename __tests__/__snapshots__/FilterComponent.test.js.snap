@@ -1,8 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<FilterComponent /> rendering should render elements 1`] = `
-<styled.div>
-  <styled.div>
+<styled.div
+  className="FilterContainer"
+>
+  <styled.div
+    className="FilterList"
+  >
     <Filter
       filter={
         Object {
@@ -49,18 +53,14 @@ exports[`<FilterComponent /> rendering should render elements 1`] = `
     />
     <styled.div>
       DISPLAY AS:
-      <styled.select>
+      <styled.select
+        onChange={[Function]}
+      >
         <styled.option
           default={true}
-          value="summary"
+          value="helpful"
         >
-          Summary
-        </styled.option>
-        <styled.option
-          default={true}
-          value="all"
-        >
-          All
+          Most Helpful
         </styled.option>
         <styled.option
           default={true}
@@ -84,5 +84,6 @@ exports[`<FilterComponent /> rendering should render elements 1`] = `
     </Styled(styled.div)>
      reviews that match the filters above
   </styled.div>
+  <styled.div />
 </styled.div>
 `;

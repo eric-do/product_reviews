@@ -3,8 +3,13 @@ import moment from 'moment';
 import styled from 'styled-components';
 import ReviewRating from './ReviewRating.jsx';
 
-
-const Review = ({review}) => (
+/** 
+* Component to display a user's review
+* @param {object} review - a review object
+* @param {string} source - the source string which determines customization of certain elements
+* @return {object} the rendered component
+*/
+const Review = ({review, source}) => (
   <ReviewBox className="review-box">
     <LeftColumn>
       <Avatar src={review.user_avatar} />
@@ -35,7 +40,8 @@ const Review = ({review}) => (
       <Content>
         { `${(review.content)}`}
       </Content>
-      <ReviewRating post_id={review.post_id} yes={review.helpful_yes_count} no={review.helpful_no_count} funny={review.helpful_funny_count}/>
+      <Divider/>
+      <ReviewRating source={source} review={review} post_id={review.post_id} yes={review.helpful_yes_count} no={review.helpful_no_count} funny={review.helpful_funny_count}/>
     </RightColumn>
   </ReviewBox>
 );
@@ -50,18 +56,28 @@ const Popup = styled.div`
 
 const ReviewBox = styled.div`
   width: 100%;
+  height: auto;
   min-width: 522px;
-  max-width: 100%
-  margin: 5px 10px 10px 5px;
+  max-width: 100%;
+  margin: 5px 0px 10px 0px;
   background: #141e2c;  
   color: #c1dbf4;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Motiva Sans", Arial, Helvetica, sans-serif;
   padding-bottom: 10px;
   margin-bottom: 20px;
-  
-  @media only screen and (min-width: 1070px) {
+
+  border-style: solid;
+  border-width: 1px 0px 0px 0px;
+  -moz-border-image: url('/images/maincol_gradient_rule.png') 1 0 0 0;
+  -webkit-border-image: url('/images/maincol_gradient_rule.png') 1 0 0 0;
+  -o-border-image: url('/images/maincol_gradient_rule.png') 1 0 0 0;
+  border-image: url('/images/maincol_gradient_rule.png') 1 0 0 0;
+  border-image-repeat: none;
+
+  @media only screen and (min-width: 768px) {
     width: auto;
     max-width: 616px;
+    text-align: left;
   }
 
 `;
@@ -86,6 +102,8 @@ const Avatar = styled.img`
   display: inline-block;
   height: 32px;
   width: 32px;
+  background: linear-gradient( to bottom, #515151 5%, #474747 95%);
+  padding: 1px;
 `;
 
 const Username = styled.div`
@@ -155,6 +173,8 @@ const Hours = styled.div`
   padding-left: 5px;
   color: #8091a2;
   font-size: 11px;
+  opacity: 0.6;
+  margin-top: 2px;
 `;
 
 const Content = styled.div`
@@ -170,5 +190,27 @@ const PostDate = styled.div`
   margin-bottom: 15px;
 `;
 
+const Divider = styled.div`
+  height: 1px;
+  background: #363f4c;
+  margin-bottom: 5px;
+`;
+
+ReviewBox.displayName = 'ReviewBox';
+LeftColumn.displayName = 'LeftColumn';
+Avatar.displayName = 'Avatar';
+Username.displayName = 'Username';
+OwnedGames.displayName = 'OwnedGames';
+SmallLink.displayName = 'SmallLink';
+ReviewCount.displayName = 'ReviewCount';
+Link.displayName = 'Link';
+RightColumn.displayName = 'RightColumn';
+VoteHeader.displayName = 'VoteHeader';
+TextContainer.displayName = 'TextContainer';
+Thumb.displayName = 'Thumb';
+Title.displayName = 'Title';
+Hours.displayName = 'Hours';
+Content.displayName = 'Content';
+PostDate.displayName = 'PostDate';
 
 export default Review;

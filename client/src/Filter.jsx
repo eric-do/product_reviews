@@ -1,6 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
+/**
+ * This component renders each filter in the filter selection bar.
+ * @extends React.Component
+ */
 class Filter extends React.Component {
   constructor(props) {
     super(props);
@@ -8,7 +12,11 @@ class Filter extends React.Component {
       showMenu: false
     };
   }
-
+  
+  /**
+   * Display menu and update showMenu state
+   * @param {Object} e - an event object
+   */
   showMenu(e) {
     e.preventDefault();
     this.setState({
@@ -16,6 +24,10 @@ class Filter extends React.Component {
     });
   }
 
+  /**
+   * Hide menu and update showMenu state
+   * @param {Object} e - an event object
+   */
   hideMenu(e) {
     e.preventDefault();
     this.setState({
@@ -27,7 +39,6 @@ class Filter extends React.Component {
     // Display each filter and its respective options
     // When the filter is hovered over (state.showMenu: true), we should display the options
     // When a user clicks on a filter option, that option becomes set in the main component as an active filter
-
     const setFilters = this.props.setFilters;
     return (
       <FilterDropdown onMouseEnter={this.showMenu.bind(this)} onMouseLeave={this.hideMenu.bind(this)}>
@@ -115,5 +126,13 @@ const OptionCount = styled.div`
   color: #7193a6;
   padding-left: 3px;
 `;
+
+FilterDropdown.displayName = 'FilterDropdown';
+FilterButton.displayName = 'FilterButton';
+FilterMenu.displayName = 'FilterMenu';
+RadioButton.displayName = 'RadioButton';
+RadioLabel.displayName = 'RadioLabel';
+FilterOption.displayName = 'FilterOption';
+OptionCount.displayName = 'OptionCount';
 
 export default Filter;

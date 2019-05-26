@@ -42,13 +42,13 @@ module.exports = (sequelize) => {
       type: Sequelize.INTEGER,
       allowNull: false
     },
+
+    /* USER FIELDS */
     user_id: {
       type: Sequelize.INTEGER,
       allowNull: false,
-      primaryKey: true
+      primaryKey: false
     }, 
-  
-    /* USER FIELDS */
     username: {
       type: Sequelize.STRING,
       allowNull: false,

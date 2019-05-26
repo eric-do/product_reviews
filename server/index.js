@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 const express = require('express');
 const parser = require('body-parser');
 const db = require('../db');
@@ -20,10 +21,17 @@ app.get('/test', (req, res) => {
 });
 
 app.get('/reviews', (req, res) => {
+  const orderMap = {
+    helpful: 'helpful_yes_count',
+    funny: 'helpful_funny_count', 
+    recent: 'review_date'
+  };
   const where = req.query.where;
+  const order = req.query.order;
+  console.log(order);
   const options = {
     where: where,
-    order: [['helpful_yes_count', 'DESC']]
+    order: [[orderMap[order], 'DESC']]
   };
 
   db.getReviews(options, (err, data) => {
@@ -274,4 +282,29 @@ app.get('/reviews/filters', (req, res) => {
       ]
     }
   ]);
+});
+
+app.get('/reviews/comments', (req, res) => {
+  //const options = req.query.where || {limit: 10};
+  let where = req.query.where || {};
+  let options = {
+    where: where,
+    order: [['createdAt', 'DESC']],
+    limit: 10
+  };
+  db.getComments(options, (err, data) => {
+    if (err) { return console.error(err); }
+    res.send(data);
+  });
+});
+
+app.post('/reviews/comment', (req, res) => {
+  const options = req.body.data;
+  console.log(options);
+  options['comment_date'] = moment(options['comment_date']).format();
+  db.createComment(options, (err, data) => {
+    if (err) { return console.error(err); }
+    res.send(data);
+  });
+  
 });

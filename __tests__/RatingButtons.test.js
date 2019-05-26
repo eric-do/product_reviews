@@ -17,7 +17,7 @@ const createProps = (mockCallback) => ({
     no: false, 
     funny: false
   },
-  clickHandler: mockCallback
+  updateHelpfulness: mockCallback
 });
 
 beforeEach(() => {
