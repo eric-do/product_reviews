@@ -2,8 +2,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
-// On HelpfulButton click, we call the updateHelpfulness function
-// This updateHelpfulness function originates from ReviewRating component
+/**
+ * Component for display of individual rating buttons
+ * @param {Boolean} active - active state of the button
+ * @param {Function} updateHelpfulness - function to update the state on click
+ */
 const HelpfulButton = (props) => (
       <Button active={props.active} onClick={(e) => props.updateHelpfulness(e, props.string.toLowerCase())}>{props.string}</Button>
  );

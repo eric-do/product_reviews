@@ -2,6 +2,11 @@ import React from 'react';
 import Review from './Review.jsx';
 import styled from 'styled-components';
 
+/**
+ * The reviews component displays all reviews from an array
+ * @param {Array} reviews - an array of review objects
+ * @param {String} sort - a string indicating the sort order of reviews 
+ */
 const Reviews = ({reviews, sort}) => (
   <ReviewsWrapper> 
     <Title>MOST {sort.toUpperCase()} REVIEWS</Title>

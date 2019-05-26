@@ -3,10 +3,11 @@ import moment from 'moment';
 import styled from 'styled-components';
 import ReviewRating from './ReviewRating.jsx';
 
-/* The Review component takes in 2 props: a review object, and a source string
-** The review object contains information for the review - content, post_id, etc
-** The source string determines whether some elements may need to be hidden, e.g.
-** if the source is a comment modal, we hide the comment button.
+/** 
+* Component to display a user's review
+* @param {object} review - a review object
+* @param {string} source - the source string which determines customization of certain elements
+* @return {object} the rendered component
 */
 const Review = ({review, source}) => (
   <ReviewBox className="review-box">

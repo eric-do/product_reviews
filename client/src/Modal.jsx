@@ -1,6 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
+/**
+ * This class is the template for all modals
+ * @extends React.Component
+ */
 class Modal extends React.Component {
   constructor(props) {
     super(props);
@@ -9,6 +13,10 @@ class Modal extends React.Component {
     };
   }
 
+  /**
+   * Keeps the dialog box open on user click
+   * @param {Object} e - an event object
+   */
   onDialogClick(e) {
     // The overlay closes on click, but we need to make sure
     // if the click happens on the dialog, nothing happens

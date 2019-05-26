@@ -2,6 +2,10 @@ import styled from 'styled-components';
 import React from 'react';
 import moment from 'moment';
 
+/**
+ * Component to render a user's comment
+ * @param {Object} comment - a comment object
+ */
 const Comment = ({comment}) => (
   <CommentWrapper>
     <Avatar src={comment.user_avatar} />

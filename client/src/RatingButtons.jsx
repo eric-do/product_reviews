@@ -2,6 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import HelpfulButton from './HelpfulButton.jsx';
 
+/**
+ * This component displays the helpfulness buttons (Yes / No / Funny)
+ * @param {Object} helpfuleness - an object with counts for each helpfulness property
+ * @param {Function} updateHelpfulness - a function to toggle the helpfuless rating
+ */
 const RatingButtons = ({helpfulness, updateHelpfulness}) => {
   return (
     <Wrapper>
