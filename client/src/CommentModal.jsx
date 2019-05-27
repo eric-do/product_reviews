@@ -170,7 +170,7 @@ const CommentInput = styled.textarea`
 
 const CommentContainer = styled.div`
   overflow-y: auto;
-  max-height: 300px;
+  max-height: 200px;
   background: #141e2c;
   padding: 10px;
 `;

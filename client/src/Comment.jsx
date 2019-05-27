@@ -15,7 +15,7 @@ const Comment = ({comment}) => (
           {comment.username}
         </UserName>
         <Date>
-          {comment.comment_date}
+          {moment(comment.comment_date).format('MMM Do YYYY [@] h:mm:ss a')}
         </Date>
       </CommentHeader>
       <ContentContent>
