@@ -11,6 +11,9 @@ const GraphBar = styled.div`
   height: ${props => props.height + 'px'};
   width: ${props => props.width + 'px'};
   display: inline-block;
+  &:hover {
+    background: white;
+  }
 `;
 
 export default Bar;

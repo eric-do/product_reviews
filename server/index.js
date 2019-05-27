@@ -306,5 +306,254 @@ app.post('/reviews/comment', (req, res) => {
     if (err) { return console.error(err); }
     res.send(data);
   });
-  
+});
+
+app.get('/graph', (req, res) => {
+  const data = {
+    rating: 'Very Positive',
+    count: 1012045,
+    data: [
+      {
+        date: 'Jan 2018',
+        recommended: 12,
+        notRecommended: 8
+      },
+      {
+        date: 'Feb 2018',
+        recommended: 16,
+        notRecommended: 4
+      },
+      {
+        date: 'Mar 2018',
+        recommended: 26,
+        notRecommended: 13
+      },
+      {
+        date: 'April 2018',
+        recommended: 20,
+        notRecommended: 10
+      },
+      {
+        date: 'May 2018',
+        recommended: 30,
+        notRecommended: 8
+      },
+      {
+        date: 'June 2018',
+        recommended: 25,
+        notRecommended: 4
+      },
+      {
+        date: 'July 2018',
+        recommended: 12,
+        notRecommended: 6
+      },
+      {
+        date: 'Aug 2018',
+        recommended: 21,
+        notRecommended: 7
+      },
+      {
+        date: 'Sept 2018',
+        recommended: 10,
+        notRecommended: 10
+      },
+      {
+        date: 'Oct 2018',
+        recommended: 16,
+        notRecommended: 3
+      },
+      {
+        date: 'Nov 2018',
+        recommended: 30,
+        notRecommended: 8
+      },
+      {
+        date: 'Dec 2018',
+        recommended: 35,
+        notRecommended: 5
+      },
+      {
+        date: 'Jan 2019',
+        recommended: 12,
+        notRecommended: 8
+      },
+      {
+        date: 'Feb 2019',
+        recommended: 16,
+        notRecommended: 4
+      },
+      {
+        date: 'Mar 2019',
+        recommended: 26,
+        notRecommended: 13
+      },
+      {
+        date: 'April 2019',
+        recommended: 20,
+        notRecommended: 10
+      },
+      {
+        date: 'May 2019',
+        recommended: 30,
+        notRecommended: 8
+      },
+      {
+        date: 'June 2019',
+        recommended: 25,
+        notRecommended: 4
+      },
+      {
+        date: 'July 2019',
+        recommended: 12,
+        notRecommended: 6
+      },
+      {
+        date: 'Aug 2019',
+        recommended: 21,
+        notRecommended: 7
+      },
+      {
+        date: 'Sept 2019',
+        recommended: 10,
+        notRecommended: 10
+      },
+      {
+        date: 'Oct 2019',
+        recommended: 16,
+        notRecommended: 3
+      },
+      {
+        date: 'Nov 2019',
+        recommended: 30,
+        notRecommended: 8
+      },
+      {
+        date: 'Dec 2019',
+        recommended: 35,
+        notRecommended: 5
+      },
+      {
+        date: 'Jan 2018',
+        recommended: 12,
+        notRecommended: 8
+      },
+      {
+        date: 'Feb 2018',
+        recommended: 16,
+        notRecommended: 4
+      },
+      {
+        date: 'Mar 2018',
+        recommended: 26,
+        notRecommended: 13
+      },
+      {
+        date: 'April 2018',
+        recommended: 20,
+        notRecommended: 10
+      },
+      {
+        date: 'May 2018',
+        recommended: 30,
+        notRecommended: 8
+      },
+      {
+        date: 'June 2018',
+        recommended: 25,
+        notRecommended: 4
+      },
+      {
+        date: 'July 2018',
+        recommended: 12,
+        notRecommended: 6
+      },
+      {
+        date: 'Aug 2018',
+        recommended: 21,
+        notRecommended: 7
+      },
+      {
+        date: 'Sept 2018',
+        recommended: 10,
+        notRecommended: 10
+      },
+      {
+        date: 'Oct 2018',
+        recommended: 16,
+        notRecommended: 3
+      },
+      {
+        date: 'Nov 2018',
+        recommended: 30,
+        notRecommended: 8
+      },
+      {
+        date: 'Dec 2018',
+        recommended: 35,
+        notRecommended: 5
+      },
+      {
+        date: 'Jan 2019',
+        recommended: 12,
+        notRecommended: 8
+      },
+      {
+        date: 'Feb 2019',
+        recommended: 16,
+        notRecommended: 4
+      },
+      {
+        date: 'Mar 2019',
+        recommended: 26,
+        notRecommended: 13
+      },
+      {
+        date: 'April 2019',
+        recommended: 20,
+        notRecommended: 10
+      },
+      {
+        date: 'May 2019',
+        recommended: 30,
+        notRecommended: 8
+      },
+      {
+        date: 'June 2019',
+        recommended: 25,
+        notRecommended: 4
+      },
+      {
+        date: 'July 2019',
+        recommended: 12,
+        notRecommended: 6
+      },
+      {
+        date: 'Aug 2019',
+        recommended: 21,
+        notRecommended: 7
+      },
+      {
+        date: 'Sept 2019',
+        recommended: 10,
+        notRecommended: 10
+      },
+      {
+        date: 'Oct 2019',
+        recommended: 16,
+        notRecommended: 3
+      },
+      {
+        date: 'Nov 2019',
+        recommended: 30,
+        notRecommended: 8
+      },
+      {
+        date: 'Dec 2019',
+        recommended: 35,
+        notRecommended: 5
+      }
+    ] 
+  };
+  res.send(data);
 });
