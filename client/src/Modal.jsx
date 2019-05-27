@@ -63,7 +63,7 @@ const ModalContent = styled.div`
 `;
 
 const ModalDialog = styled.div`
-  top: 200px;
+  top: 100px;
   position: relative;
   background: #1b2738;
   outline: 0;

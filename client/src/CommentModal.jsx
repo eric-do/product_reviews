@@ -141,7 +141,7 @@ class CommentModal extends React.Component {
         <SubmitButton onClick={this.handleSubmit}>Post Comment</SubmitButton>
         <CommentContainer>
           {
-            this.state.comments.map(comment => (<Comment comment={comment} />))
+            this.state.comments.map(comment => (<Comment key={comment.comment_id} comment={comment} />))
           }
         </CommentContainer>
       </Modal>
