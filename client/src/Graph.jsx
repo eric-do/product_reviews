@@ -45,12 +45,14 @@ class Graph extends React.Component {
     const notRecommendedHeight = maxNotRecommended / maxHeight * bufferedHeight;
     const barWidth = bufferedWidth / this.state.data.length * .75;
     const barMargin = bufferedWidth / this.state.data.length * .25;
+
     return (
       <GraphWrapper>
         <RatingContainer width={w}>
           <TextContainer>
             <SectionTitle>Overall Reviews:</SectionTitle>
-            <SectionRating>Very Positive</SectionRating>
+            <SectionRating>{this.state.rating}</SectionRating>
+            <ReviewCount>{`(${this.state.count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}) reviews`}</ReviewCount>
           </TextContainer>
         </RatingContainer>
         <ChartWrapper>
@@ -103,7 +105,20 @@ const SectionRating = styled.div`
   font-weight: bold;
   font-size: 17px;
   line-height: 9px;
-  text-shadow: 1px 1px rgba( 0, 0, 0, 0.2 )
+  text-shadow: 1px 1px rgba( 0, 0, 0, 0.2 );
+  display: inline-block;
+`;
+
+const ReviewCount = styled.div`
+  display: inline-block;
+  margin-right: 15px;
+  margin-left: 5px;
+  color: #8ba6b6;
+  min-width: 320px;
+  position: relative;
+  min-height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
 `;
 
 const Recommended = styled.div`
