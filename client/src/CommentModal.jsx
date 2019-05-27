@@ -77,7 +77,7 @@ class CommentModal extends React.Component {
    */
   listenKeyboard(e) {
     if (e.key === 'Escape' || e.code === 27) {
-      this.onClose(e);
+      this.props.hideModal(e);
     }
   }
 

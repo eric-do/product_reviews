@@ -27,7 +27,8 @@ class ReviewRating extends React.Component {
       },
       displayModal: false
     };
-    this.toggleModal = this.toggleModal.bind(this);
+    this.showModal = this.showModal.bind(this);
+    this.hideModal = this.hideModal.bind(this);
   }
 
   /**
@@ -66,9 +67,21 @@ class ReviewRating extends React.Component {
    * This function toggles the display of the comment modal
    * @param {*} e - an event object
    */
-  toggleModal(e) {
+  showModal(e) {
     e.preventDefault;
-    const displayModal = !this.state.displayModal;
+    const displayModal = true;
+    this.setState({ displayModal });
+  }
+
+  /**
+   * This function hides the comment modal. We do a separate function
+   * rather than !displayModal toggle because we listen for the Escape key,
+   * and don't want it to toggle the modal back on.
+   * @param {*} e - an event object
+   */
+  hideModal(e) {
+    e.preventDefault;
+    const displayModal = false;
     this.setState({ displayModal });
   }
 
@@ -110,7 +123,7 @@ class ReviewRating extends React.Component {
             <Feedback>{this.props.funny} found this review funny</Feedback>
           </div>
           {
-            this.props.source === 'standard' ? <CommentButton onClick={this.toggleModal} src='/images/comment_quoteicon_blue.png' /> :
+            this.props.source === 'standard' ? <CommentButton onClick={this.showModal} src='/images/comment_quoteicon_blue.png' /> :
               this.props.source === 'modal' ? null : null
           }
         </FeedbackWrapper>;
@@ -119,7 +132,7 @@ class ReviewRating extends React.Component {
     return (
       <Wrapper>
         {
-          this.state.displayModal ? <CommentModal hideModal={this.toggleModal} review={this.props.review} /> : null
+          this.state.displayModal ? <CommentModal hideModal={this.hideModal} review={this.props.review} /> : null
         }
         <Text>{this.props.mini ? 'Helpful?' : 'Was this review helpful?'}</Text>
         <RatingButtons helpfulness={this.state.helpfulness} updateHelpfulness={this.updateHelpfulness.bind(this)}/>
