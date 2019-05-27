@@ -24,15 +24,15 @@ class CommentModal extends React.Component {
 
   componentDidMount() {
     this.getComments();
-    // if (this.props.hideModal) {
-    //   window.addEventListener('keydown', this.listenKeyboard.bind(this), true);
-    // }
+    if (this.props.hideModal) {
+      window.addEventListener('keydown', this.listenKeyboard.bind(this), true);
+    }
   }
 
   componentWillUnmount() {
-    // if (this.props.hideModal) {
-    //   window.removeEventListener('keydown', this.listenKeyboard.bind(this), true);
-    // }
+    if (this.props.hideModal) {
+      window.removeEventListener('keydown', this.listenKeyboard.bind(this), true);
+    }
   }
 
   /* MODEL */
@@ -77,7 +77,7 @@ class CommentModal extends React.Component {
    */
   listenKeyboard(e) {
     if (e.key === 'Escape' || e.code === 27) {
-      this.props.hideModal(e);
+      this.onClose(e);
     }
   }
 
