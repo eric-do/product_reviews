@@ -4,7 +4,7 @@ exports[`<FilterComponent /> rendering should render elements 1`] = `
 <styled.div
   className="FilterContainer"
 >
-  <Graph />
+  <Chart />
   <styled.div
     className="FilterList"
   >
