@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Filter from './Filter.jsx';
 import ActiveFilters from './ActiveFilters.jsx';
-import Graph from './Graph.jsx';
+import Chart from './Chart.jsx';
 
 /**
  * This component renders available and active filters.
@@ -13,7 +13,7 @@ import Graph from './Graph.jsx';
  */
 const FilterComponent = ({setFilters, count, filters, activeFilters, sort}) => (
   <FilterContainer className='FilterContainer'>
-    <Graph />
+    <Chart />
     <FilterList className='FilterList'>
       {
         filters.map(filter => (<Filter setFilters={setFilters} key={filter.id} filter={filter} />))

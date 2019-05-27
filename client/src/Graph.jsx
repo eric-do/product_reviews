@@ -3,85 +3,70 @@ import styled from 'styled-components';
 import Bar from './Bar.jsx';
 import $ from 'jquery';
 
-class Graph extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      data: [],
-      count: 0,
-      rating: ''
-    };
-  }
+const Graph = ({primary, height, width, overallData }) => {
+  overallData = Object.keys(overallData).length > 0 ? overallData : {data: [], count: 0, rating: ''};
+  const buffer = 20;
+  const bufferedHeight = height - 2 * buffer;
+  const bufferedWidth = width - 2 * buffer;
+  const maxRecommended = Math.max(...overallData.data.map(d => d.recommended));
+  const maxNotRecommended = Math.max(...overallData.data.map(d => d.notRecommended));
+  const maxHeight = maxRecommended + maxNotRecommended;
+  const recommendedHeight = maxRecommended / maxHeight * bufferedHeight;
+  const notRecommendedHeight = maxNotRecommended / maxHeight * bufferedHeight;
+  const barWidth = bufferedWidth / overallData.data.length * .75;
+  const barMargin = bufferedWidth / overallData.data.length * .25;
 
-  componentDidMount() {
-    this.getGraphData();
-  }
-
-  getGraphData() {
-    $.ajax({
-      url: 'http://localhost:3005/graph',
-      method: 'GET',
-      success: results => {
-        this.setState({
-          data: results.data,
-          rating: results.rating,
-          count: results.count
-        });
-      },
-      error: () => console.error('Couldn\t pull graph data')
-    });
-  }
-
-  render() {
-    const w = 605;
-    const h = 260;
-    const buffer = 20;
-    const bufferedHeight = h - 2 * buffer;
-    const bufferedWidth = w - 2 * buffer;
-    const maxRecommended = Math.max(...this.state.data.map(d => d.recommended));
-    const maxNotRecommended = Math.max(...this.state.data.map(d => d.notRecommended));
-    const maxHeight = maxRecommended + maxNotRecommended;
-    const recommendedHeight = maxRecommended / maxHeight * bufferedHeight;
-    const notRecommendedHeight = maxNotRecommended / maxHeight * bufferedHeight;
-    const barWidth = bufferedWidth / this.state.data.length * .75;
-    const barMargin = bufferedWidth / this.state.data.length * .25;
-
-    return (
-      <GraphWrapper>
-        <RatingContainer width={w}>
-          <TextContainer>
-            <SectionTitle>Overall Reviews:</SectionTitle>
-            <SectionRating>{this.state.rating}</SectionRating>
-            <ReviewCount>{`(${this.state.count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}) reviews`}</ReviewCount>
-          </TextContainer>
-        </RatingContainer>
-        <ChartWrapper>
-          <Recommended height={recommendedHeight + buffer} width={w}>
-            {
-              this.state.data.map(data => <Bar reverse={false} height={data.recommended / maxRecommended * recommendedHeight} width={barWidth} barMargin={barMargin} />)
-            }
-          </Recommended>
-          <NotRecommended height={notRecommendedHeight + buffer} width={w}>
-            {
-              this.state.data.map(data => <Bar reverse={true} height={data.notRecommended / maxNotRecommended * notRecommendedHeight} width={barWidth} barMargin={barMargin} />)
-            }
-          </NotRecommended>
-        </ChartWrapper>
-      </GraphWrapper>
-    );
-  }
-}
-const GraphWrapper = styled.div``;
+  return (
+    <GraphWrapper primary={primary}>
+      <RatingContainer width={width}>
+        <TextContainer>
+          <SectionTitle>{primary ? 'Overall Reviews:' : 'Recent Reviews:'}</SectionTitle>
+          <SectionRating>{overallData.rating}</SectionRating>
+          <ReviewCount>{`(${overallData.count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}) reviews`}</ReviewCount>
+        </TextContainer>
+      </RatingContainer>
+      <ChartWrapper>
+        <Recommended height={recommendedHeight + buffer} width={width}>
+          {
+            overallData.data.map(data => 
+              <Bar 
+                reverse={false} 
+                height={data.recommended / maxRecommended * recommendedHeight} 
+                width={barWidth} 
+                barMargin={barMargin} 
+              />)
+          }
+        </Recommended>
+        <NotRecommended height={notRecommendedHeight + buffer} width={width}>
+          {
+            overallData.data.map(data => 
+              <Bar 
+                reverse={true} 
+                height={data.notRecommended / maxNotRecommended * notRecommendedHeight} 
+                width={barWidth} 
+                barMargin={barMargin} 
+              />)
+          }
+        </NotRecommended>
+      </ChartWrapper>
+    </GraphWrapper>
+  );
+};
+const GraphWrapper = styled.div`
+  background: ${props => props.primary ? '#29475e' : '#3f647e'};
+`;
 
 const RatingContainer = styled.div`
   display: flex;
   align-items: center;
-  width: ${props => props.width + 'px'};
+  width: 100%;
   height: 60px;
   margin-bottom: 1px;
-  background: #29475e;
+  background: inherit;
   border-bottom: 1px solid #000000;
   min-height: 38px;
+  
+
 `;
 
 const TextContainer = styled.div`
@@ -114,7 +99,6 @@ const ReviewCount = styled.div`
   margin-right: 15px;
   margin-left: 5px;
   color: #8ba6b6;
-  min-width: 320px;
   position: relative;
   min-height: 100%;
   font-family: Arial, Helvetica, sans-serif;
@@ -125,18 +109,18 @@ const Recommended = styled.div`
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  background: #29475e;
+  background: inherit;
   height: ${props => props.height + 'px'};
-  width: ${props => props.width + 'px'};
+  width: 100%;
 `;
 
 const NotRecommended = styled.div`
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  background: #29475e;
+  background: inherit;
   height: ${props => props.height + 'px'};
-  width: ${props => props.width + 'px'};
+  width: 100%;
 `;
 
 const ChartWrapper = styled.div``;
