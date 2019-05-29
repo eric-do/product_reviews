@@ -24,15 +24,15 @@ class CommentModal extends React.Component {
 
   componentDidMount() {
     this.getComments();
-    // if (this.props.hideModal) {
-    //   window.addEventListener('keydown', this.listenKeyboard.bind(this), true);
-    // }
+    if (this.props.hideModal) {
+      window.addEventListener('keydown', this.listenKeyboard.bind(this), true);
+    }
   }
 
   componentWillUnmount() {
-    // if (this.props.hideModal) {
-    //   window.removeEventListener('keydown', this.listenKeyboard.bind(this), true);
-    // }
+    if (this.props.hideModal) {
+      window.removeEventListener('keydown', this.listenKeyboard.bind(this), true);
+    }
   }
 
   /* MODEL */
@@ -141,7 +141,7 @@ class CommentModal extends React.Component {
         <SubmitButton onClick={this.handleSubmit}>Post Comment</SubmitButton>
         <CommentContainer>
           {
-            this.state.comments.map(comment => (<Comment comment={comment} />))
+            this.state.comments.map(comment => (<Comment key={comment.comment_id} comment={comment} />))
           }
         </CommentContainer>
       </Modal>
@@ -170,7 +170,7 @@ const CommentInput = styled.textarea`
 
 const CommentContainer = styled.div`
   overflow-y: auto;
-  max-height: 300px;
+  max-height: 200px;
   background: #141e2c;
   padding: 10px;
 `;
