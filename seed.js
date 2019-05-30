@@ -49,6 +49,10 @@ const getRandomParagraph = () => {
 
 for (let i = 0; i < 100; i++) {
   reviews.push({
+    game_id: faker.random.number({
+      'min': 1,
+      'max': 10
+    }),
     post_id: faker.random.number(),
     recommended: faker.random.boolean(),
     review_date: faker.date.past(),

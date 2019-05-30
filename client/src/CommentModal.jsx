@@ -41,6 +41,7 @@ class CommentModal extends React.Component {
    * @return {Array} data - API returns an array of comment objects
    */
   getComments() {
+    console.log('Getting comments');
     $.ajax({
       url: '/reviews/comments',
       method: 'GET',
@@ -120,7 +121,7 @@ class CommentModal extends React.Component {
 
     this.setState({commentText: ''}, () => {
       $.ajax({
-        url: 'http://localhost:3005/reviews/comment',
+        url: '/reviews/comment',
         method: 'POST',
         data: { data: fakeData },
         success: () => {
@@ -128,7 +129,7 @@ class CommentModal extends React.Component {
             this.getComments();
           });
         },
-        error: (err) => console.error(err)
+        error: (err) => console.error('Could not get comments', err)
       });
     });
   }

@@ -298,8 +298,7 @@ app.get('/reviews/comments', (req, res) => {
 });
 
 app.post('/reviews/comment', (req, res) => {
-  const options = req.body.data;
-  console.log(options);
+  const options = req.body;
   options['comment_date'] = moment(options['comment_date']).format();
   db.createComment(options, (err, data) => {
     if (err) { return console.error(err); }

@@ -67,7 +67,7 @@ Review.sync({ force: false, logging: true })
     //Comment.hasOne(Review);
     console.log('Comment table synced');
   })
-  .catch(e => callback(e));
+  .catch(e => console.error(e));
 
 module.exports.getReviews = getReviews;
 module.exports.getLanguageFilter = getLanguageFilter;
