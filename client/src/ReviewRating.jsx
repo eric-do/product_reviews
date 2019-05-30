@@ -48,7 +48,7 @@ class ReviewRating extends React.Component {
     helpfulness[val] = status;
 
     $.ajax({
-      url: 'http://localhost:3005/review/vote',
+      url: '/review/vote',
       method: 'POST',
       data: {
         // eslint-disable-next-line camelcase
@@ -91,7 +91,7 @@ class ReviewRating extends React.Component {
    */
   getReview() {
     $.ajax({
-      url: 'http://localhost:3005/reviews',
+      url: '/reviews',
       method: 'GET',
       data: {
         where: {

@@ -42,7 +42,7 @@ class CommentModal extends React.Component {
    */
   getComments() {
     $.ajax({
-      url: 'http://localhost:3005/reviews/comments',
+      url: '/reviews/comments',
       method: 'GET',
       data: {
         where: {

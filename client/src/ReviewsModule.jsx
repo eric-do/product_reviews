@@ -116,7 +116,7 @@ class ReviewsModule extends React.Component {
    */
   getFilters(callback) {
     $.ajax({
-      url: 'http://localhost:3005/reviews/filters',
+      url: '/reviews/filters',
       method: 'GET',
       success: (data) => callback(null, data), 
       error: (err) => console.error('Error getting filter', err)
