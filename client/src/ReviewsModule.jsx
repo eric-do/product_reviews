@@ -99,7 +99,7 @@ class ReviewsModule extends React.Component {
     const order = this.state.order;
 
     $.ajax({
-      url: 'http://localhost:3005/reviews',
+      url: '/reviews',
       method: 'GET',
       data: {where: filters, order: order},
       success: result => callback(result),

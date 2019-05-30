@@ -26,8 +26,8 @@ app.get('/reviews', (req, res) => {
     funny: 'helpful_funny_count', 
     recent: 'review_date'
   };
-  const where = req.query.where;
-  const order = req.query.order;
+  const where = req.body.where;
+  const order = req.body.order;
   const options = {
     where: where,
     order: [[orderMap[order], 'DESC']]
@@ -40,6 +40,7 @@ app.get('/reviews', (req, res) => {
 });
 
 app.get('/recent', (req, res) => {
+  console.log('PULLING RECENT');
   const date = req.query.date || moment().startOf('day').format();
   const where = req.query.where || {};
   // eslint-disable-next-line camelcase
