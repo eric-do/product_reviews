@@ -1,6 +1,7 @@
 import React from 'react';
 import Review from './Review.jsx';
-import styled from 'styled-components';
+//import styled from 'styled-components';
+const styled = window.styled;
 
 /**
  * The reviews component displays all reviews from an array

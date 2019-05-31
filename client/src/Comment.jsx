@@ -1,6 +1,7 @@
-import styled from 'styled-components';
+//import styled from 'styled-components';
 import React from 'react';
 import moment from 'moment';
+const styled = window.styled;
 
 /**
  * Component to render a user's comment
