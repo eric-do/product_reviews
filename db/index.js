@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 const Sequelize = require('sequelize');
 const sequelize = new Sequelize('steam', 'root', 'student', {
-  host: 'localhost',
+  host: 'database',
   dialect: 'mysql'
 });
 const Review = require('./models/review.js')(sequelize);
