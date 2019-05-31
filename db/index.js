@@ -49,8 +49,6 @@ const getComments = (options, callback) => {
 };
 
 const createComment = (options, callback) => {
-
-  console.log(options);
   Comment.create(options)
     .then(data => callback(null, data))
     .catch(e => callback(e));

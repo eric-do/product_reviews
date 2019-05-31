@@ -26,8 +26,9 @@ app.get('/reviews', (req, res) => {
     funny: 'helpful_funny_count', 
     recent: 'review_date'
   };
-  const where = req.body.where;
-  const order = req.body.order;
+  const where = req.body.where || req.query.where;
+  const order = req.body.order || req.query.order;
+  console.log(where, order);
   const options = {
     where: where,
     order: [[orderMap[order], 'DESC']]
@@ -298,7 +299,8 @@ app.get('/reviews/comments', (req, res) => {
 });
 
 app.post('/reviews/comment', (req, res) => {
-  const options = req.body;
+  const options = req.body.comment_id ? req.body : req.body.data;
+  console.log(options);
   options['comment_date'] = moment(options['comment_date']).format();
   db.createComment(options, (err, data) => {
     if (err) { return console.error(err); }
