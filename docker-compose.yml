@@ -7,7 +7,7 @@ services:
     depends_on:
       - 'database'
     ports: 
-      - '3005:3005'
+      - '80:3005'
     volumes:
       - ./:/src/app 
 
