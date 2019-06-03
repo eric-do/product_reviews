@@ -18,13 +18,12 @@
   "scripts": {
     "start": "nodemon server/index.js",
     "react-dev": "webpack -d --watch",
+    "react-prod": "webpack -p --watch",
     "seed": "node seed.js",
     "test": "./node_modules/.bin/jest test"
   },
   "dependencies": {
-    "axios": "^0.18.0",
     "body-parser": "^1.19.0",
-    "d3": "^5.9.2",
     "express": "^4.15.0",
     "faker": "^4.1.0",
     "jquery": "^3.1.1",
@@ -32,8 +31,8 @@
     "mysql": "^2.13.0",
     "mysql2": "^1.6.5",
     "nodemon": "^1.19.0",
-    "react": "^15.4.2",
-    "react-dom": "^15.4.2",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
     "sequelize": "^5.8.6",
     "styled-components": "^3.4.10"
   },

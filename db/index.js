@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 const Sequelize = require('sequelize');
 const sequelize = new Sequelize('steam', 'root', 'student', {
-  host: 'localhost',
+  host: 'database',
   dialect: 'mysql'
 });
 const Review = require('./models/review.js')(sequelize);
@@ -49,8 +49,6 @@ const getComments = (options, callback) => {
 };
 
 const createComment = (options, callback) => {
-
-  console.log(options);
   Comment.create(options)
     .then(data => callback(null, data))
     .catch(e => callback(e));
@@ -67,7 +65,7 @@ Review.sync({ force: false, logging: true })
     //Comment.hasOne(Review);
     console.log('Comment table synced');
   })
-  .catch(e => callback(e));
+  .catch(e => console.error(e));
 
 module.exports.getReviews = getReviews;
 module.exports.getLanguageFilter = getLanguageFilter;

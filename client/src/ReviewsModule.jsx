@@ -2,7 +2,8 @@
 import React from 'react';
 import Reviews from './Reviews.jsx';
 import $ from 'jquery';
-import styled from 'styled-components';
+//import styled from 'styled-components';
+const styled = window.styled;
 import RecentlyPosted from './RecentlyPosted.jsx';
 import FilterComponent from './FilterComponent.jsx';
 import ModalRoot from './ModalRoot.jsx';
@@ -16,10 +17,13 @@ import ModalRoot from './ModalRoot.jsx';
 class ReviewsModule extends React.Component {
   constructor(props) {
     super(props);
+    this.game_id = 1;
     this.state = {
       filters: [],          // List of all available filters
       activeFilters: {},    // Active filters and their selected options
-      filterSearch: {},     // Filter object to send to the BE for query
+      filterSearch: {
+        game_id: this.game_id
+      },     // Filter object to send to the BE for query
       count: 0,             // Number of results matching filter
       reviews: [],          // Array of review objects given filter
       recentReviews: [],    // Array of most recent reviews given filter
@@ -99,7 +103,7 @@ class ReviewsModule extends React.Component {
     const order = this.state.order;
 
     $.ajax({
-      url: 'http://localhost:3005/reviews',
+      url: '/reviews',
       method: 'GET',
       data: {where: filters, order: order},
       success: result => callback(result),
@@ -115,9 +119,12 @@ class ReviewsModule extends React.Component {
    * @return {Object}
    */
   getFilters(callback) {
+    const game_id = this.game_id;
+
     $.ajax({
-      url: 'http://localhost:3005/reviews/filters',
+      url: '/reviews/filters',
       method: 'GET',
+      data: { game_id },
       success: (data) => callback(null, data), 
       error: (err) => console.error('Error getting filter', err)
     });
@@ -145,6 +152,7 @@ const ModuleContainer = styled.div`
   max-width: 940px;
   width: auto;
   height: auto;
+
 `;
 
 const ReviewsContainer = styled.div`

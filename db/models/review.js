@@ -4,7 +4,14 @@ const Sequelize = require('sequelize');
 module.exports = (sequelize) => {
   
   return sequelize.define('review', {
-  /* REVIEW FIELDS */
+    /* GAME FIELDS */
+    game_id: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+      primaryKey: false
+    }, 
+
+    /* REVIEW FIELDS */
     post_id: {
       type: Sequelize.INTEGER,
       allowNull: false,

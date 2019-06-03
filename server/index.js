@@ -26,9 +26,9 @@ app.get('/reviews', (req, res) => {
     funny: 'helpful_funny_count', 
     recent: 'review_date'
   };
-  const where = req.query.where;
-  const order = req.query.order;
-  console.log(order);
+  const where = req.body.where || req.query.where;
+  const order = req.body.order || req.query.order;
+  console.log(where, order);
   const options = {
     where: where,
     order: [[orderMap[order], 'DESC']]
@@ -41,9 +41,9 @@ app.get('/reviews', (req, res) => {
 });
 
 app.get('/recent', (req, res) => {
+  console.log('PULLING RECENT');
   const date = req.query.date || moment().startOf('day').format();
   const where = req.query.where || {};
-  console.log('QUERY: ' + JSON.stringify(req.query));
   // eslint-disable-next-line camelcase
   where['review_date'] = {
     [Sequelize.Op.lte]: moment(date).format()
@@ -299,7 +299,7 @@ app.get('/reviews/comments', (req, res) => {
 });
 
 app.post('/reviews/comment', (req, res) => {
-  const options = req.body.data;
+  const options = req.body.comment_id ? req.body : req.body.data;
   console.log(options);
   options['comment_date'] = moment(options['comment_date']).format();
   db.createComment(options, (err, data) => {

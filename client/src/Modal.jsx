@@ -1,5 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
+//import styled from 'styled-components';
+const styled = window.styled;
 
 /**
  * This class is the template for all modals

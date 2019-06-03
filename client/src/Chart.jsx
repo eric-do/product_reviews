@@ -1,6 +1,7 @@
 import React from 'react';
 import Graph from './Graph.jsx';
-import styled from 'styled-components';
+//import styled from 'styled-components';
+const styled = window.styled;
 import $ from 'jquery';
 
 class Chart extends React.Component {
@@ -18,21 +19,19 @@ class Chart extends React.Component {
   }
 
   getOverallData() {
-    console.log('Getting data');
     $.ajax({
-      url: 'http://localhost:3005/graphOverall',
+      url: '/graphOverall',
       method: 'GET',
       success: overallData => {
         this.setState({ overallData });
       },
-      error: () => console.error('Couldn\t pull graph data')
+      error: () => console.error('Couldn\'t pull graph data')
     });
   }
 
   getRecentData() {
-    console.log('Getting data');
     $.ajax({
-      url: 'http://localhost:3005/graphRecent',
+      url: '/graphRecent',
       method: 'GET',
       success: recentData => {
         this.setState({ recentData });

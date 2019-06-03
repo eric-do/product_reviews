@@ -1,7 +1,8 @@
 /* eslint-disable camelcase */
 import React from 'react';
 import Modal from './Modal.jsx';
-import styled from 'styled-components';
+//import styled from 'styled-components';
+const styled = window.styled;
 import Review from './Review.jsx';
 import Comment from './Comment.jsx';
 import faker from 'faker';
@@ -41,8 +42,9 @@ class CommentModal extends React.Component {
    * @return {Array} data - API returns an array of comment objects
    */
   getComments() {
+    console.log('Getting comments');
     $.ajax({
-      url: 'http://localhost:3005/reviews/comments',
+      url: '/reviews/comments',
       method: 'GET',
       data: {
         where: {
@@ -120,7 +122,7 @@ class CommentModal extends React.Component {
 
     this.setState({commentText: ''}, () => {
       $.ajax({
-        url: 'http://localhost:3005/reviews/comment',
+        url: '/reviews/comment',
         method: 'POST',
         data: { data: fakeData },
         success: () => {
@@ -128,7 +130,7 @@ class CommentModal extends React.Component {
             this.getComments();
           });
         },
-        error: (err) => console.error(err)
+        error: (err) => console.error('Could not get comments', err)
       });
     });
   }

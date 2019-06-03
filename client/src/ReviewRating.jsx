@@ -1,6 +1,7 @@
 /* eslint-disable camelcase */
 import React from 'react';
-import styled from 'styled-components';
+//import styled from 'styled-components';
+const styled = window.styled;
 import RatingButtons from './RatingButtons.jsx';
 import $ from 'jquery';
 import CommentModal from './CommentModal.jsx';
@@ -48,7 +49,7 @@ class ReviewRating extends React.Component {
     helpfulness[val] = status;
 
     $.ajax({
-      url: 'http://localhost:3005/review/vote',
+      url: '/review/vote',
       method: 'POST',
       data: {
         // eslint-disable-next-line camelcase
@@ -91,7 +92,7 @@ class ReviewRating extends React.Component {
    */
   getReview() {
     $.ajax({
-      url: 'http://localhost:3005/reviews',
+      url: '/reviews',
       method: 'GET',
       data: {
         where: {
