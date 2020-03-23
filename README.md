@@ -1,4 +1,4 @@
-# Vapor market: Reviews Module
+# Vapor Market: Reviews Module
 This reviews module is a component that contains multiple features pertaining to the Vapor Market product detail page:
 - Historical data displaying reviews over time
 - Reviews list - sortable and filterable by language, helpfulness, etc.
