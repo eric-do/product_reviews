@@ -151,7 +151,7 @@ const ModuleContainer = styled.div`
   max-width: 940px;
   width: auto;
   height: auto;
-
+  
 `;
 
 const ReviewsContainer = styled.div`
