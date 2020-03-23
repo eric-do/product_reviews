@@ -1,16 +1,6 @@
 /* eslint-disable indent */
 import React from 'react';
-//import styled from 'styled-components';
-const styled = window.styled;
-
-/**
- * Component for display of individual rating buttons
- * @param {Boolean} active - active state of the button
- * @param {Function} updateHelpfulness - function to update the state on click
- */
-const HelpfulButton = (props) => (
-      <Button active={props.active} onClick={(e) => props.updateHelpfulness(e, props.string.toLowerCase())}>{props.string}</Button>
- );
+import styled from 'styled-components'
 
 const Button = styled.span`
   border-radius: 2px;
@@ -30,5 +20,15 @@ const Button = styled.span`
     color: white;
   }
 `;
+
+/**
+ * Component for display of individual rating buttons
+ * @param {Boolean} active - active state of the button
+ * @param {Function} updateHelpfulness - function to update the state on click
+ */
+const HelpfulButton = (props) => (
+      <Button active={props.active} onClick={(e) => props.updateHelpfulness(e, props.string.toLowerCase())}>{props.string}</Button>
+ );
+
 
 export default HelpfulButton;
