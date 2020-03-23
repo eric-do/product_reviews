@@ -1,6 +1,5 @@
 import React from 'react';
-//import styled from 'styled-components';
-const styled = window.styled;
+import styled from 'styled-components';
 
 /**
  * This component renders the active filters
