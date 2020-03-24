@@ -5,6 +5,13 @@ This reviews module is a component that contains multiple features pertaining to
 - Buttons to flag reviews as helpful/funny
 - Modal to submit comments on each review
 
+## Screenshots
+![User reviews and historical data](screenshot1.png)
+![Review comment modal](screenshot2.png)
+
+## Demo clip
+[![Video demo](https://img.youtube.com/vi/yFk6rN6DdSs/0.jpg)](https://youtu.be/yFk6rN6DdSs)
+
 ## Installing and running the app
 
 ### Front end
@@ -34,10 +41,3 @@ From root directory
 npm start
 ```
 
-## Screenshots
-![User reviews and historical data](screenshot1.png)
-![Review comment modal](screenshot2.png)
-
-## Demo clip
-Youtube link:
-[![Video demo](https://img.youtube.com/vi/yFk6rN6DdSs/0.jpg)](https://youtu.be/yFk6rN6DdSs)
