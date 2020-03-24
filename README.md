@@ -5,21 +5,32 @@ This reviews module is a component that contains multiple features pertaining to
 - Buttons to flag reviews as helpful/funny
 - Modal to submit comments on each review
 
+## Installing and running the app
 
-## Table of Contents
-
-1. [Usage](#Usage)
-2. [Requirements](#requirements)
-3. [Development](#development)
-
-## Development
-### Installing Dependencies
-
+### Front end
 From within the root directory:
 
 ```sh
 npm install -g webpack
 npm run react-prod
+```
+
+### Back end
+#### Import schema
+From root directory
+```sh
+mysql -u root -p < schema.sql
+```
+
+#### Seed database
+From root directory
+```sh
+npm run seed
+```
+
+### Running the app
+From root directory
+```sh
 npm start
 ```
 
